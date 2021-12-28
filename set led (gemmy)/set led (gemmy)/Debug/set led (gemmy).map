@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm Thu Dec 23 03:46:04 2021
+AVRASM ver. 2.2.7  D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm Tue Dec 28 04:46:19 2021
 
 
 EQU  SIGNATURE_000 0000001e
@@ -568,4 +568,8 @@ EQU  ACIaddr      00000024
 EQU  TWIaddr      00000026
 EQU  SPMRaddr     00000028
 EQU  INT_VECTORS_SIZE 0000002a
-CSEG loop         00000003
+CSEG ADCenable    00000006
+CSEG mainloop     0000000a
+EQU  channel      00000000
+CSEG wait_for_conv_finished 0000000d
+CSEG loop         00000013

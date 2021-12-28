@@ -22,6 +22,9 @@
   <FILE>set led (gemmy).lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <loop><FILE>D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm</FILE><LINE>20</LINE></loop>
+  <ADCenable><FILE>D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm</FILE><LINE>26</LINE></ADCenable>
+  <mainloop><FILE>D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm</FILE><LINE>41</LINE></mainloop>
+  <wait_for_conv_finished><FILE>D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm</FILE><LINE>49</LINE></wait_for_conv_finished>
+  <loop><FILE>D:\micro project\Smart-safe-team-7-\set led (gemmy)\set led (gemmy)\main.asm</FILE><LINE>59</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>
