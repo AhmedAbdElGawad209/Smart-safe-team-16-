@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Sat Dec 25 02:53:05 2021
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Tue Dec 28 07:54:26 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
@@ -893,7 +893,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  push r24
                                  push r25
                                  
-                                 .equ i = 2499    ;no. of iteration for the inner loop
+                                 .equ i = 39999    ;no. of iteration for the inner loop
                                  ldi r20,@0/10		; the delay time entered by the user 
                                  
                                  outerloop:										; outer loop
@@ -932,8 +932,8 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
 00000a 938f
 00000b 939f
 00000c e644
-00000d ec83
-00000e e099
+00000d e38f
+00000e e99c
 00000f 9701
 000010 f7f1
 000011 954a
