@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Sat Dec 25 02:53:05 2021
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Tue Dec 28 07:54:26 2021
 
 
 EQU  SIGNATURE_000 0000001e
@@ -571,6 +571,6 @@ EQU  INT_VECTORS_SIZE 0000002a
 DEF  mask         r16
 DEF  ledR         r17
 CSEG start        00000007
-EQU  i            000009c3
+EQU  i            00009c3f
 CSEG outerloop@delay@1697 0000000d
 CSEG innerloop@delay@1697 0000000f

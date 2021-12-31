@@ -4,12 +4,12 @@ push r20
 push r24
 push r25
 
-.equ i = 2499    ;no. of iteration for the inner loop
+
 ldi r20,@0/10		; the delay time entered by the user 
 
 outerloop:										; outer loop
-			ldi		r24,LOW(i)					; initialize itirators at the begining each time
-			ldi		r25,HIGH(i) 
+			ldi		r24,LOW(39998)					; initialize itirators at the begining each time
+			ldi		r25,HIGH(39998) 
 
 innerloop:
 			sbiw	r24,1

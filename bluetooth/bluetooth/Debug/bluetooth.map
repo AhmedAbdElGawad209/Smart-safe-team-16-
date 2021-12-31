@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm Mon Dec 27 09:03:53 2021
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm Wed Dec 29 07:59:50 2021
 
 
 EQU  SIGNATURE_000 0000001e
@@ -568,7 +568,8 @@ EQU  ACIaddr      00000024
 EQU  TWIaddr      00000026
 EQU  SPMRaddr     00000028
 EQU  INT_VECTORS_SIZE 0000002a
-EQU  baud         00002580
-EQU  bps          00000067
-CSEG initUART     0000000c
-CSEG putc         00000005
+CSEG start        00000008
+CSEG wait@read@1758 00000008
+CSEG wait@read@1772 0000000d
+CSEG myStr        00000013
+CSEG hello        00000021

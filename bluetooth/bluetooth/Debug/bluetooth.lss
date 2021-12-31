@@ -1,12 +1,18 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm Mon Dec 27 09:03:53 2021
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm Wed Dec 29 07:59:50 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\initUART.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\send_string.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\receive_char.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\initUART.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\send_string.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\receive_char.inc'
                                  
                                  ;
                                  
@@ -883,12 +889,12 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(11): Including
                                  push r24
                                  push r25
                                  
-                                 .equ i = 2499    ;no. of iteration for the inner loop
+                                 
                                  ldi r20,@0/10		; the delay time entered by the user 
                                  
                                  outerloop:										; outer loop
-                                 			ldi		r24,LOW(i)					; initialize itirators at the begining each time
-                                 			ldi		r25,HIGH(i) 
+                                 			ldi		r24,LOW(39998)					; initialize itirators at the begining each time
+                                 			ldi		r25,HIGH(39998) 
                                  
                                  innerloop:
                                  			sbiw	r24,1
@@ -901,51 +907,125 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(11): Including
                                  pop r25
                                  pop r24
                                  pop r20
+                                 .include  "initUART.inc"
+                                 
+                                 
+                                 ldi	r16,103			; load baud rate  [(F_CPU/(BouadRate*16))-1]
+                                 ldi	r17,0
+                                 
+                                 out UBRRH, r17
+                                 out UBRRL, r16
+                                 
+                                 ; Enable receiver and transmitter
+                                 ldi r16, (1<<RXEN)|(1<<TXEN)
+                                 out UCSRB,r16
+                                 
+                                 ; Set frame format: 8data, 2stop bit
+                                 ldi r16, (1<<URSEL)|(1<<USBS)|(3<<UCSZ0)
+                                 out UCSRC,r16
+                                 
+                                 .endmacro
+                                 .include "send_string.inc"
+                                 
+                                 
+                                 ldi	ZL,LOW(2*@0)			; load Z pointer with
+                                 ldi	ZH,HIGH(2*@0)
+                                 
+                                 
+                                 puts:	lpm	r16,Z+				; load character from pmem
+                                 	cpi	r16,0x00				; check if null
+                                 	breq	puts_end
+                                 
+                                 	puts_wait:
+                                 	sbis UCSRA,UDRE			; wait for empty transmit buffer
+                                 	rjmp	puts_wait
+                                 
+                                 	out	UDR,r16			; transmit character
+                                 	rjmp	puts
+                                 
+                                 	puts_end:
+                                 	nop
+                                 .include "receive_char.inc"
+                                 
+                                 
+                                 	wait:
+                                 ; Wait for data to be received
+                                 sbis UCSRA, RXC
+                                 rjmp wait
+                                 
+                                 ; Get and return received data from buffer
+                                 in @0, UDR
+                                 
                                  
                                  .cseg
                                  .org	 0x00
-                                 .equ	baud	= 9600			; baudrate
-                                 	.equ	bps	= 103	; baud prescale
-                                 
-                                 	...
-                                 
-000000 e607                      	ldi	r16,LOW(bps)			; load baud prescale
-000001 e010                      	ldi	r17,HIGH(bps)			; into r17:r16
-                                 
-000002 d009                      	rcall	initUART
-                                 
-                                 	;start:
-000003 e601                      	ldi	r16,'a'				; load char 'a' into r16
-000004 d000                      	rcall	putc
-                                 	;delay 1000 
-                                 	;rjmp	start
-                                 
-                                 
-000005 9110 000b                 	putc:	lds	r17,UCSRA			; load UCSR0A into r17
-000007 ff15                      	sbrs	r17,UDRE			; wait for empty transmit buffer
-000008 cffc                      	rjmp	putc				; repeat loop
-                                 
-000009 9300 000c                 	sts	UDR,r16			; transmit character
-                                 
-00000b 9508                      	ret
                                  
                                  
                                  
+000000 e607
+000001 e010
+000002 bd10
+000003 b909
+000004 e108
+000005 b90a
+000006 e80e
+000007 bd00                      	init_UART
                                  
                                  
+                                 	
+                                 	/*
+                                 	write myStr
+                                 	
+                                 	delay 1000
+                                 	 
+                                 	 write hello
+                                 	 delay 1000
+                                 	*/
                                  
+                                 	start:
                                  
-                                 	initUART:
-00000c 9300 0009                 	sts	UBRRL,r16			; load baud prescale
-00000e 9310 0020                 	sts	UBRRH,r17			; to UBRR0
+                                 	
                                  
-000010 e108                      	ldi	r16,(1<<RXEN)|(1<<TXEN)	; enable transmitter
-000011 9300 000a                 	sts	UCSRB,r16			; and receiver
+                                 	 
                                  
-000013 9100 0020                 	lds r16,UCSRC
-000015 6006                      	ori r16,(3<<UCSZ0)
-000016 9300 0020                 	sts UCSRC,r16
+000008 9b5f
+000009 cffe
+00000a b12c                      	read r18
+00000b bb24                      	out DDRC,r18
+00000c bb25                      	out PORTC,r18
+00000d 9b5f
+00000e cffe
+00000f b13c                      	read r19
+000010 bb3a                      	out DDRA,r19
+000011 bb3b                      	out PORTA,r19
                                  
+                                 	
+000012 cff5                      	rjmp	start
+                                 /*
+                                 	USART_Receive:
+                                 ; Wait for data to be received
+                                 sbis UCSRA, RXC
+                                 rjmp USART_Receive
+                                 ; Get and return received data from buffer
+                                 in r16, UDR
+                                 ret
+                                 */
+000013 6c65
+000014 686b
+000015 7a61
+000016 616e
+000017 6720
+000018 6861
+000019 617a
+00001a 6c20
+00001b 736c
+00001c 6f68
+00001d 2733
+00001e 2e6c
+00001f 2e2e
+000020 0021                      	myStr:	.db	"elkhazna gahza llsho3'l...!",0x00
+000021 6861
+000022 656d
 
 
 RESOURCE USE INFORMATION
@@ -965,10 +1045,10 @@ counted separately from r26..r31 here.
 "ATmega32" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   9 r17:   4 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:   6 r17:   2 r18:   3 r19:   3 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 2 out of 35 (5.7%)
+Registers used: 4 out of 35 (11.4%)
 
 "ATmega32" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
@@ -980,22 +1060,22 @@ brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   4 lds   :   2 lpm   :   0 lsl   :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   0 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   1 out   :   0 pop   :   0 
-push  :   0 rcall :   2 ret   :   2 reti  :   0 rjmp  :   1 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   1 sec   :   0 seh   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   8 pop   :   0 
+push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   3 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   2 
+sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   5 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 8 out of 113 (7.1%)
+Instructions used: 5 out of 113 (4.4%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000032     50      0     50   32768   0.2%
+[.cseg] 0x000000 0x000048     38     34     72   32768   0.2%
 [.dseg] 0x000060 0x000060      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
