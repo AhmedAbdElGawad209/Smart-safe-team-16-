@@ -20,8 +20,8 @@
 	out    DDRA,r17
 	ldi	   r18,0b00000000
 	OUT    PORTA,r18		; write register 16 to PORTA
-	ldi	   r31,0b11111111	
-    out    DDRD,r31		; write register 16 to DDRA
+	ldi	   r32,0b11111111	
+    out    DDRD,r32		; write register 16 to DDRA
 
 rjmp mainloop
 
