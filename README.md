@@ -5,7 +5,7 @@ the idea of our team is to build a smart safe which is connect to a mobile with 
 can be remotely acessed by number of users with a permisssion of the owner. 
 when an owner first use the project it will connect to the safe using blutooth and write the password for the safe 
 then it is time for the members which they ineed for acessing the safe without the prensence of the owner to open the safe.
-for the sake of  acheving this the owner give the members an ID which can identify the member. 
+for the sake of  achieving this the owner give the members an ID which can identify the member. 
 if the member insert it ID the safe will send a massage to the owner ith the ID. 
 owner has the choice to accept and then the safe open 
 OR reject and then the safe stay locked and a rejection alarm is set . 
