@@ -1,14 +1,16 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Tue Dec 28 07:54:26 2021
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm Wed Dec 29 04:44:40 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\set stack.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\initUART.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\send_string.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\set stack.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\initUART.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\send_string.inc'
                                  
                                  ;
                                  
@@ -826,15 +828,15 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  #endif  /* _M32DEF_INC_ */
                                  
                                  
-                                 ; delay function.asm
+                                 ; bluetooth.asm
                                  ;
-                                 ; Created: 24/12/2021 09:45:13 ŸÖ
+                                 ; Created: 27/12/2021 07:44:33 ÿµ
                                  ; Author : AbdElGawad
                                  ;
                                  
                                  
                                  ; Replace with your application code
-                                 	.include "m32def.inc"
+                                 .include	"m32def.inc"
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega32.xml ************
                                  ;*************************************************************************
@@ -878,27 +880,19 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  
                                  #endif  /* _M32DEF_INC_ */
                                  
-                                 	.include "set stack.inc"
-                                 
-                                 
-                                 ldi		r16,LOW(RAMEND)  ;first address of stack segmant 
-                                 out		SPL,r16
-                                 ldi		r16,HIGH(RAMEND) 
-                                 out		SPH,r16
-                                 
-                                 	.include "delay_function.inc"
+                                 .include  "delay_function.inc"
                                  
                                  ;push the 3 registers that we will use  
                                  push r20 
                                  push r24
                                  push r25
                                  
-                                 .equ i = 39999    ;no. of iteration for the inner loop
+                                 
                                  ldi r20,@0/10		; the delay time entered by the user 
                                  
                                  outerloop:										; outer loop
-                                 			ldi		r24,LOW(i)					; initialize itirators at the begining each time
-                                 			ldi		r25,HIGH(i) 
+                                 			ldi		r24,LOW(39998)					; initialize itirators at the begining each time
+                                 			ldi		r25,HIGH(39998) 
                                  
                                  innerloop:
                                  			sbiw	r24,1
@@ -911,37 +905,132 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  pop r25
                                  pop r24
                                  pop r20
-                                 	.def	mask 	= r16		; mask register
-                                 	.def	ledR 	= r17
+                                 .include  "initUART.inc"
+                                 
+                                 
+                                 ldi	r16,103			; load baud rate  [(F_CPU/(BouadRate*16))-1]
+                                 ldi	r17,0
+                                 
+                                 out UBRRH, r17
+                                 out UBRRL, r16
+                                 
+                                 ; Enable receiver and transmitter
+                                 ldi r16, (1<<RXEN)|(1<<TXEN)
+                                 out UCSRB,r16
+                                 
+                                 ; Set frame format: 8data, 2stop bit
+                                 ldi r16, (1<<URSEL)|(1<<USBS)|(3<<UCSZ0)
+                                 out UCSRC,r16
+                                 
+                                 .endmacro
+                                 .include "send_string.inc"
+                                 
+                                 
+                                 ldi	ZL,LOW(2*@0)			; load Z pointer with
+                                 ldi	ZH,HIGH(2*@0)
+                                 
+                                 
+                                 puts:	lpm	r16,Z+				; load character from pmem
+                                 	cpi	r16,0x00				; check if null
+                                 	breq	puts_end
+                                 
+                                 	puts_wait:
+                                 	sbis UCSRA,UDRE			; wait for empty transmit buffer
+                                 	rjmp	puts_wait
+                                 
+                                 	out	UDR,r16			; transmit character
+                                 	rjmp	puts
+                                 
+                                 	puts_end:
+                                 	nop
+                                 
+                                 .cseg
+                                 .org	 0x00
+                                 
+                                 
+                                 
+000000 e607
+000001 e010
+000002 bd10
+000003 b909
+000004 e108
+000005 b90a
+000006 e80e
+000007 bd00                      	init_UART
+                                 
+                                 
+                                 	start:
                                  	
-                                 	.cseg
-                                 	.org 	0x00
-000000 e50f
-000001 bf0d
-000002 e008
-000003 bf0e                      	init_stack
+000008 e6ee
+000009 e0f0
+00000a 9105
+00000b 3000
+00000c f021
+00000d 9b5d
+00000e cffe
+00000f b90c
+000010 cff9
+000011 0000                      	write myStr
                                  	
-000004 2711                      	clr	ledR			; clear led register
-000005 e001                      	ldi	mask,(1<<PINB0)		; load 00000001 into mask register
-000006 bb07                      	out	DDRB,mask
+000012 934f
+000013 938f
+000014 939f
+000015 e644
+000016 e38e
+000017 e99c
+000018 9701
+000019 f7f1
+00001a 954a
+00001b f7d1
+00001c 919f
+00001d 918f
+00001e 914f                      	delay 1000
+                                 	 
+00001f e8ea
+000020 e0f0
+000021 9105
+000022 3000
+000023 f021
+000024 9b5d
+000025 cffe
+000026 b90c
+000027 cff9
+000028 0000                      	 write hello
+000029 934f
+00002a 938f
+00002b 939f
+00002c e644
+00002d e38e
+00002e e99c
+00002f 9701
+000030 f7f1
+000031 954a
+000032 f7d1
+000033 919f
+000034 918f
+000035 914f                      	 delay 1000
+                                 	
                                  
-000007 2710                      	start:	eor	ledR,mask		; toggle PINB0 in led register
-000008 bb18                      	out	PORTB,ledR
+000036 cfd1                      	rjmp	start
                                  
-000009 934f
-00000a 938f
-00000b 939f
-00000c e644
-00000d e38f
-00000e e99c
-00000f 9701
-000010 f7f1
-000011 954a
-000012 f7d1
-000013 919f
-000014 918f
-000015 914f                      	delay 1000
                                  
+                                 
+000037 6c65
+000038 686b
+000039 7a61
+00003a 616e
+00003b 6720
+00003c 6861
+00003d 617a
+00003e 6c20
+00003f 736c
+000040 6f68
+000041 2733
+000042 2e6c
+000043 2e2e
+000044 0021                      	myStr:	.db	"elkhazna gahza llsho3'l...!",0x00
+000045 6861
+000046 656d
 
 
 RESOURCE USE INFORMATION
@@ -959,39 +1048,39 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega32" register use summary:
-x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   0 z  :   2 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   7 r17:   3 r18:   0 r19:   0 r20:   4 
-r21:   0 r22:   0 r23:   0 r24:   4 r25:   3 r26:   0 r27:   0 r28:   0 
-r29:   0 r30:   0 r31:   0 
-Registers used: 5 out of 35 (14.3%)
+r13:   0 r14:   0 r15:   0 r16:  12 r17:   2 r18:   0 r19:   0 r20:   8 
+r21:   0 r22:   0 r23:   0 r24:   8 r25:   6 r26:   0 r27:   0 r28:   0 
+r29:   0 r30:   2 r31:   2 
+Registers used: 8 out of 35 (22.9%)
 
 "ATmega32" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   2 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   4 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   1 eor   :   1 fmul  :   0 fmuls :   0 
+cpi   :   2 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   6 lds   :   0 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :  14 lds   :   0 lpm   :   2 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   4 pop   :   3 
-push  :   3 rcall :   0 ret   :   0 reti  :   0 rjmp  :   1 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   1 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+neg   :   0 nop   :   2 or    :   0 ori   :   0 out   :   6 pop   :   6 
+push  :   6 rcall :   0 ret   :   0 reti  :   0 rjmp  :   5 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   2 
+sbiw  :   2 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+Instructions used: 13 out of 113 (11.5%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00002e     46      0     46   32768   0.1%
+[.cseg] 0x000000 0x000090    110     34    144   32768   0.4%
 [.dseg] 0x000060 0x000060      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

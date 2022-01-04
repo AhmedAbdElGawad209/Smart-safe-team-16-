@@ -9,12 +9,20 @@
 ; Replace with your application code
 
 
-	.include "m32def.inc"
-
+.include "m32def.inc"
+.include "set stack.inc"
+.include "delay_function.inc"
+.include "ADC.inc"
 	.cseg
 	.org 	0x00
-	ldi	r16,0b00000001		; load 00000001 into register 16
-        out     DDRB,r16		; write register 16 to DDRB
-        out     PORTB,r16		; write register 16 to PORTB
+
+	ldi	   r17,0b00000001	; load 00000001 into register 16
+	out    DDRA,r17
+	ldi	   r18,0b00000000
+	OUT    PORTA,r18		; write register 16 to PORTA
+	ldi	   r31,0b11111111	
+    out    DDRD,r31		; write register 16 to DDRA
+
+rjmp mainloop
 
 loop:	rjmp    loop	
