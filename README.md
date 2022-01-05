@@ -1,11 +1,11 @@
----
 
-title: Smart safe 
----
+
+## Smart safe 
+
 
 Our project aims to upgrad the level of security, smartness and efficiency of normal safe.
 
-## A description of what the project is for.
+# A description of what the project is for.
 
 This should answer a short list of basic questions:
 
@@ -27,7 +27,7 @@ The safe also contins anti move system :
 * A job group or team who want to save a very secure papar of work ,but still easily acessed among the team.     
 
 
-## Instructions for how to  use the project.
+# Instructions for how to  use the project.
 
 users can immediately strat with our project by downloading a mobile application and 
 then connet to their safe set their users ID and then they ready to go.
@@ -35,16 +35,16 @@ then connet to their safe set their users ID and then they ready to go.
 
 
 
-## List the licensing information for your project.
+# List the licensing information for your project.
 
 **What is the license for this project?**
-### Include credit and licenses for embedded resources
+# Include credit and licenses for embedded resources
 
 
 
-## For any truoble using the project kindly connect our team at:
+# For any truoble using the project kindly connect our team at:
 ahmed170041@feng.bu.edu.eg
-## project built by Smart-safe team members :
+# project built by Smart-safe team members :
 
 1: Ahmed Mohamad Mohamoud 
 
