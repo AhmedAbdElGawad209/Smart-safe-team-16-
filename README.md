@@ -35,10 +35,7 @@ then connet to their safe set their users ID and then they ready to go.
 
 
 
-### List the licensing information for your project.
 
-**What is the license for this project?**
-### Include credit and licenses for embedded resources
 
 
 
