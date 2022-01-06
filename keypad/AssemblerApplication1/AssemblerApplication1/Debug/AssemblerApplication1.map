@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm Thu Jan 06 16:58:00 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm Thu Jan 06 20:56:25 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -568,23 +568,29 @@ EQU  ACIaddr      00000024
 EQU  TWIaddr      00000026
 EQU  SPMRaddr     00000028
 EQU  INT_VECTORS_SIZE 0000002a
-DSEG var1         00000060
-CSEG start        0000000c
-CSEG next1        00000014
-CSEG next2        0000001b
-CSEG next3        0000001e
-CSEG l2           00000071
-CSEG next4        00000023
-CSEG next5        0000002c
-CSEG next6        00000031
-CSEG next7        00000036
-CSEG next8        0000003b
-CSEG next9        00000044
-CSEG next10       00000049
-CSEG next11       0000004e
-CSEG next12       00000053
-CSEG next13       0000005c
-CSEG next14       00000061
-CSEG next15       00000066
-CSEG l1           0000006c
-CSEG var          00000075
+DSEG id           00000060
+CSEG ss           00000008
+CSEG clear@read_id@1905 00000008
+CSEG start@read_id@1905 0000000d
+CSEG next1@read_id@1905 00000017
+CSEG next2@read_id@1905 0000001e
+CSEG next3@read_id@1905 00000025
+CSEG next4@read_id@1905 0000002c
+CSEG next5@read_id@1905 00000036
+CSEG next6@read_id@1905 0000003d
+CSEG next7@read_id@1905 00000044
+CSEG next8@read_id@1905 0000004b
+CSEG next9@read_id@1905 00000055
+CSEG next10@read_id@1905 0000005c
+CSEG next11@read_id@1905 00000063
+CSEG next12@read_id@1905 00000067
+CSEG next13@read_id@1905 00000071
+CSEG next14@read_id@1905 00000078
+CSEG next15@read_id@1905 0000007c
+CSEG hold@read_id@1905 00000084
+CSEG check@read_id@1905 00000092
+CSEG a@read_id@1905 00000095
+CSEG set_id@read_id@1905 00000096
+CSEG no@is@2085   000000a9
+CSEG end@is@2085  000000aa
+CSEG noo          000000b1

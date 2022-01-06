@@ -1,16 +1,20 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm Thu Jan 06 16:58:00 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm Thu Jan 06 20:56:25 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\delay_function.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\led.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\set stack.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\compare.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(15): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\keypad.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\delay_function.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\led.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\set stack.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\compare.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm(15): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\keypad.inc'
                                  
                                  ;
                                  
@@ -907,20 +911,10 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerAppli
                                  pop r20
                                  .include	"led.inc"
                                  
-                                 ldi	r16,@0
-                                 	out	PORTC,r16
+                                 
                                  	ldi	r18,@0
                                  	adiw	Y,1
                                  	st	Y,r18
-                                 	/*
-                                 	nop
-                                 	ldi r16,2
-                                 	mov	r0,r16
-                                 	;adiw	Z,1
-                                 	spm
-                                 	*/
-                                 
-                                 	
                                  	
                                  .include	"set stack.inc"
                                  
@@ -930,13 +924,206 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerAppli
                                  ldi		r16,HIGH(RAMEND) 
                                  out		SPH,r16
                                  
-                                 ;.include	"store number.inc"
+                                 .include	"compare.inc"
+                                 
+                                 	cpi	r23,@0
+                                 	brne	no
+                                 	cpi	r22,@1
+                                 	brne	no
+                                 	cpi	r21,@2
+                                 	brne	no
+                                 	cpi	r20,@3
+                                 	brne	no
+                                 	SEZ
+                                 	rjmp	end
+                                 no:
+                                 	CLZ
+                                 end:
+                                 	nop
+                                 .include	"keypad.inc"
+                                 
+                                 ;............................keypad.......................................................
+                                 clear:
+                                 	ldi	YL,LOW(id)
+                                 	ldi	YH,HIGH(id)
+                                 	ldi	r18,0
+                                 	st	Y,r18
+                                 	ldi	r19,0
+                                 start:			
+                                 	ldi r16,0x01			;HIGH row 1
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next1
+                                 	rcall	hold
+                                 	ldi	r18,1
+                                 	adiw	Y,1
+                                 	st	Y,r18	
+                                 	inc	r19
+                                 next1:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next2
+                                 	rcall	hold
+                                 	ldi	r18,2
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next2:
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next3
+                                 	rcall	hold
+                                 	ldi	r18,3
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next3:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	next4
+                                 	rcall	hold
+                                 	ldi	r18,'A'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next4:
+                                 	ldi r16,0x02				;;HIGH row 2
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next5
+                                 	rcall	hold
+                                 	ldi	r18,4
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next5:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next6
+                                 	rcall	hold
+                                 	ldi	r18,5
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next6:		
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next7
+                                 	rcall	hold
+                                 	ldi	r18,6
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next7:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	next8
+                                 	rcall	hold
+                                 	ldi	r18,'B'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next8:
+                                 	ldi r16,0x04			;HIGH row 3
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next9
+                                 	rcall	hold
+                                 	ldi	r18,7
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next9:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next10
+                                 	rcall	hold
+                                 	ldi	r18,8
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next10:
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next11
+                                 	rcall	hold
+                                 	ldi	r18,9
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next11:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	next12
+                                 	rcall	hold
+                                 	rjmp	clear
+                                 next12:
+                                 	ldi r16,0x08				;HIGH row 4
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next13
+                                 	rcall	hold
+                                 	ldi	r18,'*'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next13:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next14
+                                 	rcall	hold
+                                 	ldi	r18,0
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next14:
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next15
+                                 	rcall	hold
+                                 	rjmp	check
+                                 next15:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	start
+                                 	rcall	hold
+                                 	ldi	r18,'D'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 rjmp  start
+                                 
+                                 hold:
+                                 	ldi	r16,1
+                                 	out	PORTC,r16
+                                 	in	r16,PINB
+                                 	sbrc	r16,4
+                                 	rjmp hold
+                                 	sbrc	r16,5
+                                 	rjmp hold
+                                 	sbrc	r16,6
+                                 	rjmp hold
+                                 	sbrc	r16,7
+                                 	rjmp hold
+                                 	ldi	r16,0
+                                 	out	PORTC,r16
+                                 	ret
+                                 
+                                 check:
+                                 	cpi	r19,4
+                                 	brlo	a
+                                 	rcall	set_id	
+                                 a:
+                                 rjmp	start
+                                 
+                                 set_id:
+                                 	nop
+                                 	adiw	Y,1
+                                 	nop
+                                 	ld	r20,-Y
+                                 	ld	r21,-Y
+                                 	ld	r22,-Y
+                                 	ld	r23,-Y
+                                 	nop
+                                 .endmacro
                                  ;include	"delay_function.inc"
                                  
                                  	.dseg
                                  	.org	SRAM_START
                                  
-000060                           var1:	.byte	100
+000060                           id:	.byte	20
                                  
                                  
                                  	.cseg
@@ -947,291 +1134,192 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerAppli
 000002 e008
 000003 bf0e                      	init_stack
                                  	
-                                 	;ldi	ZL,LOW(var)
-                                 	;ldi	ZH,HIGH(var)
                                  
-                                 	;ldi XL,LOW(id)
-                                 	;ldi XH,HIGH(id)
-                                 
-000004 ef0f                      	ldi r16,0b11111111    ;first 4 input .   last 4 output
+000004 ef0f                      	ldi r16,0b11111111    
 000005 bb04                      	out DDRC,r16
-                                 
-000006 e00f                      	ldi r16,0x0f
+                                 ;............................keypad.......................................................
+000006 e00f                      	ldi r16,0x0f			;first 4pins (ROWS) input .   last 4pins (COLS) output
 000007 bb07                      	out DDRB,r16
-000008 e6c0                      	ldi	YL,LOW(var1)
-000009 e0d0                      	ldi	YH,HIGH(var1)
+                                 	ss:
                                  
-00000a e021                      	ldi	r18,1
-00000b e030                      	ldi	r19,0
-                                 	start:
-                                 				
-00000c e001                      	ldi r16,0x01
-00000d bb08                      	out PORTB,r16
-00000e 0000                      	nop
-                                 	
-00000f 9bb4                      	sbis	PINB,PINB4
-000010 c003                      	rjmp	next1
-000011 e006                      	ldi	r16,0b00000110
-000012 bb05                      	out	PORTC,r16
-000013 0000                      	nop
+000008 e6c0
+000009 e0d0
+00000a e020
+00000b 8328
+00000c e030
+00000d e001
+00000e bb08
+00000f 0000
+000010 9bb4
+000011 c005
+000012 d071
+000013 e021
+000014 9621
+000015 8328
+000016 9533
+000017 9bb5
+000018 c005
+000019 d06a
+00001a e022
+00001b 9621
+00001c 8328
+00001d 9533
+00001e 9bb6
+00001f c005
+000020 d063
+000021 e023
+000022 9621
+000023 8328
+000024 9533
+000025 9bb7
+000026 c005
+000027 d05c
+000028 e421
+000029 9621
+00002a 8328
+00002b 9533
+00002c e002
+00002d bb08
+00002e 0000
+00002f 9bb4
+000030 c005
+000031 d052
+000032 e024
+000033 9621
+000034 8328
+000035 9533
+000036 9bb5
+000037 c005
+000038 d04b
+000039 e025
+00003a 9621
+00003b 8328
+00003c 9533
+00003d 9bb6
+00003e c005
+00003f d044
+000040 e026
+000041 9621
+000042 8328
+000043 9533
+000044 9bb7
+000045 c005
+000046 d03d
+000047 e422
+000048 9621
+000049 8328
+00004a 9533
+00004b e004
+00004c bb08
+00004d 0000
+00004e 9bb4
+00004f c005
+000050 d033
+000051 e027
+000052 9621
+000053 8328
+000054 9533
+000055 9bb5
+000056 c005
+000057 d02c
+000058 e028
+000059 9621
+00005a 8328
+00005b 9533
+00005c 9bb6
+00005d c005
+00005e d025
+00005f e029
+000060 9621
+000061 8328
+000062 9533
+000063 9bb7
+000064 c002
+000065 d01e
+000066 cfa1
+000067 e008
+000068 bb08
+000069 0000
+00006a 9bb4
+00006b c005
+00006c d017
+00006d e22a
+00006e 9621
+00006f 8328
+000070 9533
+000071 9bb5
+000072 c005
+000073 d010
+000074 e020
+000075 9621
+000076 8328
+000077 9533
+000078 9bb6
+000079 c002
+00007a d009
+00007b c016
+00007c 9bb7
+00007d cf8f
+00007e d005
+00007f e424
+000080 9621
+000081 8328
+000082 9533
+000083 cf89
+000084 e001
+000085 bb05
+000086 b306
+000087 fd04
+000088 cffb
+000089 fd05
+00008a cff9
+00008b fd06
+00008c cff7
+00008d fd07
+00008e cff5
+00008f e000
+000090 bb05
+000091 9508
+000092 3034
+000093 f008
+000094 d001
+000095 cf77
+000096 0000
+000097 9621
+000098 0000
+000099 914a
+00009a 915a
+00009b 916a
+00009c 917a
+00009d 0000                      		read_id
+00009e 0000                      	nop
                                  
-                                 next1:
-000014 9bb5                      	sbis	PINB,PINB5
-000015 c005                      	rjmp	next2
-000016 e002
-000017 bb05
-000018 e022
-000019 9621
-00001a 8328                      	store		2
-                                 	;rcall l1
-                                 	
-                                 next2:
-00001b 9bb6                      	sbis	PINB,PINB6
-00001c c001                      	rjmp	next3
-00001d d053                      	rcall	l2
+00009f 3071
+0000a0 f441
+0000a1 3062
+0000a2 f431
+0000a3 3053
+0000a4 f421
+0000a5 3044
+0000a6 f411
+0000a7 9418
+0000a8 c001
+0000a9 9498
+0000aa 0000                      	is	1,2,3,4
+0000ab f429                      	brne	noo
+0000ac e006                      	ldi	r16,0b00000110
+0000ad bb05                      	out	PORTC,r16
+0000ae 0000                      	nop
+0000af e030                      	ldi	r19,0
+0000b0 cf57                      	rjmp	ss
+                                 	noo:
+0000b1 e007                      	ldi	r16,0b00000111
+0000b2 bb05                      	out	PORTC,r16
+0000b3 0000                      	nop
+0000b4 e030                      	ldi	r19,0
+0000b5 cf52                      	rjmp	ss
                                  
-                                 next3:
-00001e 9bb7                      	sbis	PINB,PINB7
-00001f c003                      	rjmp	next4
-000020 e703                      	ldi	r16,0b01110011
-000021 bb05                      	out	PORTC,r16
-000022 0000                      	nop
-                                 next4:
-000023 e002                      		ldi r16,0x02
-000024 bb08                      	out PORTB,r16
-000025 0000                      	nop
-000026 0000                      	nop
                                  
-000027 9bb4                      	sbis	PINB,PINB4
-000028 c003                      	rjmp	next5
-000029 e606                      	ldi	r16,0b01100110
-00002a bb05                      	out	PORTC,r16
-00002b 0000                      	nop
-                                 next5:
-00002c 9bb5                      	sbis	PINB,PINB5
-00002d c003                      	rjmp	next6
-00002e e60d                      	ldi	r16,0b01101101
-00002f bb05                      	out	PORTC,r16
-000030 0000                      	nop
-                                 next6:
-000031 9bb6                      	sbis	PINB,PINB6
-000032 c003                      	rjmp	next7
-000033 e70d                      	ldi	r16,0b01111101
-000034 bb05                      	out	PORTC,r16
-000035 0000                      	nop
-                                 next7:
-000036 9bb7                      	sbis	PINB,PINB7
-000037 c003                      	rjmp	next8
-000038 e707                      	ldi	r16,0b01110111
-000039 bb05                      	out	PORTC,r16
-00003a 0000                      	nop
-                                 next8:
-00003b e004                      		ldi r16,0x04
-00003c bb08                      	out PORTB,r16
-00003d 0000                      	nop
-00003e 0000                      	nop
-00003f 9bb4                      	sbis	PINB,PINB4
-000040 c003                      	rjmp	next9
-                                 	
-                                 	
-                                 	
-000041 e007                      	ldi	r16,0b00000111
-000042 bb05                      	out	PORTC,r16
-000043 0000                      	nop
-                                 next9:
-000044 9bb5                      	sbis	PINB,PINB5
-000045 c003                      	rjmp	next10
-000046 e70f                      	ldi	r16,0b01111111
-000047 bb05                      	out	PORTC,r16
-000048 0000                      	nop
-                                 next10:
-000049 9bb6                      	sbis	PINB,PINB6
-00004a c003                      	rjmp	next11
-00004b e60f                      	ldi	r16,0b01101111
-00004c bb05                      	out	PORTC,r16
-00004d 0000                      	nop
-                                 next11:
-00004e 9bb7                      	sbis	PINB,PINB7
-00004f c003                      	rjmp	next12
-000050 e703                      	ldi	r16,0b01110011
-000051 bb05                      	out	PORTC,r16
-000052 0000                      	nop
-                                 next12:
-000053 e008                      		ldi r16,0x08
-000054 bb08                      	out PORTB,r16
-000055 0000                      	nop
-000056 0000                      	nop
-000057 9bb4                      	sbis	PINB,PINB4
-000058 c003                      	rjmp	next13
-000059 e000                      	ldi	r16,0b00000000
-00005a bb05                      	out	PORTC,r16
-00005b 0000                      	nop
-                                 next13:
-00005c 9bb5                      	sbis	PINB,PINB5
-00005d c003                      	rjmp	next14
-00005e e30f                      	ldi	r16,0b00111111
-00005f bb05                      	out	PORTC,r16
-000060 0000                      	nop
-                                 next14:
-000061 9bb6                      	sbis	PINB,PINB6
-000062 c003                      	rjmp	next15
-000063 e007                      	ldi	r16,0b00000111
-000064 bb05                      	out	PORTC,r16
-000065 0000                      	nop
-                                 next15:
-000066 9bb7                      	sbis	PINB,PINB7
-000067 cfa4                      	rjmp	start
-000068 e703                      	ldi	r16,0b01110011
-000069 bb05                      	out	PORTC,r16
-00006a 0000                      	nop
-00006b cfa0                      rjmp  start
-                                 
-                                 l1:
-00006c e006                      ldi	r16,0b00000110
-00006d bb05                      	out	PORTC,r16
-00006e 9621                      	adiw	Y,1
-00006f 8328                      	st	Y,r18
-                                 	/*
-                                 	nop
-                                 	ldi r16,2
-                                 	mov	r0,r16
-                                 	;adiw	Z,1
-                                 	spm
-                                 	*/
-                                 
-                                 	
-000070 9508                      	ret
-                                 
-                                 l2:
-000071 8108                      	ld	r16,Y
-000072 bb05                      	out	PORTC,r16
-000073 0000                      	nop
-000074 9508                      	ret
-                                 
-000075 0000                      	var:	.db		""
-                                 	;rjmp	next2
-                                 	/*
-                                 l2:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l3:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l4:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l5:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l6:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l7:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l8:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l9:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 l0:
-                                 	ldi	r16,0b01001111
-                                 	out	PORTC,r16
-                                 	nop
-                                 	ret
-                                 	*/
-                                 /*
-                                 	ldi r16,0b00010000		; power Coloump 1
-                                 	out PORTB,r16
-                                 	delay	10
-                                 	in r16,PORTB
-                                 	delay	10
-                                 	sbrc r16,0
-                                 	store_num	1
-                                 	sbrc r16,1
-                                 	store_num	4
-                                 	sbrc r16,2
-                                 	store_num	7
-                                 	sbrc r16,3
-                                 	store_num	'*'
-                                 
-                                 	ldi r16,0b00100000		; power Coloump 2
-                                 	out PORTB,r16
-                                 	delay	10
-                                 	
-                                 	in r16,PORTB
-                                 	delay	10
-                                 	sbrc r16,0
-                                 	store_num	2
-                                 	sbrc r16,1
-                                 	store_num	5
-                                 	sbrc r16,2
-                                 	store_num	8
-                                 	sbrc r16,3
-                                 	store_num	0
-                                 
-                                 	ldi r16,0b01000000		; power Coloump 3
-                                 	out PORTB,r16
-                                 	delay	10
-                                 	
-                                 	in r16,PORTB
-                                 	delay	10
-                                 	sbrc r16,0
-                                 	store_num	3
-                                 	sbrc r16,1
-                                 	store_num	6
-                                 	sbrc r16,2
-                                 	store_num	9
-                                 	sbrc r16,3
-                                 	store_num	'#'
-                                 
-                                 	ldi r16,0b10000000		; power Coloump 4
-                                 	out PORTB,r16
-                                 	delay	10
-                                 	
-                                 	in r16,PORTB
-                                 	delay	10
-                                 	sbrc r16,0
-                                 	store_num	'A'
-                                 	sbrc r16,1
-                                 	store_num	'B'
-                                 	sbrc r16,2
-                                 	store_num	'C'
-                                 	sbrc r16,3
-                                 	store_num	'D'
-                                 
-                                 	ld r16,-X
-                                 	cpi r16,'#'
-                                 	breq	id_entered
-                                 	adiw X,1
-                                 
-                                 	jmp		search
-                                 
-                                 	id_entered:
-                                 		
-                                 	ldi r16,0xff    ;first 4 input .   last 4 output
-                                 	out DDRC,r16
-                                 	ldi r16,1
-                                 	out PORTC,r16
-                                 
-                                 	jmp start
 
 
 RESOURCE USE INFORMATION
@@ -1249,40 +1337,40 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega32" register use summary:
-x  :   0 y  :   5 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :  34 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  50 r17:   0 r18:   4 r19:   1 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
+r13:   0 r14:   0 r15:   0 r16:  29 r17:   0 r18:  30 r19:  18 r20:   2 
+r21:   2 r22:   2 r23:   2 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
 r29:   1 r30:   0 r31:   0 
-Registers used: 6 out of 35 (17.1%)
+Registers used: 10 out of 35 (28.6%)
 
 "ATmega32" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   2 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :  15 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
+brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
-clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   1 ldd   :   0 ldi   :  29 lds   :   0 lpm   :   0 lsl   :   0 
+clt   :   0 clv   :   0 clz   :   1 com   :   0 cp    :   0 cpc   :   0 
+cpi   :   5 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :  14 jmp   :   0 
+ld    :   4 ldd   :   0 ldi   :  32 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :  22 or    :   0 ori   :   0 out   :  25 pop   :   0 
-push  :   0 rcall :   1 ret   :   2 reti  :   0 rjmp  :  17 rol   :   0 
+neg   :   0 nop   :  11 or    :   0 ori   :   0 out   :  12 pop   :   0 
+push  :   0 rcall :  17 ret   :   1 reti  :   0 rjmp  :  27 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :  16 
-sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   4 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   2 std   :   0 sts   :   0 
+sez   :   1 sleep :   0 spm   :   0 st    :  15 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+Instructions used: 18 out of 113 (15.9%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000ec    234      2    236   32768   0.7%
-[.dseg] 0x000060 0x0000c4      0    100    100    2048   4.9%
+[.cseg] 0x000000 0x00016c    364      0    364   32768   1.1%
+[.dseg] 0x000060 0x000074      0     20     20    2048   1.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
 Assembly complete, 0 errors, 0 warnings
