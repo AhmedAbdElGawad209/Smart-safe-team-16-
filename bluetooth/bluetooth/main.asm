@@ -7,6 +7,8 @@
 
 
 ; Replace with your application code
+;#define	F_CPU	8000000U
+
 .include	"m32def.inc"
 .include  "delay_function.inc"
 .include  "initUART.inc"
@@ -30,30 +32,38 @@
 	 write hello
 	 delay 1000
 	*/
-
+	ldi	r16,0xff
+	out	DDRC,r16
+	ldi	r16,0
+	out	PORTC,r16
 	start:
 
+	;ldi	r16,1
+	;out	PORTC,r16
 	
-
+	ldi	r16,1
+	out	DDRC,r16
+	out	PORTC,r16
+	write	hello
+	
+	delay 1000
+	/*
+	ldi	r16,0
+	out	PORTC,r16
+	 write	myStr
 	 
+	 delay 1000
+	 */
+	 
+	 read	r18
 
-	read r18
-	out DDRC,r18
-	out PORTC,r18
-	read r19
-	out DDRA,r19
-	out PORTA,r19
+	 out	PORTC,r18
+	 delay	1000
+	
 
 	
 	rjmp	start
-/*
-	USART_Receive:
-; Wait for data to be received
-sbis UCSRA, RXC
-rjmp USART_Receive
-; Get and return received data from buffer
-in r16, UDR
-ret
-*/
-	myStr:	.db	"elkhazna gahza llsho3'l...!",0x00
+
+	; (\n=0x0d)
+	myStr:	.db	"elkhazna gahza llsho3'l...! ",0x0d,0x00		
 	hello:  .db "ahmed",0x00

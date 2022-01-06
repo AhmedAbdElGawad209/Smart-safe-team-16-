@@ -1,0 +1,49 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega32"</DEVICE>
+ <WORKING_DIR>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\delay_function.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\set stack.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\compare.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\keypad.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\initUART.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\send_string.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\receive_char.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\Debug\AssemblerApplication1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>AssemblerApplication1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>AssemblerApplication1.map</FILE>
+  <FILE>AssemblerApplication1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <id><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>22</LINE></id>
+  <ss><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>37</LINE></ss>
+  <noo><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>61</LINE></noo>
+  <hello1><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>80</LINE></hello1>
+  <unknown><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>66</LINE></unknown>
+  <ahmed><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>67</LINE></ahmed>
+  <gemy><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>68</LINE></gemy>
+  <sara><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>69</LINE></sara>
+  <do3aa><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>70</LINE></do3aa>
+  <aya><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>71</LINE></aya>
+  <trying><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>73</LINE></trying>
+  <welcome><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>75</LINE></welcome>
+  <khatar><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>76</LINE></khatar>
+  <pass><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>77</LINE></pass>
+  <open><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>78</LINE></open>
+  <close><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>79</LINE></close>
+ </LABELS>
+</ASSEMBLER_INFO>

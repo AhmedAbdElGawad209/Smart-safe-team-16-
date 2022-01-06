@@ -1,5 +1,6 @@
+.macro	read_id
 ;............................keypad.......................................................
-read_id:
+clear:
 	ldi	YL,LOW(id)
 	ldi	YH,HIGH(id)
 	ldi	r18,0
@@ -106,7 +107,7 @@ next11:
 	sbis	PINB,PINB7		;check col 4
 	rjmp	next12
 	rcall	hold
-	rjmp	read_id
+	rjmp	clear
 next12:
 	ldi r16,0x08				;HIGH row 4
 	out PORTB,r16
@@ -159,10 +160,23 @@ hold:
 
 check:
 	cpi	r19,4
-	brlo	a
+	brne	a
 	rcall	set_id	
 a:
-rjmp	start
+delay	500
+ldi	r16,1
+out	PORTC,r16
+delay	500
+ldi	r16,0
+out	PORTC,r16
+delay	500
+ldi	r16,1
+out	PORTC,r16
+delay	500
+ldi	r16,0
+out	PORTC,r16
+delay	500
+rjmp	clear
 
 set_id:
 	nop
@@ -172,7 +186,6 @@ set_id:
 	ld	r21,-Y
 	ld	r22,-Y
 	ld	r23,-Y
-	sbiw	Y,1
 	nop
-	ret
+.endmacro
 ;..............................................................................................................

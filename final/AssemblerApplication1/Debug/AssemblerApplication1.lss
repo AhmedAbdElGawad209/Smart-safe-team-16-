@@ -1,18 +1,24 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm Fri Jan 07 00:26:36 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 00:39:20 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(12): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\delay_function.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\initUART.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(15): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\send_string.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\receive_char.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\set stack.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\compare.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\keypad.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(15): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\initUART.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(16): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\send_string.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(17): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\receive_char.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(12): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\delay_function.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\initUART.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(15): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\send_string.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\receive_char.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\set stack.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\compare.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\keypad.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(15): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\initUART.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(16): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\send_string.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(17): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\receive_char.inc'
                                  
                                  ;
                                  
@@ -830,16 +836,14 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including
                                  #endif  /* _M32DEF_INC_ */
                                  
                                  
-                                 ; bluetooth.asm
+                                 ; keypad.asm
                                  ;
-                                 ; Created: 27/12/2021 07:44:33 ÿµ
+                                 ; Created: 01/01/2022 10:13:08 ÿµ
                                  ; Author : AbdElGawad
                                  ;
                                  
                                  
                                  ; Replace with your application code
-                                 ;#define	F_CPU	8000000U
-                                 
                                  .include	"m32def.inc"
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega32.xml ************
@@ -884,7 +888,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including
                                  
                                  #endif  /* _M32DEF_INC_ */
                                  
-                                 .include  "delay_function.inc"
+                                 .include	"delay_function.inc"
                                  
                                  ;push the 3 registers that we will use  
                                  push r20 
@@ -909,15 +913,231 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including
                                  pop r25
                                  pop r24
                                  pop r20
-                                 .include  "initUART.inc"
+                                 .include	"set stack.inc"
                                  
                                  
-                                 ldi	r16,12			; load baud rate  [(F_CPU/(BouadRate*16))-1]
+                                 ldi		r16,LOW(RAMEND)  ;first address of stack segmant 
+                                 out		SPL,r16
+                                 ldi		r16,HIGH(RAMEND) 
+                                 out		SPH,r16
+                                 
+                                 .include	"compare.inc"
+                                 
+                                 	cpi	r23,@0
+                                 	brne	no
+                                 	cpi	r22,@1
+                                 	brne	no
+                                 	cpi	r21,@2
+                                 	brne	no
+                                 	cpi	r20,@3
+                                 	brne	no
+                                 	SEZ
+                                 	rjmp	end
+                                 no:
+                                 	CLZ
+                                 end:
+                                 	nop
+                                 .include	"keypad.inc"
+                                 
+                                 ;............................keypad.......................................................
+                                 clear:
+                                 	ldi	YL,LOW(id)
+                                 	ldi	YH,HIGH(id)
+                                 	ldi	r18,0
+                                 	st	Y,r18
+                                 	ldi	r19,0
+                                 start:			
+                                 	ldi r16,0x01			;HIGH row 1
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next1
+                                 	rcall	hold
+                                 	ldi	r18,1
+                                 	adiw	Y,1
+                                 	st	Y,r18	
+                                 	inc	r19
+                                 next1:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next2
+                                 	rcall	hold
+                                 	ldi	r18,2
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next2:
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next3
+                                 	rcall	hold
+                                 	ldi	r18,3
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next3:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	next4
+                                 	rcall	hold
+                                 	ldi	r18,'A'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next4:
+                                 	ldi r16,0x02				;;HIGH row 2
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next5
+                                 	rcall	hold
+                                 	ldi	r18,4
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next5:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next6
+                                 	rcall	hold
+                                 	ldi	r18,5
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next6:		
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next7
+                                 	rcall	hold
+                                 	ldi	r18,6
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next7:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	next8
+                                 	rcall	hold
+                                 	ldi	r18,'B'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next8:
+                                 	ldi r16,0x04			;HIGH row 3
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next9
+                                 	rcall	hold
+                                 	ldi	r18,7
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next9:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next10
+                                 	rcall	hold
+                                 	ldi	r18,8
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next10:
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next11
+                                 	rcall	hold
+                                 	ldi	r18,9
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next11:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	next12
+                                 	rcall	hold
+                                 	rjmp	clear
+                                 next12:
+                                 	ldi r16,0x08				;HIGH row 4
+                                 	out PORTB,r16
+                                 	nop
+                                 	sbis	PINB,PINB4		;check col 1
+                                 	rjmp	next13
+                                 	rcall	hold
+                                 	ldi	r18,'*'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next13:
+                                 	sbis	PINB,PINB5		;check col 2
+                                 	rjmp	next14
+                                 	rcall	hold
+                                 	ldi	r18,0
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 next14:
+                                 	sbis	PINB,PINB6		;check col 3
+                                 	rjmp	next15
+                                 	rcall	hold
+                                 	rjmp	check
+                                 next15:
+                                 	sbis	PINB,PINB7		;check col 4
+                                 	rjmp	start
+                                 	rcall	hold
+                                 	ldi	r18,'D'
+                                 	adiw	Y,1
+                                 	st	Y,r18
+                                 	inc	r19
+                                 rjmp  start
+                                 
+                                 hold:
+                                 	ldi	r16,1
+                                 	out	PORTC,r16
+                                 	in	r16,PINB
+                                 	sbrc	r16,4
+                                 	rjmp hold
+                                 	sbrc	r16,5
+                                 	rjmp hold
+                                 	sbrc	r16,6
+                                 	rjmp hold
+                                 	sbrc	r16,7
+                                 	rjmp hold
+                                 	ldi	r16,0
+                                 	out	PORTC,r16
+                                 	ret
+                                 
+                                 check:
+                                 	cpi	r19,4
+                                 	brne	a
+                                 	rcall	set_id	
+                                 a:
+                                 delay	500
+                                 ldi	r16,1
+                                 out	PORTC,r16
+                                 delay	500
+                                 ldi	r16,0
+                                 out	PORTC,r16
+                                 delay	500
+                                 ldi	r16,1
+                                 out	PORTC,r16
+                                 delay	500
+                                 ldi	r16,0
+                                 out	PORTC,r16
+                                 delay	500
+                                 rjmp	clear
+                                 
+                                 set_id:
+                                 	nop
+                                 	adiw	Y,1
+                                 	nop
+                                 	ld	r20,-Y
+                                 	ld	r21,-Y
+                                 	ld	r22,-Y
+                                 	ld	r23,-Y
+                                 	nop
+                                 .endmacro
+                                 .include	"initUART.inc"
+                                 
+                                 
+                                 ldi	r16,12		; load baud rate  [(F_CPU/(BouadRate*16))-1]
                                  ldi	r17,0
                                  
                                  out UBRRH, r17
                                  out UBRRL, r16
                                  
+                                 ;	double speed mode
                                  sbi	UCSRA,U2X
                                  
                                  ; Enable receiver and transmitter
@@ -929,7 +1149,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including
                                  out UCSRC,r16
                                  
                                  .endmacro
-                                 .include "send_string.inc"
+                                 .include	"send_string.inc"
                                  
                                  
                                  ldi	ZL,LOW(2*@0)			; load Z pointer with
@@ -949,7 +1169,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including
                                  
                                  	puts_end:
                                  	nop
-                                 .include "receive_char.inc"
+                                 .include	"receive_char.inc"
                                  
                                  
                                  	wait:
@@ -961,116 +1181,491 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm(16): Including
                                  in @0, UDR
                                  
                                  
-                                 .cseg
-                                 .org	 0x00
+                                 	.dseg
+                                 	.org	SRAM_START
+                                 
+000060                           id:	.byte	20
                                  
                                  
+                                 	.cseg
+                                 	.org	0x00
                                  
-000000 e00c
-000001 e010
-000002 bd10
-000003 b909
-000004 9a59
-000005 e108
-000006 b90a
-000007 e80e
-000008 bd00                      	init_UART
-                                 
-                                 
-                                 	
-                                 	/*
-                                 	write myStr
-                                 	
-                                 	delay 1000
-                                 	 
-                                 	 write hello
-                                 	 delay 1000
-                                 	*/
-000009 ef0f                      	ldi	r16,0xff
-00000a bb04                      	out	DDRC,r16
-00000b e000                      	ldi	r16,0
-00000c bb05                      	out	PORTC,r16
-                                 	start:
-                                 
-                                 	;ldi	r16,1
-                                 	;out	PORTC,r16
-                                 	
-00000d e001                      	ldi	r16,1
-00000e bb04                      	out	DDRC,r16
-00000f bb05                      	out	PORTC,r16
-000010 e9e0
-000011 e0f0
-000012 9105
-000013 3000
-000014 f021
-000015 9b5d
-000016 cffe
-000017 b90c
-000018 cff9
-000019 0000                      	write	hello
-                                 	
-00001a 934f
-00001b 938f
-00001c 939f
-00001d e644
-00001e ec83
-00001f e099
-000020 9701
-000021 f7f1
-000022 954a
-000023 f7d1
-000024 919f
-000025 918f
-000026 914f                      	delay 1000
-                                 	/*
-                                 	ldi	r16,0
-                                 	out	PORTC,r16
-                                 	 write	myStr
-                                 	 
-                                 	 delay 1000
-                                 	 */
-                                 	 
-000027 9b5f
-000028 cffe
-000029 b12c                      	 read	r18
-                                 
-00002a bb25                      	 out	PORTC,r18
-00002b 934f
-00002c 938f
-00002d 939f
-00002e e644
-00002f ec83
-000030 e099
-000031 9701
-000032 f7f1
-000033 954a
-000034 f7d1
-000035 919f
-000036 918f
-000037 914f                      	 delay	1000
+000000 e50f
+000001 bf0d
+000002 e008
+000003 bf0e                      	init_stack
+000004 e00c
+000005 e010
+000006 bd10
+000007 b909
+000008 9a59
+000009 e108
+00000a b90a
+00000b e80e
+00000c bd00                      	init_UART
                                  	
                                  
+00000d ef0f                      	ldi r16,0b11111111    
+00000e bb04                      	out DDRC,r16
+                                 ;............................keypad.......................................................
+00000f e00f                      	ldi r16,0x0f			;first 4pins (ROWS) input .   last 4pins (COLS) output
+000010 bb07                      	out DDRB,r16
+                                 	ss:
                                  	
-000038 cfd4                      	rjmp	start
+                                 	
+000011 e6c0
+000012 e0d0
+000013 e020
+000014 8328
+000015 e030
+000016 e001
+000017 bb08
+000018 0000
+000019 9bb4
+00001a c005
+00001b d071
+00001c e021
+00001d 9621
+00001e 8328
+00001f 9533
+000020 9bb5
+000021 c005
+000022 d06a
+000023 e022
+000024 9621
+000025 8328
+000026 9533
+000027 9bb6
+000028 c005
+000029 d063
+00002a e023
+00002b 9621
+00002c 8328
+00002d 9533
+00002e 9bb7
+00002f c005
+000030 d05c
+000031 e421
+000032 9621
+000033 8328
+000034 9533
+000035 e002
+000036 bb08
+000037 0000
+000038 9bb4
+000039 c005
+00003a d052
+00003b e024
+00003c 9621
+00003d 8328
+00003e 9533
+00003f 9bb5
+000040 c005
+000041 d04b
+000042 e025
+000043 9621
+000044 8328
+000045 9533
+000046 9bb6
+000047 c005
+000048 d044
+000049 e026
+00004a 9621
+00004b 8328
+00004c 9533
+00004d 9bb7
+00004e c005
+00004f d03d
+000050 e422
+000051 9621
+000052 8328
+000053 9533
+000054 e004
+000055 bb08
+000056 0000
+000057 9bb4
+000058 c005
+000059 d033
+00005a e027
+00005b 9621
+00005c 8328
+00005d 9533
+00005e 9bb5
+00005f c005
+000060 d02c
+000061 e028
+000062 9621
+000063 8328
+000064 9533
+000065 9bb6
+000066 c005
+000067 d025
+000068 e029
+000069 9621
+00006a 8328
+00006b 9533
+00006c 9bb7
+00006d c002
+00006e d01e
+00006f cfa1
+000070 e008
+000071 bb08
+000072 0000
+000073 9bb4
+000074 c005
+000075 d017
+000076 e22a
+000077 9621
+000078 8328
+000079 9533
+00007a 9bb5
+00007b c005
+00007c d010
+00007d e020
+00007e 9621
+00007f 8328
+000080 9533
+000081 9bb6
+000082 c002
+000083 d009
+000084 c016
+000085 9bb7
+000086 cf8f
+000087 d005
+000088 e424
+000089 9621
+00008a 8328
+00008b 9533
+00008c cf89
+00008d e001
+00008e bb05
+00008f b306
+000090 fd04
+000091 cffb
+000092 fd05
+000093 cff9
+000094 fd06
+000095 cff7
+000096 fd07
+000097 cff5
+000098 e000
+000099 bb05
+00009a 9508
+00009b 3034
+00009c f409
+00009d d04a
+00009e 934f
+00009f 938f
+0000a0 939f
+0000a1 e342
+0000a2 ec83
+0000a3 e099
+0000a4 9701
+0000a5 f7f1
+0000a6 954a
+0000a7 f7d1
+0000a8 919f
+0000a9 918f
+0000aa 914f
+0000ab e001
+0000ac bb05
+0000ad 934f
+0000ae 938f
+0000af 939f
+0000b0 e342
+0000b1 ec83
+0000b2 e099
+0000b3 9701
+0000b4 f7f1
+0000b5 954a
+0000b6 f7d1
+0000b7 919f
+0000b8 918f
+0000b9 914f
+0000ba e000
+0000bb bb05
+0000bc 934f
+0000bd 938f
+0000be 939f
+0000bf e342
+0000c0 ec83
+0000c1 e099
+0000c2 9701
+0000c3 f7f1
+0000c4 954a
+0000c5 f7d1
+0000c6 919f
+0000c7 918f
+0000c8 914f
+0000c9 e001
+0000ca bb05
+0000cb 934f
+0000cc 938f
+0000cd 939f
+0000ce e342
+0000cf ec83
+0000d0 e099
+0000d1 9701
+0000d2 f7f1
+0000d3 954a
+0000d4 f7d1
+0000d5 919f
+0000d6 918f
+0000d7 914f
+0000d8 e000
+0000d9 bb05
+0000da 934f
+0000db 938f
+0000dc 939f
+0000dd e342
+0000de ec83
+0000df e099
+0000e0 9701
+0000e1 f7f1
+0000e2 954a
+0000e3 f7d1
+0000e4 919f
+0000e5 918f
+0000e6 914f
+0000e7 cf29
+0000e8 0000
+0000e9 9621
+0000ea 0000
+0000eb 914a
+0000ec 915a
+0000ed 916a
+0000ee 917a
+0000ef 0000                      		read_id
+0000f0 0000                      	nop
+0000f1 934f
+0000f2 938f
+0000f3 939f
+0000f4 e342
+0000f5 ec83
+0000f6 e099
+0000f7 9701
+0000f8 f7f1
+0000f9 954a
+0000fa f7d1
+0000fb 919f
+0000fc 918f
+0000fd 914f                      	delay	500
+0000fe e001                      	ldi	r16,1
+0000ff bb05                      	out PORTC,r16
+000100 934f
+000101 938f
+000102 939f
+000103 e144
+000104 ec83
+000105 e099
+000106 9701
+000107 f7f1
+000108 954a
+000109 f7d1
+00010a 919f
+00010b 918f
+00010c 914f                      	delay	200
+00010d e000                      	ldi	r16,0
+00010e bb05                      	out PORTC,r16
+00010f 934f
+000110 938f
+000111 939f
+000112 e144
+000113 ec83
+000114 e099
+000115 9701
+000116 f7f1
+000117 954a
+000118 f7d1
+000119 919f
+00011a 918f
+00011b 914f                      	delay	200
+00011c e001                      	ldi	r16,1
+00011d bb05                      	out PORTC,r16
+00011e 934f
+00011f 938f
+000120 939f
+000121 e144
+000122 ec83
+000123 e099
+000124 9701
+000125 f7f1
+000126 954a
+000127 f7d1
+000128 919f
+000129 918f
+00012a 914f                      	delay	200
+00012b e000                      	ldi	r16,0
+00012c bb05                      	out PORTC,r16
+00012d 934f
+00012e 938f
+00012f 939f
+000130 e144
+000131 ec83
+000132 e099
+000133 9701
+000134 f7f1
+000135 954a
+000136 f7d1
+000137 919f
+000138 918f
+000139 914f                      	delay	200
                                  
-                                 	; (\n=0x0d)
-000039 6c65
-00003a 686b
-00003b 7a61
-00003c 616e
-00003d 6720
-00003e 6861
-00003f 617a
-000040 6c20
-000041 736c
-000042 6f68
-000043 2733
-000044 2e6c
-000045 2e2e
-000046 2021
-000047 000d                      	myStr:	.db	"elkhazna gahza llsho3'l...! ",0x0d,0x00		
-000048 6861
-000049 656d
+00013a 3071
+00013b f441
+00013c 3062
+00013d f431
+00013e 3053
+00013f f421
+000140 3044
+000141 f411
+000142 9418
+000143 c001
+000144 9498
+000145 0000                      	is	1,2,3,4
+000146 f409                      	brne	noo
+                                 	;write	hello
+                                 
+000147 cec9                      	rjmp	ss
+                                 	noo:
+000148 e9e6
+000149 e0f3
+00014a 9105
+00014b 3000
+00014c f021
+00014d 9b5d
+00014e cffe
+00014f b90c
+000150 cff9
+000151 0000                      	write	hello1
+                                 	
+000152 cebe                      	rjmp	ss
+                                 
+000153 550d
+000154 6b6e
+000155 6f6e
+000156 6e77
+000157 7020
+000158 7265
+000159 6f73
+00015a 006e                      	unknown:	.db		0x0d,"Unknown person",0x00
+00015b 610d
+00015c 6d68
+00015d 6465
+00015e 0020                      	ahmed:		.db		0x0d,"ahmed ",0x00
+00015f 670d
+000160 6d65
+000161 0079                      	gemy:		.db		0x0d,"gemy",0x00
+000162 730d
+000163 7261
+000164 0061                      	sara:		.db		0x0d,"sara",0x00
+000165 640d
+000166 336f
+000167 3261
+000168 0020                      	do3aa:		.db		0x0d,"do3a2 ",0x00
+000169 610d
+00016a 6179
+00016b 0020                      	aya:		.db		0x0d,"aya ",0x00
+                                 	;(\n = 0x0d)
+00016c 6920
+00016d 2073
+00016e 7274
+00016f 6979
+000170 676e
+000171 7420
+000172 206f
+000173 706f
+000174 6e65
+000175 7420
+000176 6568
+000177 6b20
+000178 6168
+000179 6e7a
+00017a 0d61
+00017b 770d
+00017c 6168
+00017d 2074
+00017e 6873
+00017f 756f
+000180 646c
+000181 6920
+000182 6420
+000183 3f6f
+000184 0d21
+000185 000d                      	trying:		.db		" is trying to open the khazna",0x0d,0x0d,"what should i do?!",0x0d,0x0d,0x00
+                                 
+000186 650d
+000187 6b6c
+000188 6168
+000189 6e7a
+00018a 2061
+00018b 6167
+00018c 7a68
+00018d 2061
+00018e 6c6c
+00018f 6873
+000190 336f
+000191 6c27
+000192 2e2e
+000193 2e2e
+000194 212e
+000195 000d                      	welcome:	.db		0x0d,"elkhazna gahza llsho3'l.....!",0x0d,0x00
+000196 650d
+000197 6b6c
+000198 6168
+000199 6e7a
+00019a 2061
+00019b 2066
+00019c 6135
+00019d 7474
+00019e 6161
+00019f 6161
+0001a0 6161
+0001a1 6161
+0001a2 6161
+0001a3 6161
+0001a4 6161
+0001a5 2e72
+0001a6 2e2e
+0001a7 212e
+0001a8 2121
+0001a9 2121
+0001aa 000d                      	khatar:		.db		0x0d,"elkhazna f 5attaaaaaaaaaaaaaar....!!!!!",0x0d,0x00
+0001ab 650d
+0001ac 746e
+0001ad 7265
+0001ae 7420
+0001af 6568
+0001b0 7020
+0001b1 7361
+0001b2 7773
+0001b3 726f
+0001b4 2e64
+0001b5 2e2e
+0001b6 212e
+0001b7 000d                      	pass:		.db		0x0d,"enter the password....!",0x0d,0x00
+0001b8 650d
+0001b9 6b6c
+0001ba 6168
+0001bb 6e7a
+0001bc 2061
+0001bd 7465
+0001be 6166
+0001bf 3774
+0001c0 2065
+0001c1 000d                      	open:		.db		0x0d,"elkhazna etfat7e ",0x0d,0x00
+0001c2 650d
+0001c3 6b6c
+0001c4 6168
+0001c5 6e7a
+0001c6 2061
+0001c7 7465
+0001c8 6632
+0001c9 746c
+0001ca 000d                      	close:		.db		0x0d,"elkhazna et2flt",0x0d,0x00
+0001cb 6f6e
+0001cc 006f                      	hello1:		.db		"noo",0x00
+                                 
 
 
 RESOURCE USE INFORMATION
@@ -1088,40 +1683,40 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega32" register use summary:
-x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :  34 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  16 r17:   2 r18:   2 r19:   0 r20:   8 
-r21:   0 r22:   0 r23:   0 r24:   8 r25:   6 r26:   0 r27:   0 r28:   0 
-r29:   0 r30:   1 r31:   1 
-Registers used: 9 out of 35 (25.7%)
+r13:   0 r14:   0 r15:   0 r16:  50 r17:   2 r18:  30 r19:  16 r20:  42 
+r21:   2 r22:   2 r23:   2 r24:  40 r25:  30 r26:   0 r27:   0 r28:   1 
+r29:   1 r30:   1 r31:   1 
+Registers used: 16 out of 35 (45.7%)
 
 "ATmega32" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :  15 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   4 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :  26 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
-clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   1 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :  15 lds   :   0 lpm   :   1 lsl   :   0 
+clt   :   0 clv   :   0 clz   :   1 com   :   0 cp    :   0 cpc   :   0 
+cpi   :   6 cpse  :   0 dec   :  10 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :  14 jmp   :   0 
+ld    :   4 ldd   :   0 ldi   :  72 lds   :   0 lpm   :   1 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   1 or    :   0 ori   :   0 out   :  10 pop   :   6 
-push  :   6 rcall :   0 ret   :   0 reti  :   0 rjmp  :   4 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   0 sbis  :   2 
-sbiw  :   2 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+neg   :   0 nop   :  10 or    :   0 ori   :   0 out   :  23 pop   :  30 
+push  :  30 rcall :  17 ret   :   1 reti  :   0 rjmp  :  29 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   0 sbis  :  17 
+sbiw  :  10 sbr   :   0 sbrc  :   4 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
+sez   :   1 sleep :   0 spm   :   0 st    :  15 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 15 out of 113 (13.3%)
+Instructions used: 24 out of 113 (21.2%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000096    114     36    150   32768   0.5%
-[.dseg] 0x000060 0x000060      0      0      0    2048   0.0%
+[.cseg] 0x000000 0x00039a    678    244    922   32768   2.8%
+[.dseg] 0x000060 0x000074      0     20     20    2048   1.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
 Assembly complete, 0 errors, 0 warnings

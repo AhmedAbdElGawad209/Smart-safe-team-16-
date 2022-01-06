@@ -1,11 +1,12 @@
 .macro init_UART
 
-ldi	r16,12			; load baud rate  [(F_CPU/(BouadRate*16))-1]
+ldi	r16,12		; load baud rate  [(F_CPU/(BouadRate*16))-1]
 ldi	r17,0
 
 out UBRRH, r17
 out UBRRL, r16
 
+;	double speed mode
 sbi	UCSRA,U2X
 
 ; Enable receiver and transmitter

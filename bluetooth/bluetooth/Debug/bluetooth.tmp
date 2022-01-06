@@ -26,8 +26,8 @@
   <FILE>bluetooth.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <start><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm</FILE><LINE>34</LINE></start>
-  <myStr><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm</FILE><LINE>58</LINE></myStr>
-  <hello><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm</FILE><LINE>59</LINE></hello>
+  <start><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm</FILE><LINE>39</LINE></start>
+  <hello><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm</FILE><LINE>69</LINE></hello>
+  <myStr><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\bluetooth\bluetooth\main.asm</FILE><LINE>68</LINE></myStr>
  </LABELS>
 </ASSEMBLER_INFO>
