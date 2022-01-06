@@ -34,6 +34,7 @@ wait_for_conv_finished:
    in   r1, ADCL
    out  r1,PORTD
    in   r2, ADCH
+   out  r2,PORTD
  
 
 rjmp mainloop
