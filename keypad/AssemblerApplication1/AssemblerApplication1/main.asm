@@ -56,7 +56,7 @@ var1:	.byte	100
 next1:
 	sbis	PINB,PINB5
 	rjmp	next2
-	rcall	led
+	store		2
 	;rcall l1
 	
 next2:

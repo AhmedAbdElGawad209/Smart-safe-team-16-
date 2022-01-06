@@ -1,6 +1,7 @@
-.macro	led
-ldi	r16,0b00000110
+.macro	store
+ldi	r16,@0
 	out	PORTC,r16
+	ldi	r18,@0
 	adiw	Y,1
 	st	Y,r18
 	/*
