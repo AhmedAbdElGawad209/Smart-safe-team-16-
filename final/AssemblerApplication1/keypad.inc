@@ -6,7 +6,7 @@ clear:
 	ldi	r18,0
 	st	Y,r18
 	ldi	r19,0
-start:			
+startk:			
 	ldi r16,0x01			;HIGH row 1
 	out PORTB,r16
 	nop
@@ -134,16 +134,16 @@ next14:
 	rjmp	check
 next15:
 	sbis	PINB,PINB7		;check col 4
-	rjmp	start
+	rjmp	startk
 	rcall	hold
 	ldi	r18,'D'
 	adiw	Y,1
 	st	Y,r18
 	inc	r19
-rjmp  start
+rjmp  startk
 
 hold:
-	ldi	r16,1
+	ldi	r16,2
 	out	PORTC,r16
 	in	r16,PINB
 	sbrc	r16,4
@@ -164,13 +164,13 @@ check:
 	rcall	set_id	
 a:
 delay	500
-ldi	r16,1
+ldi	r16,2
 out	PORTC,r16
 delay	500
 ldi	r16,0
 out	PORTC,r16
 delay	500
-ldi	r16,1
+ldi	r16,2
 out	PORTC,r16
 delay	500
 ldi	r16,0
