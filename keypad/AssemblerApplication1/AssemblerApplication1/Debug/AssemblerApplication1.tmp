@@ -1,0 +1,49 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega32"</DEVICE>
+ <WORKING_DIR>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\delay_function.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\led.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\set stack.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\Debug\AssemblerApplication1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>AssemblerApplication1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>AssemblerApplication1.map</FILE>
+  <FILE>AssemblerApplication1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <var1><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>20</LINE></var1>
+  <start><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>44</LINE></start>
+  <next1><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>56</LINE></next1>
+  <next2><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>62</LINE></next2>
+  <next3><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>67</LINE></next3>
+  <l2><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>179</LINE></l2>
+  <next4><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>73</LINE></next4>
+  <next5><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>84</LINE></next5>
+  <next6><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>90</LINE></next6>
+  <next7><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>96</LINE></next7>
+  <next8><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>102</LINE></next8>
+  <next9><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>115</LINE></next9>
+  <next10><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>121</LINE></next10>
+  <next11><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>127</LINE></next11>
+  <next12><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>133</LINE></next12>
+  <next13><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>143</LINE></next13>
+  <next14><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>149</LINE></next14>
+  <next15><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>155</LINE></next15>
+  <l1><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>163</LINE></l1>
+  <var><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>185</LINE></var>
+ </LABELS>
+</ASSEMBLER_INFO>

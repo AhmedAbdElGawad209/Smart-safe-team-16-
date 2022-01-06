@@ -1,14 +1,14 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Tue Dec 28 07:54:26 2021
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm Thu Jan 06 14:37:42 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\set stack.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\set stack.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\delay_function.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\set stack.inc'
-D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\delay_function.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(13): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\set stack.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(14): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\delay_function.inc'
                                  
                                  ;
                                  
@@ -834,6 +834,8 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  
                                  
                                  ; Replace with your application code
+                                 
+                                 ;#define F_CPU 1000000U
                                  	.include "m32def.inc"
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega32.xml ************
@@ -893,12 +895,12 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  push r24
                                  push r25
                                  
-                                 .equ i = 39999    ;no. of iteration for the inner loop
+                                 ;.equ i = 3999   ;no. of iteration for the inner loop
                                  ldi r20,@0/10		; the delay time entered by the user 
                                  
                                  outerloop:										; outer loop
-                                 			ldi		r24,LOW(i)					; initialize itirators at the begining each time
-                                 			ldi		r25,HIGH(i) 
+                                 			ldi		r24,LOW(2499)					; initialize itirators at the begining each time
+                                 			ldi		r25,HIGH(2499) 
                                  
                                  innerloop:
                                  			sbiw	r24,1
@@ -923,17 +925,19 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
                                  	
 000004 2711                      	clr	ledR			; clear led register
 000005 e001                      	ldi	mask,(1<<PINB0)		; load 00000001 into mask register
-000006 bb07                      	out	DDRB,mask
+000006 bb04                      	out	DDRC,mask
                                  
-000007 2710                      	start:	eor	ledR,mask		; toggle PINB0 in led register
-000008 bb18                      	out	PORTB,ledR
+                                 	start:
+                                 	;	eor	ledR,mask		; toggle PINB0 in led register
+000007 e001                      	ldi	r16,0x01
+000008 bb05                      	out	PORTC,r16
                                  
 000009 934f
 00000a 938f
 00000b 939f
 00000c e644
-00000d e38f
-00000e e99c
+00000d ec83
+00000e e099
 00000f 9701
 000010 f7f1
 000011 954a
@@ -941,6 +945,21 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\delay function\delay function\main.asm(12):
 000013 919f
 000014 918f
 000015 914f                      	delay 1000
+000016 e000                      	ldi	r16,0
+000017 bb05                      	out	PORTC,r16
+000018 934f
+000019 938f
+00001a 939f
+00001b e644
+00001c ec83
+00001d e099
+00001e 9701
+00001f f7f1
+000020 954a
+000021 f7d1
+000022 919f
+000023 918f
+000024 914f                      	delay	1000
                                  
 
 
@@ -961,8 +980,8 @@ counted separately from r26..r31 here.
 "ATmega32" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   7 r17:   3 r18:   0 r19:   0 r20:   4 
-r21:   0 r22:   0 r23:   0 r24:   4 r25:   3 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  10 r17:   1 r18:   0 r19:   0 r20:   8 
+r21:   0 r22:   0 r23:   0 r24:   8 r25:   6 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
 Registers used: 5 out of 35 (14.3%)
 
@@ -971,27 +990,27 @@ Registers used: 5 out of 35 (14.3%)
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   4 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   1 eor   :   1 fmul  :   0 fmuls :   0 
+cpi   :   0 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   6 lds   :   0 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :  11 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   4 pop   :   3 
-push  :   3 rcall :   0 ret   :   0 reti  :   0 rjmp  :   1 rol   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   5 pop   :   6 
+push  :   6 rcall :   0 ret   :   0 reti  :   0 rjmp  :   1 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   1 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sbiw  :   2 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+Instructions used: 9 out of 113 (8.0%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00002e     46      0     46   32768   0.1%
+[.cseg] 0x000000 0x00004c     76      0     76   32768   0.2%
 [.dseg] 0x000060 0x000060      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

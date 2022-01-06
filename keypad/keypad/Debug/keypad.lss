@@ -1,12 +1,14 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm Sat Jan 01 11:40:06 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm Thu Jan 06 16:42:44 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\store number.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\delay_function.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(10): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(11): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\store number.inc'
+D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(12): Including file 'D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\delay_function.inc'
                                  
                                  ;
                                  
@@ -880,6 +882,31 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(11): Including file 
                                  
                                  ldi r17,@0
                                  st	X+,r17
+                                 .include	"delay_function.inc"
+                                 
+                                 ;push the 3 registers that we will use  
+                                 push r20 
+                                 push r24
+                                 push r25
+                                 
+                                 
+                                 ldi r20,@0/10		; the delay time entered by the user 
+                                 
+                                 outerloop:										; outer loop
+                                 			ldi		r24,LOW(39998)					; initialize itirators at the begining each time
+                                 			ldi		r25,HIGH(39998) 
+                                 
+                                 innerloop:
+                                 			sbiw	r24,1
+                                 			brne	innerloop					; loop (i) times
+                                 
+                                 			dec		r20 
+                                 			brne	outerloop					; loop (r20) times
+                                 
+                                 ;pop the registers again
+                                 pop r25
+                                 pop r24
+                                 pop r20
                                  	.dseg
                                  	.org	SRAM_START
 000060                           id:	.byte	10
@@ -887,99 +914,123 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm(11): Including file 
                                  	.cseg
                                  	.org	0x00
                                  
+                                 	
+                                 
+                                 	;ldi XL,LOW(id)
+                                 	;ldi XH,HIGH(id)
+                                 
+000000 ef0f                      	ldi r16,0b11111111    ;first 4 input .   last 4 output
+000001 bb04                      	out DDRC,r16
                                  	start:
-                                 
-000000 e6a0                      	ldi XL,LOW(id)
-000001 e0b0                      	ldi XH,HIGH(id)
-000002 ef00                      	ldi r16,0b11110000    ;first 4 input .   last 4 output
-000003 bb07                      	out DDRB,r16
-000004 e000                      	ldi r16,0
-000005 bb08                      	out PORTB,r16			; all LOW
-                                 
-                                 	search:
-                                 
-000006 e100                      	ldi r16,0b00010000		; power Coloump 1
-000007 bb08                      	out PORTB,r16
+000002 e00f                      	ldi r16,0x0f
+000003 bb07                      	out DDRB,r16			
+000004 ef0f                      	ldi r16,0xff
+000005 bb08                      	out PORTB,r16
                                  	
-000008 b308                      	in r16,PORTB
-000009 fd00                      	sbrc r16,0
-00000a e011
-00000b 931d                      	store_num	1
-00000c fd01                      	sbrc r16,1
-00000d e014
-00000e 931d                      	store_num	4
-00000f fd02                      	sbrc r16,2
-000010 e017
-000011 931d                      	store_num	7
-000012 fd03                      	sbrc r16,3
-000013 e21a
-000014 931d                      	store_num	'*'
-                                 
-000015 e200                      	ldi r16,0b00100000		; power Coloump 2
-000016 bb08                      	out PORTB,r16
                                  	
-000017 b308                      	in r16,PORTB
-000018 fd00                      	sbrc r16,0
-000019 e012
-00001a 931d                      	store_num	2
-00001b fd01                      	sbrc r16,1
-00001c e015
-00001d 931d                      	store_num	5
-00001e fd02                      	sbrc r16,2
-00001f e018
-000020 931d                      	store_num	8
-000021 fd03                      	sbrc r16,3
-000022 e010
-000023 931d                      	store_num	0
+000006 98c0                      	cbi	PORTB,0
                                  
-000024 e400                      	ldi r16,0b01000000		; power Coloump 3
-000025 bb08                      	out PORTB,r16
+000007 99b4                      	sbic	PINB,PINB4
+000008 c002                      	rjmp	next1
+000009 e003                      	ldi	r16,0b00000011
+00000a bb05                      	out	PORTC,r16
+                                 
+                                 next1:
+00000b 99b5                      	sbic	PINB,PINB5
+00000c c002                      	rjmp	next2
+00000d e00f                      	ldi	r16,0b00001111
+00000e bb05                      	out	PORTC,r16
+                                 
+                                 next2:
+00000f 99b6                      	sbic	PINB,PINB6
+000010 c002                      	rjmp	next3
+000011 e10a                      	ldi	r16,0b00011010
+000012 bb05                      	out	PORTC,r16
+                                 
+                                 next3:
+000013 99b7                      	sbic	PINB,PINB7
+000014 cfed                      	rjmp	start
+000015 e703                      	ldi	r16,0b01110011
+000016 bb05                      	out	PORTC,r16
+                                 
+000017 cfea                      rjmp  start
                                  	
-000026 b308                      	in r16,PORTB
-000027 fd00                      	sbrc r16,0
-000028 e013
-000029 931d                      	store_num	3
-00002a fd01                      	sbrc r16,1
-00002b e016
-00002c 931d                      	store_num	6
-00002d fd02                      	sbrc r16,2
-00002e e019
-00002f 931d                      	store_num	9
-000030 fd03                      	sbrc r16,3
-000031 e213
-000032 931d                      	store_num	'#'
                                  
-000033 e800                      	ldi r16,0b10000000		; power Coloump 4
-000034 bb08                      	out PORTB,r16
+                                 /*
+                                 	ldi r16,0b00010000		; power Coloump 1
+                                 	out PORTB,r16
+                                 	delay	10
+                                 	in r16,PORTB
+                                 	delay	10
+                                 	sbrc r16,0
+                                 	store_num	1
+                                 	sbrc r16,1
+                                 	store_num	4
+                                 	sbrc r16,2
+                                 	store_num	7
+                                 	sbrc r16,3
+                                 	store_num	'*'
+                                 
+                                 	ldi r16,0b00100000		; power Coloump 2
+                                 	out PORTB,r16
+                                 	delay	10
                                  	
-000035 b308                      	in r16,PORTB
-000036 fd00                      	sbrc r16,0
-000037 e411
-000038 931d                      	store_num	'A'
-000039 fd01                      	sbrc r16,1
-00003a e412
-00003b 931d                      	store_num	'B'
-00003c fd02                      	sbrc r16,2
-00003d e413
-00003e 931d                      	store_num	'C'
-00003f fd03                      	sbrc r16,3
-000040 e414
-000041 931d                      	store_num	'D'
+                                 	in r16,PORTB
+                                 	delay	10
+                                 	sbrc r16,0
+                                 	store_num	2
+                                 	sbrc r16,1
+                                 	store_num	5
+                                 	sbrc r16,2
+                                 	store_num	8
+                                 	sbrc r16,3
+                                 	store_num	0
                                  
-000042 910e                      	ld r16,-X
-000043 3203                      	cpi r16,'#'
-000044 f019                      	breq	id_entered
-000045 9611                      	adiw X,1
+                                 	ldi r16,0b01000000		; power Coloump 3
+                                 	out PORTB,r16
+                                 	delay	10
+                                 	
+                                 	in r16,PORTB
+                                 	delay	10
+                                 	sbrc r16,0
+                                 	store_num	3
+                                 	sbrc r16,1
+                                 	store_num	6
+                                 	sbrc r16,2
+                                 	store_num	9
+                                 	sbrc r16,3
+                                 	store_num	'#'
                                  
-000046 940c 0006                 	jmp		search
+                                 	ldi r16,0b10000000		; power Coloump 4
+                                 	out PORTB,r16
+                                 	delay	10
+                                 	
+                                 	in r16,PORTB
+                                 	delay	10
+                                 	sbrc r16,0
+                                 	store_num	'A'
+                                 	sbrc r16,1
+                                 	store_num	'B'
+                                 	sbrc r16,2
+                                 	store_num	'C'
+                                 	sbrc r16,3
+                                 	store_num	'D'
+                                 
+                                 	ld r16,-X
+                                 	cpi r16,'#'
+                                 	breq	id_entered
+                                 	adiw X,1
+                                 
+                                 	jmp		search
                                  
                                  	id_entered:
                                  		
-000048 ef0f                      	ldi r16,0xff    ;first 4 input .   last 4 output
-000049 bb04                      	out DDRC,r16
-00004a e001                      	ldi r16,1
-00004b bb05                      	out PORTC,r16
+                                 	ldi r16,0xff    ;first 4 input .   last 4 output
+                                 	out DDRC,r16
+                                 	ldi r16,1
+                                 	out PORTC,r16
                                  
+                                 	jmp start
 
 
 RESOURCE USE INFORMATION
@@ -997,39 +1048,39 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega32" register use summary:
-x  :  18 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  38 r17:  32 r18:   0 r19:   0 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   1 r27:   1 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  14 r17:   0 r18:   0 r19:   0 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 5 out of 35 (14.3%)
+Registers used: 1 out of 35 (2.9%)
 
 "ATmega32" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   1 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   1 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   1 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   4 inc   :   0 jmp   :   2 
-ld    :   1 ldd   :   0 ldi   :  26 lds   :   0 lpm   :   0 lsl   :   0 
+cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   7 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   8 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   0 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   0 sbr   :   0 sbrc  :  16 sbrs  :   0 sec   :   0 seh   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   7 pop   :   0 
+push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   5 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   4 sbis  :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :  16 std   :   0 sts   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+Instructions used: 5 out of 113 (4.4%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00009c    156      0    156   32768   0.5%
+[.cseg] 0x000000 0x000030     48      0     48   32768   0.1%
 [.dseg] 0x000060 0x00006a      0     10     10    2048   0.5%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

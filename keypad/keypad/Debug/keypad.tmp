@@ -11,6 +11,7 @@
  <INCLUDED_FILES>
   <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc</FILE>
   <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\store number.inc</FILE>
+  <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\delay_function.inc</FILE>
  </INCLUDED_FILES>
  <OBJECT_FILES>
   <FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\Debug\keypad.obj</FILE>
@@ -23,9 +24,10 @@
   <FILE>keypad.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <id><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>14</LINE></id>
-  <start><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>19</LINE></start>
-  <search><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>28</LINE></search>
-  <id_entered><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>89</LINE></id_entered>
+  <id><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>15</LINE></id>
+  <start><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>27</LINE></start>
+  <next1><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>41</LINE></next1>
+  <next2><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>47</LINE></next2>
+  <next3><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\keypad\keypad\main.asm</FILE><LINE>53</LINE></next3>
  </LABELS>
 </ASSEMBLER_INFO>

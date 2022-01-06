@@ -9,6 +9,7 @@
 ; Replace with your application code
 .include	"m32def.inc"
 .include	"store number.inc"
+.include	"delay_function.inc"
 	.dseg
 	.org	SRAM_START
 id:	.byte	10
@@ -16,21 +17,54 @@ id:	.byte	10
 	.cseg
 	.org	0x00
 
+	
+
+	;ldi XL,LOW(id)
+	;ldi XH,HIGH(id)
+
+	ldi r16,0b11111111    ;first 4 input .   last 4 output
+	out DDRC,r16
 	start:
-
-	ldi XL,LOW(id)
-	ldi XH,HIGH(id)
-	ldi r16,0b11110000    ;first 4 input .   last 4 output
-	out DDRB,r16
-	ldi r16,0
-	out PORTB,r16			; all LOW
-
-	search:
-
-	ldi r16,0b00010000		; power Coloump 1
+	ldi r16,0x0f
+	out DDRB,r16			
+	ldi r16,0xff
 	out PORTB,r16
 	
+	
+	cbi	PORTB,0
+
+	sbic	PINB,PINB4
+	rjmp	next1
+	ldi	r16,0b00000011
+	out	PORTC,r16
+
+next1:
+	sbic	PINB,PINB5
+	rjmp	next2
+	ldi	r16,0b00001111
+	out	PORTC,r16
+
+next2:
+	sbic	PINB,PINB6
+	rjmp	next3
+	ldi	r16,0b00011010
+	out	PORTC,r16
+
+next3:
+	sbic	PINB,PINB7
+	rjmp	start
+	ldi	r16,0b01110011
+	out	PORTC,r16
+
+rjmp  start
+	
+
+/*
+	ldi r16,0b00010000		; power Coloump 1
+	out PORTB,r16
+	delay	10
 	in r16,PORTB
+	delay	10
 	sbrc r16,0
 	store_num	1
 	sbrc r16,1
@@ -42,8 +76,10 @@ id:	.byte	10
 
 	ldi r16,0b00100000		; power Coloump 2
 	out PORTB,r16
+	delay	10
 	
 	in r16,PORTB
+	delay	10
 	sbrc r16,0
 	store_num	2
 	sbrc r16,1
@@ -55,8 +91,10 @@ id:	.byte	10
 
 	ldi r16,0b01000000		; power Coloump 3
 	out PORTB,r16
+	delay	10
 	
 	in r16,PORTB
+	delay	10
 	sbrc r16,0
 	store_num	3
 	sbrc r16,1
@@ -68,8 +106,10 @@ id:	.byte	10
 
 	ldi r16,0b10000000		; power Coloump 4
 	out PORTB,r16
+	delay	10
 	
 	in r16,PORTB
+	delay	10
 	sbrc r16,0
 	store_num	'A'
 	sbrc r16,1
@@ -94,3 +134,4 @@ id:	.byte	10
 	out PORTC,r16
 
 	jmp start
+	*/

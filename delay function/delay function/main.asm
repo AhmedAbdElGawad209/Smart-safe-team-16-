@@ -7,6 +7,8 @@
 
 
 ; Replace with your application code
+
+;#define F_CPU 1000000U
 	.include "m32def.inc"
 	.include "set stack.inc"
 	.include "delay_function.inc"
@@ -19,11 +21,16 @@
 	
 	clr	ledR			; clear led register
 	ldi	mask,(1<<PINB0)		; load 00000001 into mask register
-	out	DDRB,mask
+	out	DDRC,mask
 
-	start:	eor	ledR,mask		; toggle PINB0 in led register
-	out	PORTB,ledR
+	start:
+	;	eor	ledR,mask		; toggle PINB0 in led register
+	ldi	r16,0x01
+	out	PORTC,r16
 
 	delay 1000
+	ldi	r16,0
+	out	PORTC,r16
+	delay	1000
 
 	rjmp    start	
