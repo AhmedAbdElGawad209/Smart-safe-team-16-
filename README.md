@@ -43,8 +43,7 @@ then connet to their safe set their users ID and then they ready to go.
  safe98067@gmail.com
 
 
-
-### project built by Smart-safe team members :
+###  © 2021 Smart safe team 
 
 1: Ahmed Mohamad Mohamoud 
 
