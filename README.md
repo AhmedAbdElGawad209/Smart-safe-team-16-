@@ -32,9 +32,9 @@ The safe also contins anti move system :
 
 ### Instructions for how to  use the project.
 
-users can immediately strat with our project by downloading a mobile application and 
+users can immediately strat with our project by downloading a mobile application from  [here](https://play.google.com/store/apps/details?id=project.bluetoothterminal&hl=ar&gl=US)and 
 then connet to their safe set their users ID and then they ready to go.
-
+https://play.google.com/store/apps/details?id=project.bluetoothterminal&hl=ar&gl=US
 
 
 
