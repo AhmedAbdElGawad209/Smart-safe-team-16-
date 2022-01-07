@@ -26,28 +26,28 @@ The safe also contins anti move system :
   ## Safe response to different modes :
  ### connetion less mode :
  when the safe is not asigned to any owner . 
- -       Red LED is ON
+ --       Red LED is ON
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/connection%20less%20mode.jpg)
          
   ### connetion mode :
   when the safe owner connect to the safe and enter his password. 
-  -     All LEDs (red, yellow, blue) are ON.
+  --     All LEDs (red, yellow, blue) are ON.
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/connection%20mode.jpg)
  ### rejection mode  :
  when a member enter his right ID but the owner reject his request. 
-  -      Red LED is ON and  buzzer is ON (discrete noise) 
+  --      Red LED is ON and  buzzer is ON (discrete noise) 
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/rejection%20mode.jpg)
  ### robbing mode  :
  when an unknown person enter wrong ID or the owner enter wrong password. 
-  -      Red LED is ON and the buzzer is on (more long discrete noise) 
+  --      Red LED is ON and the buzzer is on (more long discrete noise) 
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/connection%20less%20mode.jpg)
  ### Open mode :
   when a member enter correct ID and the owner accept hi request . 
-  -     yellow LED is ON, buzzer is ON  and safe is open. 
+  --     yellow LED is ON, buzzer is ON  and safe is open. 
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/rightID%26%20allowance.jpg)
  ### moving mode  :
  when someone try to move the safe from its palce  . 
- -        All LEDs (red, yellow, blue) are ON aand the buzzer is on (contious discrete noise)
+ --        All LEDs (red, yellow, blue) are ON aand the buzzer is on (contious discrete noise)
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/moving.jpg)
  
   
