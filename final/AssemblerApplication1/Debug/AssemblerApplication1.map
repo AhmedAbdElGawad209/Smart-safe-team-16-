@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:19:28 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:46:04 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -573,7 +573,7 @@ CSEG start        00000012
 CSEG connect      00000014
 CSEG outerloop@delay@1992 0000001b
 CSEG innerloop@delay@1992 0000001d
-CSEG welcome      000003ea
+CSEG welcome      000003f9
 CSEG puts@write@2018 00000026
 CSEG puts_wait@write@2018 00000029
 CSEG puts_end@write@2018 0000002d
@@ -630,24 +630,24 @@ CSEG is_gemy      000001a4
 CSEG no@is@2562   0000018b
 CSEG end@is@2562  0000018c
 CSEG is_sara      000001af
-CSEG unknown      000003b7
+CSEG unknown      000003c6
 CSEG puts@write@2581 00000190
 CSEG puts_wait@write@2581 00000193
 CSEG puts_end@write@2581 00000197
 CSEG try          000001ba
-CSEG ahmed        000003bf
+CSEG ahmed        000003ce
 CSEG puts@write@2604 0000019b
 CSEG puts_wait@write@2604 0000019e
 CSEG puts_end@write@2604 000001a2
-CSEG gemy         000003c3
+CSEG gemy         000003d2
 CSEG puts@write@2627 000001a6
 CSEG puts_wait@write@2627 000001a9
 CSEG puts_end@write@2627 000001ad
-CSEG sara         000003c6
+CSEG sara         000003d5
 CSEG puts@write@2650 000001b1
 CSEG puts_wait@write@2650 000001b4
 CSEG puts_end@write@2650 000001b8
-CSEG trying       000003d0
+CSEG trying       000003df
 CSEG puts@write@2673 000001bc
 CSEG puts_wait@write@2673 000001bf
 CSEG puts_end@write@2673 000001c3
@@ -708,7 +708,7 @@ CSEG outerloop@delay@3402 0000033b
 CSEG innerloop@delay@3402 0000033d
 CSEG outerloop@delay@3432 00000349
 CSEG innerloop@delay@3432 0000034b
-CSEG pass         0000040f
+CSEG pass         0000041e
 CSEG puts@write@3458 00000354
 CSEG puts_wait@write@3458 00000357
 CSEG puts_end@write@3458 0000035b
@@ -718,17 +718,20 @@ CSEG wait@read@3506 00000369
 CSEG wait@read@3518 0000036c
 CSEG wait@read@3530 0000036f
 CSEG wait@read@3542 00000372
-CSEG c            000003b6
-CSEG outerloop@delay@3564 00000381
-CSEG innerloop@delay@3564 00000383
-CSEG outerloop@delay@3592 00000390
-CSEG innerloop@delay@3592 00000392
-CSEG outerloop@delay@3622 0000039f
-CSEG innerloop@delay@3622 000003a1
-CSEG outerloop@delay@3648 000003ac
-CSEG innerloop@delay@3648 000003ae
-CSEG do3aa        000003c9
-CSEG aya          000003cd
-CSEG khatar       000003fa
-CSEG open         0000041c
-CSEG close        00000426
+CSEG c            0000037d
+CSEG correct      0000037e
+CSEG outerloop@delay@3568 00000382
+CSEG innerloop@delay@3568 00000384
+CSEG outerloop@delay@3596 00000391
+CSEG innerloop@delay@3596 00000393
+CSEG outerloop@delay@3624 000003a0
+CSEG innerloop@delay@3624 000003a2
+CSEG outerloop@delay@3653 000003af
+CSEG innerloop@delay@3653 000003b1
+CSEG outerloop@delay@3679 000003bc
+CSEG innerloop@delay@3679 000003be
+CSEG do3aa        000003d8
+CSEG aya          000003dc
+CSEG khatar       00000409
+CSEG open         0000042b
+CSEG close        00000435

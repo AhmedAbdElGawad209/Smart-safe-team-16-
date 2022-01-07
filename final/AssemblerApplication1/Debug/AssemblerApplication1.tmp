@@ -32,27 +32,28 @@
   <id><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>14</LINE></id>
   <start><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>39</LINE></start>
   <connect><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>43</LINE></connect>
-  <welcome><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>238</LINE></welcome>
+  <welcome><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>243</LINE></welcome>
   <a><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>101</LINE></a>
   <is_ahmed><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>81</LINE></is_ahmed>
   <is_gemy><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>84</LINE></is_gemy>
   <is_sara><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>87</LINE></is_sara>
-  <unknown><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>230</LINE></unknown>
+  <unknown><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>235</LINE></unknown>
   <try><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>90</LINE></try>
-  <ahmed><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>231</LINE></ahmed>
-  <gemy><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>232</LINE></gemy>
-  <sara><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>233</LINE></sara>
-  <trying><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>236</LINE></trying>
+  <ahmed><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>236</LINE></ahmed>
+  <gemy><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>237</LINE></gemy>
+  <sara><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>238</LINE></sara>
+  <trying><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>241</LINE></trying>
   <allow><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>193</LINE></allow>
   <b><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>105</LINE></b>
   <reject><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>115</LINE></reject>
   <alarm><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>139</LINE></alarm>
-  <pass><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>240</LINE></pass>
-  <c><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>223</LINE></c>
-  <do3aa><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>234</LINE></do3aa>
-  <aya><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>235</LINE></aya>
-  <khatar><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>239</LINE></khatar>
-  <open><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>241</LINE></open>
-  <close><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>242</LINE></close>
+  <pass><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>245</LINE></pass>
+  <c><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>211</LINE></c>
+  <correct><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>214</LINE></correct>
+  <do3aa><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>239</LINE></do3aa>
+  <aya><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>240</LINE></aya>
+  <khatar><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>244</LINE></khatar>
+  <open><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>246</LINE></open>
+  <close><FILE>D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm</FILE><LINE>247</LINE></close>
  </LABELS>
 </ASSEMBLER_INFO>

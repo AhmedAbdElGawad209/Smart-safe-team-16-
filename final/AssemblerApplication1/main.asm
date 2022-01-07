@@ -207,7 +207,11 @@ allow:
 	cpi	r18,'0'
 	brne	c
 	cpi	r19,'0'
-	brne	c
+	breq	correct
+c:
+	rjmp	alarm
+
+correct:		
 ;correct password.............................................................
 	delay	200
 	ldi	r16,0b00000110					;HIGH buzz & green led
@@ -215,13 +219,14 @@ allow:
 	delay	800
 	cbi	PORTC,1							;LOW buzz 
 	sbi	PORTC,0							;HIGH relay		(open the khazna)
-	;delay	500							;for 0.5 second
-	;cbi	PORTC,1							;LOW relay
+	delay	500							;for 0.5 second
+	cbi	PORTC,0							;LOW relay
+
+	cbi	PORTC,2
 	delay	2500
 	delay	2500
 	rjmp	start
-c:
-	rjmp	alarm
+
 ;............................................................................................................................
 
 ;	declaring all strings ................................................................

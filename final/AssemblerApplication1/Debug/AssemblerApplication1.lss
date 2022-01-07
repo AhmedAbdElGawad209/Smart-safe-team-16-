@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:19:28 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:46:04 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
@@ -1234,7 +1234,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 000021 919f
 000022 918f
 000023 914f                      	delay	400
-000024 ede4
+000024 efe2
 000025 e0f7
 000026 9105
 000027 3000
@@ -1600,7 +1600,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 00018c 0000                      	is	1,4,7,8
 00018d f109                      	breq	is_sara
                                  
-00018e e6ee
+00018e e8ec
 00018f e0f7
 000190 9105
 000191 3000
@@ -1612,7 +1612,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 000197 0000                      	write	unknown				;if it is not known id  
 000198 c021                      	rjmp	try					;write is trying to open ..........
                                  is_ahmed:
-000199 e7ee
+000199 e9ec
 00019a e0f7
 00019b 9105
 00019c 3000
@@ -1624,7 +1624,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 0001a2 0000                      	write	ahmed
 0001a3 c016                      	rjmp	try
                                  is_gemy:
-0001a4 e8e6
+0001a4 eae4
 0001a5 e0f7
 0001a6 9105
 0001a7 3000
@@ -1636,7 +1636,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 0001ad 0000                      	write	gemy
 0001ae c00b                      	rjmp	try
                                  is_sara:
-0001af e8ec
+0001af eaea
 0001b0 e0f7
 0001b1 9105
 0001b2 3000
@@ -1648,7 +1648,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 0001b8 0000                      	write	sara
 0001b9 c000                      	rjmp	try
                                  try:
-0001ba eae0
+0001ba ebee
 0001bb e0f7
 0001bc 9105
 0001bd 3000
@@ -2075,7 +2075,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 00034f 919f
 000350 918f
 000351 914f                      	delay	500
-000352 e1ee
+000352 e3ec
 000353 e0f8
 000354 9105
 000355 3000
@@ -2113,201 +2113,218 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 000374 b13c                      	read	r19							;read the first character of the password
                                  ;the password is "0000"...................................................................................
 000375 3300                      	cpi	r16,'0'							;alarm if any digit of entered password	is mistake
-000376 f5f9                      	brne	c							
+000376 f431                      	brne	c							
 000377 3310                      	cpi	r17,'0'
-000378 f5e9                      	brne	c							
+000378 f421                      	brne	c							
 000379 3320                      	cpi	r18,'0'
-00037a f5d9                      	brne	c
+00037a f411                      	brne	c
 00037b 3330                      	cpi	r19,'0'
-00037c f5c9                      	brne	c
-                                 ;correct password.............................................................
-00037d 934f
-00037e 938f
-00037f 939f
-000380 e144
-000381 ec83
-000382 e099
-000383 9701
-000384 f7f1
-000385 954a
-000386 f7d1
-000387 919f
-000388 918f
-000389 914f                      	delay	200
-00038a e006                      	ldi	r16,0b00000110					;HIGH buzz & green led
-00038b bb05                      	out PORTC,r16
-00038c 934f
-00038d 938f
-00038e 939f
-00038f e540
-000390 ec83
-000391 e099
-000392 9701
-000393 f7f1
-000394 954a
-000395 f7d1
-000396 919f
-000397 918f
-000398 914f                      	delay	800
-000399 98a9                      	cbi	PORTC,1							;LOW buzz 
-00039a 9aa8                      	sbi	PORTC,0							;HIGH relay		(open the khazna)
-                                 	;delay	500							;for 0.5 second
-                                 	;cbi	PORTC,1							;LOW relay
-00039b 934f
-00039c 938f
-00039d 939f
-00039e ef4a
-00039f ec83
-0003a0 e099
-0003a1 9701
-0003a2 f7f1
-0003a3 954a
-0003a4 f7d1
-0003a5 919f
-0003a6 918f
-0003a7 914f                      	delay	2500
-0003a8 934f
-0003a9 938f
-0003aa 939f
-0003ab ef4a
-0003ac ec83
-0003ad e099
-0003ae 9701
-0003af f7f1
-0003b0 954a
-0003b1 f7d1
-0003b2 919f
-0003b3 918f
-0003b4 914f                      	delay	2500
-0003b5 cc5c                      	rjmp	start
+00037c f009                      	breq	correct
                                  c:
-0003b6 ce90                      	rjmp	alarm
+00037d cec9                      	rjmp	alarm
+                                 
+                                 correct:		
+                                 ;correct password.............................................................
+00037e 934f
+00037f 938f
+000380 939f
+000381 e144
+000382 ec83
+000383 e099
+000384 9701
+000385 f7f1
+000386 954a
+000387 f7d1
+000388 919f
+000389 918f
+00038a 914f                      	delay	200
+00038b e006                      	ldi	r16,0b00000110					;HIGH buzz & green led
+00038c bb05                      	out PORTC,r16
+00038d 934f
+00038e 938f
+00038f 939f
+000390 e540
+000391 ec83
+000392 e099
+000393 9701
+000394 f7f1
+000395 954a
+000396 f7d1
+000397 919f
+000398 918f
+000399 914f                      	delay	800
+00039a 98a9                      	cbi	PORTC,1							;LOW buzz 
+00039b 9aa8                      	sbi	PORTC,0							;HIGH relay		(open the khazna)
+00039c 934f
+00039d 938f
+00039e 939f
+00039f e342
+0003a0 ec83
+0003a1 e099
+0003a2 9701
+0003a3 f7f1
+0003a4 954a
+0003a5 f7d1
+0003a6 919f
+0003a7 918f
+0003a8 914f                      	delay	500							;for 0.5 second
+0003a9 98a8                      	cbi	PORTC,0							;LOW relay
+                                 
+0003aa 98aa                      	cbi	PORTC,2
+0003ab 934f
+0003ac 938f
+0003ad 939f
+0003ae ef4a
+0003af ec83
+0003b0 e099
+0003b1 9701
+0003b2 f7f1
+0003b3 954a
+0003b4 f7d1
+0003b5 919f
+0003b6 918f
+0003b7 914f                      	delay	2500
+0003b8 934f
+0003b9 938f
+0003ba 939f
+0003bb ef4a
+0003bc ec83
+0003bd e099
+0003be 9701
+0003bf f7f1
+0003c0 954a
+0003c1 f7d1
+0003c2 919f
+0003c3 918f
+0003c4 914f                      	delay	2500
+0003c5 cc4c                      	rjmp	start
+                                 
                                  ;............................................................................................................................
                                  
                                  ;	declaring all strings ................................................................
                                  
                                  	;(\n = 0x0d)
-0003b7 550d
-0003b8 6b6e
-0003b9 6f6e
-0003ba 6e77
-0003bb 7020
-0003bc 7265
-0003bd 6f73
-0003be 006e                      	unknown:	.db		0x0d,"Unknown person",0x00
-0003bf 610d
-0003c0 6d68
-0003c1 6465
-0003c2 0020                      	ahmed:		.db		0x0d,"ahmed ",0x00
-0003c3 670d
-0003c4 6d65
-0003c5 0079                      	gemy:		.db		0x0d,"gemy",0x00
-0003c6 730d
-0003c7 7261
-0003c8 0061                      	sara:		.db		0x0d,"sara",0x00
-0003c9 640d
-0003ca 336f
-0003cb 3261
-0003cc 0020                      	do3aa:		.db		0x0d,"do3a2 ",0x00
-0003cd 610d
-0003ce 6179
-0003cf 0020                      	aya:		.db		0x0d,"aya ",0x00
-0003d0 6920
-0003d1 2073
-0003d2 7274
-0003d3 6979
-0003d4 676e
-0003d5 7420
-0003d6 206f
-0003d7 706f
-0003d8 6e65
-0003d9 7420
-0003da 6568
-0003db 6b20
-0003dc 6168
-0003dd 6e7a
-0003de 0d61
-0003df 770d
-0003e0 6168
-0003e1 2074
-0003e2 6873
-0003e3 756f
-0003e4 646c
-0003e5 6920
-0003e6 6420
-0003e7 3f6f
-0003e8 0d21
-0003e9 000d                      	trying:		.db		" is trying to open the khazna",0x0d,0x0d,"what should i do?!",0x0d,0x0d,0x00
+0003c6 550d
+0003c7 6b6e
+0003c8 6f6e
+0003c9 6e77
+0003ca 7020
+0003cb 7265
+0003cc 6f73
+0003cd 006e                      	unknown:	.db		0x0d,"Unknown person",0x00
+0003ce 610d
+0003cf 6d68
+0003d0 6465
+0003d1 0020                      	ahmed:		.db		0x0d,"ahmed ",0x00
+0003d2 670d
+0003d3 6d65
+0003d4 0079                      	gemy:		.db		0x0d,"gemy",0x00
+0003d5 730d
+0003d6 7261
+0003d7 0061                      	sara:		.db		0x0d,"sara",0x00
+0003d8 640d
+0003d9 336f
+0003da 3261
+0003db 0020                      	do3aa:		.db		0x0d,"do3a2 ",0x00
+0003dc 610d
+0003dd 6179
+0003de 0020                      	aya:		.db		0x0d,"aya ",0x00
+0003df 6920
+0003e0 2073
+0003e1 7274
+0003e2 6979
+0003e3 676e
+0003e4 7420
+0003e5 206f
+0003e6 706f
+0003e7 6e65
+0003e8 7420
+0003e9 6568
+0003ea 6b20
+0003eb 6168
+0003ec 6e7a
+0003ed 0d61
+0003ee 770d
+0003ef 6168
+0003f0 2074
+0003f1 6873
+0003f2 756f
+0003f3 646c
+0003f4 6920
+0003f5 6420
+0003f6 3f6f
+0003f7 0d21
+0003f8 000d                      	trying:		.db		" is trying to open the khazna",0x0d,0x0d,"what should i do?!",0x0d,0x0d,0x00
                                  
-0003ea 650d
-0003eb 6b6c
-0003ec 6168
-0003ed 6e7a
-0003ee 2061
-0003ef 6167
-0003f0 7a68
-0003f1 2061
-0003f2 6c6c
-0003f3 6873
-0003f4 336f
-0003f5 6c27
-0003f6 2e2e
-0003f7 2e2e
-0003f8 212e
-0003f9 000d                      	welcome:	.db		0x0d,"elkhazna gahza llsho3'l.....!",0x0d,0x00
-0003fa 650d
-0003fb 6b6c
-0003fc 6168
-0003fd 6e7a
-0003fe 2061
-0003ff 2066
-000400 6135
-000401 7474
-000402 6161
-000403 6161
-000404 6161
-000405 6161
-000406 6161
-000407 6161
-000408 6161
-000409 2e72
-00040a 2e2e
-00040b 212e
-00040c 2121
-00040d 2121
-00040e 000d                      	khatar:		.db		0x0d,"elkhazna f 5attaaaaaaaaaaaaaar....!!!!!",0x0d,0x00
-00040f 650d
-000410 746e
-000411 7265
-000412 7420
-000413 6568
-000414 7020
-000415 7361
-000416 7773
-000417 726f
-000418 2e64
+0003f9 650d
+0003fa 6b6c
+0003fb 6168
+0003fc 6e7a
+0003fd 2061
+0003fe 6167
+0003ff 7a68
+000400 2061
+000401 6c6c
+000402 6873
+000403 336f
+000404 6c27
+000405 2e2e
+000406 2e2e
+000407 212e
+000408 000d                      	welcome:	.db		0x0d,"elkhazna gahza llsho3'l.....!",0x0d,0x00
+000409 650d
+00040a 6b6c
+00040b 6168
+00040c 6e7a
+00040d 2061
+00040e 2066
+00040f 6135
+000410 7474
+000411 6161
+000412 6161
+000413 6161
+000414 6161
+000415 6161
+000416 6161
+000417 6161
+000418 2e72
 000419 2e2e
 00041a 212e
-00041b 000d                      	pass:		.db		0x0d,"enter the password....!",0x0d,0x00
-00041c 650d
-00041d 6b6c
-00041e 6168
-00041f 6e7a
-000420 2061
-000421 7465
-000422 6166
-000423 3774
-000424 2065
-000425 000d                      	open:		.db		0x0d,"elkhazna etfat7e ",0x0d,0x00
-000426 650d
-000427 6b6c
-000428 6168
-000429 6e7a
-00042a 2061
-00042b 7465
-00042c 6632
-00042d 746c
-00042e 000d                      	close:		.db		0x0d,"elkhazna et2flt",0x0d,0x00
+00041b 2121
+00041c 2121
+00041d 000d                      	khatar:		.db		0x0d,"elkhazna f 5attaaaaaaaaaaaaaar....!!!!!",0x0d,0x00
+00041e 650d
+00041f 746e
+000420 7265
+000421 7420
+000422 6568
+000423 7020
+000424 7361
+000425 7773
+000426 726f
+000427 2e64
+000428 2e2e
+000429 212e
+00042a 000d                      	pass:		.db		0x0d,"enter the password....!",0x0d,0x00
+00042b 650d
+00042c 6b6c
+00042d 6168
+00042e 6e7a
+00042f 2061
+000430 7465
+000431 6166
+000432 3774
+000433 2065
+000434 000d                      	open:		.db		0x0d,"elkhazna etfat7e ",0x0d,0x00
+000435 650d
+000436 6b6c
+000437 6168
+000438 6e7a
+000439 2061
+00043a 7465
+00043b 6632
+00043c 746c
+00043d 000d                      	close:		.db		0x0d,"elkhazna et2flt",0x0d,0x00
                                  ;................................................................................................................................	
                                  
 
@@ -2329,28 +2346,28 @@ counted separately from r26..r31 here.
 "ATmega32" register use summary:
 x  :   0 y  :  34 z  :   7 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16: 124 r17:   4 r18:  32 r19:  18 r20: 176 
-r21:   4 r22:   4 r23:   4 r24: 172 r25: 129 r26:   0 r27:   0 r28:   1 
+r13:   0 r14:   0 r15:   0 r16: 124 r17:   4 r18:  32 r19:  18 r20: 180 
+r21:   4 r22:   4 r23:   4 r24: 176 r25: 132 r26:   0 r27:   0 r28:   1 
 r29:   1 r30:   7 r31:   7 
 Registers used: 16 out of 35 (45.7%)
 
 "ATmega32" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :  15 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :  10 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :  11 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  : 105 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   2 cbr   :   0 
+brne  : 106 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   4 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   3 com   :   0 cp    :   0 cpc   :   0 
-cpi   :  26 cpse  :   0 dec   :  43 eor   :   0 fmul  :   0 fmuls :   0 
+cpi   :  26 cpse  :   0 dec   :  44 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   6 inc   :  14 jmp   :   0 
-ld    :   4 ldd   :   0 ldi   : 208 lds   :   0 lpm   :   7 lsl   :   0 
+ld    :   4 ldd   :   0 ldi   : 211 lds   :   0 lpm   :   7 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :  18 or    :   0 ori   :   0 out   :  55 pop   : 129 
-push  : 129 rcall :  17 ret   :   1 reti  :   0 rjmp  :  59 rol   :   0 
+neg   :   0 nop   :  18 or    :   0 ori   :   0 out   :  55 pop   : 132 
+push  : 132 rcall :  17 ret   :   1 reti  :   0 rjmp  :  59 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   0 sbis  :  29 
-sbiw  :  43 sbr   :   0 sbrc  :   4 sbrs  :   0 sec   :   0 seh   :   0 
+sbiw  :  44 sbr   :   0 sbrc  :   4 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   3 sleep :   0 spm   :   0 st    :  15 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
@@ -2359,7 +2376,7 @@ Instructions used: 25 out of 113 (22.1%)
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00085e   1902    240   2142   32768   6.5%
+[.cseg] 0x000000 0x00087c   1932    240   2172   32768   6.6%
 [.dseg] 0x000060 0x000074      0     20     20    2048   1.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
