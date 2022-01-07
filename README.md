@@ -85,4 +85,4 @@ users can immediately strat with our project by downloading a mobile application
 - [Aya Mohamed Amin](https://github.com/Aya292Muhammed)
 - [Doaa Abo-sriaa Abd-Atty](https://github.com/doaaabusriaa)
 - [Sara Ashraf Elsayed](https://github.com/sara-ashraf2022)
-# If you stole our Idea we will make you fried potatos
+# If you steal our Idea we will make you fried potatos
