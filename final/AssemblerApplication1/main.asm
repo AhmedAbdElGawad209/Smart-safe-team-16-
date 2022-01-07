@@ -114,6 +114,7 @@ b:
 	
 reject:
 ;blink buzz & red led...............
+	delay	500
 	ldi	r16,0b00010010			;HIGH
 	out PORTC,r16
 	delay	700
@@ -131,12 +132,13 @@ reject:
 	delay	700
 	ldi	r16,0		
 	out PORTC,r16
-	delay	700
+	delay	2500
 
 	rjmp	start						;return to start
 
 alarm:
 ;blink buzz & red led (quickly)...............
+	delay	500
 	ldi	r16,0b00010010			;HIGH
 	out PORTC,r16
 	delay	200
@@ -173,15 +175,52 @@ alarm:
 	ldi	r16,0		
 	out PORTC,r16
 	delay	200
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0		
+	out PORTC,r16
+	delay	2500
 
 	rjmp	start						;return to start
 
 allow:
+	delay	500
+	write	pass						;request the owner password
+	delay	100
+
+	read	r16							;read the first character of the password
+	read	r17							;read the first character of the password
+	read	r18							;read the first character of the password
+	read	r19							;read the first character of the password
+;the password is "0000"...................................................................................
+	cpi	r16,'0'							;alarm if any digit of entered password	is mistake
+	brne	c							
+	cpi	r17,'0'
+	brne	c							
+	cpi	r18,'0'
+	brne	c
+	cpi	r19,'0'
+	brne	c
+;correct password.............................................................
+	delay	200
+	ldi	r16,0b00000110					;HIGH buzz & green led
+	out PORTC,r16
+	delay	800
+	cbi	PORTC,1							;LOW buzz 
+	sbi	PORTC,0							;HIGH relay		(open the khazna)
+	delay	2500
+	delay	2500
 	rjmp	start
-
-
-
-
+c:
+	rjmp	alarm
+;............................................................................................................................
 
 ;	declaring all strings ................................................................
 
