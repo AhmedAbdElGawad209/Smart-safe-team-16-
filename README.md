@@ -26,7 +26,7 @@ The safe also contins anti move system :
 * it could be a family members who are all ineed to acess the safe.
 * A job group or team who want to save a very secure papar of work ,but still easily acessed among the team.     
 
-### |Demo|![](proteus Design.JPEG)|
+###
 ### Instructions for how to  use the project.
 
 users can immediately strat with our project by downloading a mobile application and 
