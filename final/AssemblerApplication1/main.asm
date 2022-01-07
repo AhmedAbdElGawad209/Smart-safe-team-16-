@@ -27,7 +27,8 @@ id:	.byte	20
 	;pin2	=	led green
 	;pin3	=	led blue
 	;pin4	=	led red
-	;pin7	=	bleutooth state  (INPUT)
+
+	;PORTD pin7	=	bleutooth state  (INPUT)
 
 	cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
 ;................................................................................................
@@ -95,21 +96,16 @@ try:
 
 	read	r16					;read bleutooth (wait untill user tell me what shoud i do)
 
-	cpi	r16,'1'					;'1' means reject
+	cpi	r16,'1'					;'1' means allow
 	brne	a
 	rjmp	allow	
 a:				
-	cpi	r16,'2'					;'2' means allow
+	cpi	r16,'2'					;'2' means reject
 	brne	b
 	rjmp	reject
 b:
 	rjmp	alarm				;otherwise	 alarm 
 
-
-	out	PORTC,r16
-	delay	2000
-
-	rjmp	start
 	
 	
 reject:
@@ -196,9 +192,9 @@ allow:
 	delay	100
 
 	read	r16							;read the first character of the password
-	read	r17							;read the first character of the password
-	read	r18							;read the first character of the password
-	read	r19							;read the first character of the password
+	read	r17							;read the second character of the password
+	read	r18							;read the third character of the password
+	read	r19							;read the fourth character of the password
 ;the password is "0000"...................................................................................
 	cpi	r16,'0'							;alarm if any digit of entered password	is mistake
 	brne	c							
