@@ -20,14 +20,17 @@ id:	.byte	20
 	init_UART			;initialize	UART (bleutooth)
 ;................................................................................................
 ;declaring i/o pins ....................................................
-	ldi r16,0x7f		;make PORT C pin 0-6 output 
-	out DDRC,r16		;except pin 7 input (bleutooth state)
+	ldi r16,0xff		;make PORT C pin all output 
+	out DDRC,r16		
 	;pin0	=	relay
 	;pin1	=	buzz
 	;pin2	=	led green
 	;pin3	=	led blue
 	;pin4	=	led red
 	;pin7	=	bleutooth state  (INPUT)
+
+	cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
+
 	ldi	r16,0			;all pins LOW
 	out DDRC,r16
 ;............................keypad.......................................................
@@ -39,7 +42,7 @@ start:
 ;	wait untill bleutooth connected...................	
 	connect:
 		sbi		PORTC,4				;HIGH Red Led
-		sbis	PINC,7
+		sbis	PIND,7
 		rjmp	connect
 ;................................................................................................
 	delay	400
@@ -92,13 +95,93 @@ try:
 
 	read	r16					;read bleutooth (wait untill user tell me what shoud i do)
 
+	cpi	r16,'1'					;'1' means reject
+	brne	a
+	rjmp	allow	
+a:				
+	cpi	r16,'2'					;'2' means allow
+	brne	b
+	rjmp	reject
+b:
+	rjmp	alarm				;otherwise	 alarm 
+
+
 	out	PORTC,r16
 	delay	2000
 
 	rjmp	start
 	
 	
-	;rjmp	start
+reject:
+;blink buzz & red led...............
+	ldi	r16,0b00010010			;HIGH
+	out PORTC,r16
+	delay	700
+	ldi	r16,0					;LOW
+	out PORTC,r16
+	delay	700
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	700
+	ldi	r16,0		
+	out PORTC,r16
+	delay	700
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	700
+	ldi	r16,0		
+	out PORTC,r16
+	delay	700
+
+	rjmp	start						;return to start
+
+alarm:
+;blink buzz & red led (quickly)...............
+	ldi	r16,0b00010010			;HIGH
+	out PORTC,r16
+	delay	200
+	ldi	r16,0					;LOW
+	out PORTC,r16
+	delay	200
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0b00010010			;HIGH
+	out PORTC,r16
+	delay	200
+	ldi	r16,0					;LOW
+	out PORTC,r16
+	delay	200
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0b00010010		
+	out PORTC,r16
+	delay	200
+	ldi	r16,0		
+	out PORTC,r16
+	delay	200
+
+	rjmp	start						;return to start
+
+allow:
+	rjmp	start
+
+
+
+
 
 ;	declaring all strings ................................................................
 
