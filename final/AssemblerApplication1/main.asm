@@ -50,7 +50,6 @@ start:
 		sbis	PINA,7
 		rjmp	connect
 ;................................................................................................
-	delay	400
 	write	welcome				;write elkhazna gahza llsho3'l
 	sbi		PORTC,4				;HIGH Red Led
 	sbi		PORTC,3 			;HIGH blue Led
@@ -61,7 +60,7 @@ start:
 	read_id						;start reading id
 ;...............................................................................
 ;........check if khatar .......................................................
-	sbis	PINA,1
+	sbis	PINA,0
 	rjmp	khataar				;khatar................
 ;...............................................................................
 ;........no khatar .......................................................
@@ -178,13 +177,23 @@ correct:
 	ldi	r16,0b00000110					;HIGH buzz & green led
 	out PORTC,r16
 	delay	800
-	cbi	PORTC,1							;LOW buzz 
+	cbi	PORTC,1							;LOW buzz only
 
 	sbi	PORTC,0							;HIGH relay		(open the khazna)
 	delay	500							;for 0.5 second
 	cbi	PORTC,0							;LOW relay
 
-	cbi	PORTC,2
+	delay	1000
+	write	open						;tell the owner that khazna is opened
+
+	lock:									
+	sbis	PINA,1						;wait untill khazna be closed
+	rjmp	lock
+
+	delay	100
+	write	close						;tell the owner that khazna is closed
+
+	cbi	PORTC,2							;LOW green led
 	delay	2500
 	delay	2500
 	rjmp	start
@@ -209,6 +218,7 @@ khataar:
 	breq	d
 	rjmp	khataar
 d:
+	delay	2500
 	rjmp	start	
 ;............................................................................................................................
 ;	declaring all strings ................................................................

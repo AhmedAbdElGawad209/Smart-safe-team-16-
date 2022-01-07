@@ -141,7 +141,7 @@ next15:
 	st	Y,r18
 	inc	r19
 khatar:
-	sbis	PINA,1
+	sbis	PINA,0
 	rjmp	exit
 
 rjmp  startk
