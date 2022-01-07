@@ -44,7 +44,7 @@ The safe also contins anti move system :
  ### Open mode :
   when a member enter correct ID and the owner accept hi request . 
   -     yellow LED is ON and safe is open. 
- ![yellow LED is ON and safe is open. ](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/rightID%26%20allowance.jpg)
+ ![yellow LED is ON , buzzer is ON and safe is open. ](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/rightID%26%20allowance.jpg)
  ### moving mode  :
  when someone try to move the safe from its palce  . 
  -        All LEDs (red, yellow, blue) are ON aand the buzzer is on (contious discrete noise)
