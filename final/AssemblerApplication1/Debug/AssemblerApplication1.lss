@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:07:47 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:19:28 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
@@ -1206,15 +1206,15 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	;pin7	=	bleutooth state  (INPUT)
                                  
 00000f 988f                      	cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
-                                 
-000010 e000                      	ldi	r16,0			;all pins LOW
-000011 bb04                      	out DDRC,r16
+                                 ;................................................................................................
                                  ;............................keypad.......................................................
-000012 e00f                      	ldi r16,0x0f			;first 4pins (ROWS) input ... last 4pins (COLS) output
-000013 bb07                      	out DDRB,r16
+000010 e00f                      	ldi r16,0x0f			;first 4pins (ROWS) input ... last 4pins (COLS) output
+000011 bb07                      	out DDRB,r16
                                  ;................................................................................................
                                  
                                  start:
+000012 e000                      	ldi	r16,0			;all pins LOW
+000013 bb04                      	out DDRC,r16
                                  ;	wait untill bleutooth connected...................	
                                  	connect:
 000014 9aac                      		sbi		PORTC,4				;HIGH Red Led
@@ -1692,7 +1692,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 0001dc 918f
 0001dd 914f                      	delay	2000
                                  
-0001de ce35                      	rjmp	start
+0001de ce33                      	rjmp	start
                                  	
                                  	
                                  reject:
@@ -1801,7 +1801,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 000244 918f
 000245 914f                      	delay	2500
                                  
-000246 cdcd                      	rjmp	start						;return to start
+000246 cdcb                      	rjmp	start						;return to start
                                  
                                  alarm:
                                  ;blink buzz & red led (quickly)...............
@@ -2059,7 +2059,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 000342 918f
 000343 914f                      	delay	2500
                                  
-000344 cccf                      	rjmp	start						;return to start
+000344 cccd                      	rjmp	start						;return to start
                                  
                                  allow:
 000345 934f
@@ -2151,6 +2151,8 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 000398 914f                      	delay	800
 000399 98a9                      	cbi	PORTC,1							;LOW buzz 
 00039a 9aa8                      	sbi	PORTC,0							;HIGH relay		(open the khazna)
+                                 	;delay	500							;for 0.5 second
+                                 	;cbi	PORTC,1							;LOW relay
 00039b 934f
 00039c 938f
 00039d 939f
@@ -2177,7 +2179,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
 0003b2 919f
 0003b3 918f
 0003b4 914f                      	delay	2500
-0003b5 cc5e                      	rjmp	start
+0003b5 cc5c                      	rjmp	start
                                  c:
 0003b6 ce90                      	rjmp	alarm
                                  ;............................................................................................................................

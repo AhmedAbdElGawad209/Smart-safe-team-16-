@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:07:47 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 03:19:28 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -569,7 +569,7 @@ EQU  TWIaddr      00000026
 EQU  SPMRaddr     00000028
 EQU  INT_VECTORS_SIZE 0000002a
 DSEG id           00000060
-CSEG start        00000014
+CSEG start        00000012
 CSEG connect      00000014
 CSEG outerloop@delay@1992 0000001b
 CSEG innerloop@delay@1992 0000001d
@@ -723,10 +723,10 @@ CSEG outerloop@delay@3564 00000381
 CSEG innerloop@delay@3564 00000383
 CSEG outerloop@delay@3592 00000390
 CSEG innerloop@delay@3592 00000392
-CSEG outerloop@delay@3620 0000039f
-CSEG innerloop@delay@3620 000003a1
-CSEG outerloop@delay@3646 000003ac
-CSEG innerloop@delay@3646 000003ae
+CSEG outerloop@delay@3622 0000039f
+CSEG innerloop@delay@3622 000003a1
+CSEG outerloop@delay@3648 000003ac
+CSEG innerloop@delay@3648 000003ae
 CSEG do3aa        000003c9
 CSEG aya          000003cd
 CSEG khatar       000003fa

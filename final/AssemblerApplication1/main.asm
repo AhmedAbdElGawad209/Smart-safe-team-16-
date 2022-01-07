@@ -30,15 +30,15 @@ id:	.byte	20
 	;pin7	=	bleutooth state  (INPUT)
 
 	cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
-
-	ldi	r16,0			;all pins LOW
-	out DDRC,r16
+;................................................................................................
 ;............................keypad.......................................................
 	ldi r16,0x0f			;first 4pins (ROWS) input ... last 4pins (COLS) output
 	out DDRB,r16
 ;................................................................................................
 
 start:
+	ldi	r16,0			;all pins LOW
+	out DDRC,r16
 ;	wait untill bleutooth connected...................	
 	connect:
 		sbi		PORTC,4				;HIGH Red Led
@@ -215,6 +215,8 @@ allow:
 	delay	800
 	cbi	PORTC,1							;LOW buzz 
 	sbi	PORTC,0							;HIGH relay		(open the khazna)
+	;delay	500							;for 0.5 second
+	;cbi	PORTC,1							;LOW relay
 	delay	2500
 	delay	2500
 	rjmp	start
