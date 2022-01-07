@@ -7,10 +7,10 @@ Our project aims to upgrad the level of security, smartness and efficiency of no
 
 ### A description of what the project is for.
 
-This should answer a short list of basic questions:
 
-* **What is this repo or project?** Our project aims to upgrad the level of security, smartness and efficiency of normal safe.
-* **How does it work?** the idea of our team is to build a smart safe which is connect to a mobile with a password and then 
+ #### Our project aims to upgrad the level of security, smartness and efficiency of normal safe.
+ 
+* **the idea of our team is** to build a smart safe which is connect to a mobile with a password and then 
 can be remotely acessed by number of users with a permisssion of the owner. 
 when an owner first use the project it will connect to the safe using blutooth and write the password for the safe 
 then it is time for the members which they ineed for acessing the safe without the prensence of the owner to open the safe.
