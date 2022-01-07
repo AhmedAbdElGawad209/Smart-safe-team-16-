@@ -40,6 +40,7 @@ then connet to their safe set their users ID and then they ready to go.
 
 
 ### For any truoble using the project kindly connect our team at:
+- [Smart safe team](safe98067@gmail.com)
  safe98067@gmail.com
 
 
