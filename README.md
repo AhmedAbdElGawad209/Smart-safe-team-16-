@@ -22,6 +22,13 @@ if the ID is not correct an alarm is set to warn from a robbing trial.
 
 The safe also contins anti move system :
      It has light sensor which sens if the safe is moved from its regular place setting alarm and warning the owner by massage.
+  
+  ## Safe response to different modes :
+ ### connetion less mode : when the safe is not asigned to any owner . 
+        Red LED is ON
+ ![Red LED is ON](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/connection%20less%20mode.jpg)
+        
+  
 * **Who will use this repo or project?** Anyone who want to enhace his safe smartness.
 * it could be a family members who are all ineed to acess the safe.
 * A job group or team who want to save a very secure papar of work ,but still easily acessed among the team.     
@@ -34,7 +41,6 @@ The safe also contins anti move system :
 
 users can immediately strat with our project by downloading a mobile application from  [here](https://play.google.com/store/apps/details?id=project.bluetoothterminal&hl=ar&gl=US)and 
 then connet to their safe set their users ID and then they ready to go.
-https://play.google.com/store/apps/details?id=project.bluetoothterminal&hl=ar&gl=US
 
 
 
