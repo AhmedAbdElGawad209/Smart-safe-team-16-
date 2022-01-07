@@ -7,10 +7,10 @@
 	brne	no
 	cpi	r20,@3
 	brne	no
-	SEZ
+	SEZ							;set zero flag
 	rjmp	end
 no:
-	CLZ
+	CLZ							;clear zero flag
 end:
 	nop
 .endmacro

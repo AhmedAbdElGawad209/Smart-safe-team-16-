@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 04:03:20 2022
+AVRASM ver. 2.2.8  D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm Fri Jan 07 21:00:10 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
 D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m32def.inc'
@@ -923,21 +923,21 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	brne	no
                                  	cpi	r20,@3
                                  	brne	no
-                                 	SEZ
+                                 	SEZ							;set zero flag
                                  	rjmp	end
                                  no:
-                                 	CLZ
+                                 	CLZ							;clear zero flag
                                  end:
                                  	nop
                                  .include	"keypad.inc"
                                  
                                  ;............................keypad.......................................................
-                                 clear:
+                                 clear:						;re-inialize Y pointer
                                  	ldi	YL,LOW(id)
                                  	ldi	YH,HIGH(id)
                                  	ldi	r18,0
                                  	st	Y,r18
-                                 	ldi	r19,0
+                                 	ldi	r19,0				;clearing register (incrementer)
                                  startk:			
                                  	ldi r16,0x01			;HIGH row 1
                                  	out PORTB,r16
@@ -1039,7 +1039,7 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	sbis	PINB,PINB7		;check col 4
                                  	rjmp	next12
                                  	rcall	hold
-                                 	rjmp	clear
+                                 	rjmp	a
                                  next12:
                                  	ldi r16,0x08				;HIGH row 4
                                  	out PORTB,r16
@@ -1066,12 +1066,16 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	rjmp	check
                                  next15:
                                  	sbis	PINB,PINB7		;check col 4
-                                 	rjmp	startk
+                                 	rjmp	khatar
                                  	rcall	hold
                                  	ldi	r18,'D'
                                  	adiw	Y,1
                                  	st	Y,r18
                                  	inc	r19
+                                 khatar:
+                                 	sbis	PINA,1
+                                 	rjmp	exit
+                                 
                                  rjmp  startk
                                  
                                  hold:
@@ -1091,24 +1095,24 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	ret
                                  
                                  check:
-                                 	cpi	r19,4
-                                 	brne	a
-                                 	rcall	set_id	
+                                 	cpi	r19,4				;r19 --> incrementer
+                                 	brne	a				;mdkhlsh 4 arkam .........
+                                 	rjmp	set_id	
                                  a:
-                                 delay	500
-                                 ldi	r16,2
-                                 out	PORTC,r16
-                                 delay	500
-                                 ldi	r16,0
-                                 out	PORTC,r16
-                                 delay	500
-                                 ldi	r16,2
-                                 out	PORTC,r16
-                                 delay	500
-                                 ldi	r16,0
-                                 out	PORTC,r16
-                                 delay	500
-                                 rjmp	clear
+                                 	delay	500
+                                 	ldi	r16,2				;HIGH buzz
+                                 	out	PORTC,r16
+                                 	delay	500
+                                 	ldi	r16,0				;LOW buzz
+                                 	out	PORTC,r16
+                                 	delay	500
+                                 	ldi	r16,2				;HIGH buzz
+                                 	out	PORTC,r16
+                                 	delay	500
+                                 	ldi	r16,0
+                                 	out	PORTC,r16
+                                 	delay	500
+                                 	rjmp	clear
                                  
                                  set_id:
                                  	nop
@@ -1119,26 +1123,27 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	ld	r22,-Y
                                  	ld	r23,-Y
                                  	nop
+                                 exit:
                                  .endmacro
                                  .include	"initUART.inc"
                                  
                                  
-                                 ldi	r16,12		; load baud rate  [(F_CPU/(BouadRate*16))-1]
+                                 ldi	r16,12		; load baud rate  [(F_CPU/(BouadRate*8))-1]  (boudrate = 9600) (elvalue de mawgoda f eldatasheet)
                                  ldi	r17,0
                                  
-                                 out UBRRH, r17
+                                 out UBRRH, r17							;UART baud rate register
                                  out UBRRL, r16
                                  
                                  ;	double speed mode
-                                 sbi	UCSRA,U2X
+                                 sbi	UCSRA,U2X							;UART control statue register A
                                  
                                  ; Enable receiver and transmitter
                                  ldi r16, (1<<RXEN)|(1<<TXEN)
-                                 out UCSRB,r16
+                                 out UCSRB,r16							;UART control statue register B
                                  
-                                 ; Set frame format: 8data, 2stop bit
+                                 ; Set frame format: 8data bit , 2stop bit
                                  ldi r16, (1<<URSEL)|(1<<USBS)|(3<<UCSZ0)
-                                 out UCSRC,r16
+                                 out UCSRC,r16							;UART control statue register C
                                  
                                  .endmacro
                                  .include	"send_string.inc"
@@ -1204,1113 +1209,941 @@ D:\Ahmed\ﬂ·Ì…\microprocessor project\final\AssemblerApplication1\main.asm(9): In
                                  	;pin3	=	led blue
                                  	;pin4	=	led red
                                  
-                                 	;PORTD pin7	=	bleutooth state  (INPUT)
+00000f e000                      	ldi	r16,0			;make PORT A pin all input
+000010 bb0a                      	out	DDRA,r16
+                                 	;pin0	=	sensor_open
+                                 	;pin1	=	sensor_alarm
+                                 	;pin7	=	bleutooth state  (INPUT)
                                  
-00000f 988f                      	cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
+                                 	;cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
                                  ;................................................................................................
                                  ;............................keypad.......................................................
-000010 e00f                      	ldi r16,0x0f			;first 4pins (ROWS) input ... last 4pins (COLS) output
-000011 bb07                      	out DDRB,r16
+000011 e00f                      	ldi r16,0x0f			;first 4pins (ROWS) input ... last 4pins (COLS) output
+000012 bb07                      	out DDRB,r16
                                  ;................................................................................................
                                  
                                  start:
-000012 e000                      	ldi	r16,0			;all pins LOW
-000013 bb04                      	out DDRC,r16
-                                 ;	wait untill bleutooth connected...................	
+000013 e000                      	ldi	r16,0			;all pins LOW
+000014 bb04                      	out DDRC,r16
+                                 ;wait untill bleutooth connected...............................................		
                                  	connect:
-000014 9aac                      		sbi		PORTC,4				;HIGH Red Led
-000015 9b87                      		sbis	PIND,7
-000016 cffd                      		rjmp	connect
+000015 9aac                      		sbi		PORTC,4				;HIGH Red Led
+000016 9bcf                      		sbis	PINA,7
+000017 cffd                      		rjmp	connect
                                  ;................................................................................................
-000017 934f
-000018 938f
-000019 939f
-00001a e248
-00001b ec83
-00001c e099
-00001d 9701
-00001e f7f1
-00001f 954a
-000020 f7d1
-000021 919f
-000022 918f
-000023 914f                      	delay	400
-000024 ede4
-000025 e0f7
-000026 9105
-000027 3000
-000028 f021
-000029 9b5d
-00002a cffe
-00002b b90c
-00002c cff9
-00002d 0000                      	write	welcome				;write elkhazna gahza llsho3'l
-00002e 9aac                      	sbi		PORTC,4				;HIGH Red Led
-00002f 9aab                      	sbi		PORTC,3 			;HIGH blue Led
-000030 9aaa                      	sbi		PORTC,2				;HIGH green Led
-000031 934f
-000032 938f
-000033 939f
-000034 e04a
-000035 ec83
-000036 e099
-000037 9701
-000038 f7f1
-000039 954a
-00003a f7d1
-00003b 919f
-00003c 918f
-00003d 914f                      	delay	100
-                                 
-00003e e6c0
-00003f e0d0
-000040 e020
-000041 8328
-000042 e030
-000043 e001
-000044 bb08
-000045 0000
-000046 9bb4
-000047 c005
-000048 d071
-000049 e021
-00004a 9621
-00004b 8328
-00004c 9533
-00004d 9bb5
-00004e c005
-00004f d06a
-000050 e022
-000051 9621
-000052 8328
-000053 9533
-000054 9bb6
-000055 c005
-000056 d063
-000057 e023
-000058 9621
-000059 8328
-00005a 9533
-00005b 9bb7
-00005c c005
-00005d d05c
-00005e e421
-00005f 9621
-000060 8328
-000061 9533
-000062 e002
-000063 bb08
-000064 0000
-000065 9bb4
-000066 c005
-000067 d052
-000068 e024
-000069 9621
-00006a 8328
-00006b 9533
-00006c 9bb5
-00006d c005
-00006e d04b
-00006f e025
-000070 9621
-000071 8328
-000072 9533
-000073 9bb6
-000074 c005
-000075 d044
-000076 e026
-000077 9621
-000078 8328
-000079 9533
-00007a 9bb7
-00007b c005
-00007c d03d
-00007d e422
-00007e 9621
-00007f 8328
-000080 9533
-000081 e004
-000082 bb08
-000083 0000
-000084 9bb4
-000085 c005
-000086 d033
-000087 e027
-000088 9621
-000089 8328
-00008a 9533
-00008b 9bb5
-00008c c005
-00008d d02c
-00008e e028
-00008f 9621
-000090 8328
-000091 9533
-000092 9bb6
-000093 c005
-000094 d025
-000095 e029
-000096 9621
-000097 8328
-000098 9533
-000099 9bb7
-00009a c002
-00009b d01e
-00009c cfa1
-00009d e008
-00009e bb08
-00009f 0000
-0000a0 9bb4
-0000a1 c005
-0000a2 d017
-0000a3 e22a
-0000a4 9621
-0000a5 8328
-0000a6 9533
-0000a7 9bb5
-0000a8 c005
-0000a9 d010
-0000aa e020
-0000ab 9621
-0000ac 8328
-0000ad 9533
-0000ae 9bb6
-0000af c002
-0000b0 d009
-0000b1 c016
-0000b2 9bb7
-0000b3 cf8f
-0000b4 d005
-0000b5 e424
-0000b6 9621
-0000b7 8328
-0000b8 9533
-0000b9 cf89
-0000ba e002
-0000bb bb05
-0000bc b306
-0000bd fd04
-0000be cffb
-0000bf fd05
-0000c0 cff9
-0000c1 fd06
-0000c2 cff7
-0000c3 fd07
-0000c4 cff5
-0000c5 e000
-0000c6 bb05
-0000c7 9508
-0000c8 3034
-0000c9 f409
-0000ca d04a
-0000cb 934f
-0000cc 938f
-0000cd 939f
-0000ce e342
-0000cf ec83
-0000d0 e099
-0000d1 9701
-0000d2 f7f1
-0000d3 954a
-0000d4 f7d1
-0000d5 919f
-0000d6 918f
-0000d7 914f
-0000d8 e002
-0000d9 bb05
-0000da 934f
-0000db 938f
-0000dc 939f
-0000dd e342
-0000de ec83
-0000df e099
-0000e0 9701
-0000e1 f7f1
-0000e2 954a
-0000e3 f7d1
-0000e4 919f
-0000e5 918f
-0000e6 914f
-0000e7 e000
-0000e8 bb05
-0000e9 934f
-0000ea 938f
-0000eb 939f
-0000ec e342
-0000ed ec83
-0000ee e099
-0000ef 9701
-0000f0 f7f1
-0000f1 954a
-0000f2 f7d1
-0000f3 919f
-0000f4 918f
-0000f5 914f
-0000f6 e002
-0000f7 bb05
-0000f8 934f
-0000f9 938f
-0000fa 939f
-0000fb e342
-0000fc ec83
-0000fd e099
-0000fe 9701
-0000ff f7f1
-000100 954a
-000101 f7d1
-000102 919f
-000103 918f
-000104 914f
-000105 e000
-000106 bb05
-000107 934f
-000108 938f
-000109 939f
-00010a e342
-00010b ec83
-00010c e099
-00010d 9701
-00010e f7f1
-00010f 954a
-000110 f7d1
-000111 919f
-000112 918f
-000113 914f
-000114 cf29
-000115 0000
-000116 9621
-000117 0000
-000118 914a
-000119 915a
-00011a 916a
-00011b 917a
-00011c 0000                      	read_id						;start reading id
+000018 934f
+000019 938f
+00001a 939f
+00001b e248
+00001c ec83
+00001d e099
+00001e 9701
+00001f f7f1
+000020 954a
+000021 f7d1
+000022 919f
+000023 918f
+000024 914f                      	delay	400
+000025 e6e2
+000026 e0f6
+000027 9105
+000028 3000
+000029 f021
+00002a 9b5d
+00002b cffe
+00002c b90c
+00002d cff9
+00002e 0000                      	write	welcome				;write elkhazna gahza llsho3'l
+00002f 9aac                      	sbi		PORTC,4				;HIGH Red Led
+000030 9aab                      	sbi		PORTC,3 			;HIGH blue Led
+000031 9aaa                      	sbi		PORTC,2				;HIGH green Led
+000032 934f
+000033 938f
+000034 939f
+000035 e04a
+000036 ec83
+000037 e099
+000038 9701
+000039 f7f1
+00003a 954a
+00003b f7d1
+00003c 919f
+00003d 918f
+00003e 914f                      	delay	100
+                                 ;................................................................................................
+                                 ;............................keypad.......................................................
+00003f e6c0
+000040 e0d0
+000041 e020
+000042 8328
+000043 e030
+000044 e001
+000045 bb08
+000046 0000
+000047 9bb4
+000048 c005
+000049 d073
+00004a e021
+00004b 9621
+00004c 8328
+00004d 9533
+00004e 9bb5
+00004f c005
+000050 d06c
+000051 e022
+000052 9621
+000053 8328
+000054 9533
+000055 9bb6
+000056 c005
+000057 d065
+000058 e023
+000059 9621
+00005a 8328
+00005b 9533
+00005c 9bb7
+00005d c005
+00005e d05e
+00005f e421
+000060 9621
+000061 8328
+000062 9533
+000063 e002
+000064 bb08
+000065 0000
+000066 9bb4
+000067 c005
+000068 d054
+000069 e024
+00006a 9621
+00006b 8328
+00006c 9533
+00006d 9bb5
+00006e c005
+00006f d04d
+000070 e025
+000071 9621
+000072 8328
+000073 9533
+000074 9bb6
+000075 c005
+000076 d046
+000077 e026
+000078 9621
+000079 8328
+00007a 9533
+00007b 9bb7
+00007c c005
+00007d d03f
+00007e e422
+00007f 9621
+000080 8328
+000081 9533
+000082 e004
+000083 bb08
+000084 0000
+000085 9bb4
+000086 c005
+000087 d035
+000088 e027
+000089 9621
+00008a 8328
+00008b 9533
+00008c 9bb5
+00008d c005
+00008e d02e
+00008f e028
+000090 9621
+000091 8328
+000092 9533
+000093 9bb6
+000094 c005
+000095 d027
+000096 e029
+000097 9621
+000098 8328
+000099 9533
+00009a 9bb7
+00009b c002
+00009c d020
+00009d c030
+00009e e008
+00009f bb08
+0000a0 0000
+0000a1 9bb4
+0000a2 c005
+0000a3 d019
+0000a4 e22a
+0000a5 9621
+0000a6 8328
+0000a7 9533
+0000a8 9bb5
+0000a9 c005
+0000aa d012
+0000ab e020
+0000ac 9621
+0000ad 8328
+0000ae 9533
+0000af 9bb6
+0000b0 c002
+0000b1 d00b
+0000b2 c018
+0000b3 9bb7
+0000b4 c005
+0000b5 d007
+0000b6 e424
+0000b7 9621
+0000b8 8328
+0000b9 9533
+0000ba 9bc9
+0000bb c064
+0000bc cf87
+0000bd e002
+0000be bb05
+0000bf b306
+0000c0 fd04
+0000c1 cffb
+0000c2 fd05
+0000c3 cff9
+0000c4 fd06
+0000c5 cff7
+0000c6 fd07
+0000c7 cff5
+0000c8 e000
+0000c9 bb05
+0000ca 9508
+0000cb 3034
+0000cc f409
+0000cd c04a
+0000ce 934f
+0000cf 938f
+0000d0 939f
+0000d1 e342
+0000d2 ec83
+0000d3 e099
+0000d4 9701
+0000d5 f7f1
+0000d6 954a
+0000d7 f7d1
+0000d8 919f
+0000d9 918f
+0000da 914f
+0000db e002
+0000dc bb05
+0000dd 934f
+0000de 938f
+0000df 939f
+0000e0 e342
+0000e1 ec83
+0000e2 e099
+0000e3 9701
+0000e4 f7f1
+0000e5 954a
+0000e6 f7d1
+0000e7 919f
+0000e8 918f
+0000e9 914f
+0000ea e000
+0000eb bb05
+0000ec 934f
+0000ed 938f
+0000ee 939f
+0000ef e342
+0000f0 ec83
+0000f1 e099
+0000f2 9701
+0000f3 f7f1
+0000f4 954a
+0000f5 f7d1
+0000f6 919f
+0000f7 918f
+0000f8 914f
+0000f9 e002
+0000fa bb05
+0000fb 934f
+0000fc 938f
+0000fd 939f
+0000fe e342
+0000ff ec83
+000100 e099
+000101 9701
+000102 f7f1
+000103 954a
+000104 f7d1
+000105 919f
+000106 918f
+000107 914f
+000108 e000
+000109 bb05
+00010a 934f
+00010b 938f
+00010c 939f
+00010d e342
+00010e ec83
+00010f e099
+000110 9701
+000111 f7f1
+000112 954a
+000113 f7d1
+000114 919f
+000115 918f
+000116 914f
+000117 cf27
+000118 0000
+000119 9621
+00011a 0000
+00011b 914a
+00011c 915a
+00011d 916a
+00011e 917a
+00011f 0000                      	read_id						;start reading id
                                  ;...............................................................................
-00011d 0000                      	nop							;no operation	(used for syncronyzation)
-00011e 934f
-00011f 938f
-000120 939f
-000121 e342
-000122 ec83
-000123 e099
-000124 9701
-000125 f7f1
-000126 954a
-000127 f7d1
-000128 919f
-000129 918f
-00012a 914f                      	delay	500
-00012b e002                      	ldi	r16,2					;blink buzzer   (teet teet)
-00012c bb05                      	out PORTC,r16
-00012d 934f
-00012e 938f
-00012f 939f
-000130 e144
-000131 ec83
-000132 e099
-000133 9701
-000134 f7f1
-000135 954a
-000136 f7d1
-000137 919f
-000138 918f
-000139 914f                      	delay	200
-00013a e000                      	ldi	r16,0
-00013b bb05                      	out PORTC,r16
-00013c 934f
-00013d 938f
-00013e 939f
-00013f e144
-000140 ec83
-000141 e099
-000142 9701
-000143 f7f1
-000144 954a
-000145 f7d1
-000146 919f
-000147 918f
-000148 914f                      	delay	200
-000149 e002                      	ldi	r16,2
-00014a bb05                      	out PORTC,r16
-00014b 934f
-00014c 938f
-00014d 939f
-00014e e144
-00014f ec83
-000150 e099
-000151 9701
-000152 f7f1
-000153 954a
-000154 f7d1
-000155 919f
-000156 918f
-000157 914f                      	delay	200
-000158 e000                      	ldi	r16,0
-000159 bb05                      	out PORTC,r16
-00015a 934f
-00015b 938f
-00015c 939f
-00015d e144
-00015e ec83
-00015f e099
-000160 9701
-000161 f7f1
-000162 954a
-000163 f7d1
-000164 919f
-000165 918f
-000166 914f                      	delay	200
+                                 ;........check if khatar .......................................................
+000120 9bc9                      	sbis	PINA,1
+000121 c1ac                      	rjmp	khataar				;khatar................
                                  ;...............................................................................
-000167 3071
-000168 f441
-000169 3062
-00016a f431
-00016b 3053
-00016c f421
-00016d 3044
-00016e f411
-00016f 9418
-000170 c001
-000171 9498
-000172 0000                      	is	1,2,3,4					;check if it is the id of "ahmed" 
-000173 f129                      	breq	is_ahmed			;true, write ahmed
-000174 3075
-000175 f441
-000176 3066
-000177 f431
-000178 3057
-000179 f421
-00017a 3048
-00017b f411
-00017c 9418
-00017d c001
-00017e 9498
-00017f 0000                      	is	5,6,7,8					;false, check if it is the id of "gemy" and so on ......
-000180 f119                      	breq	is_gemy	
-000181 3071
-000182 f441
-000183 3064
-000184 f431
-000185 3057
-000186 f421
-000187 3048
-000188 f411
-000189 9418
-00018a c001
-00018b 9498
-00018c 0000                      	is	1,4,7,8
-00018d f109                      	breq	is_sara
+                                 ;........no khatar .......................................................
+000122 0000                      	nop							;no operation	(used for syncronyzation)
+000123 934f
+000124 938f
+000125 939f
+000126 e342
+000127 ec83
+000128 e099
+000129 9701
+00012a f7f1
+00012b 954a
+00012c f7d1
+00012d 919f
+00012e 918f
+00012f 914f                      	delay	500
+000130 e002                      	ldi	r16,2					;blink buzzer   (teet teet)
+000131 bb05                      	out PORTC,r16
+000132 934f
+000133 938f
+000134 939f
+000135 e144
+000136 ec83
+000137 e099
+000138 9701
+000139 f7f1
+00013a 954a
+00013b f7d1
+00013c 919f
+00013d 918f
+00013e 914f                      	delay	200
+00013f e000                      	ldi	r16,0
+000140 bb05                      	out PORTC,r16
+000141 934f
+000142 938f
+000143 939f
+000144 e144
+000145 ec83
+000146 e099
+000147 9701
+000148 f7f1
+000149 954a
+00014a f7d1
+00014b 919f
+00014c 918f
+00014d 914f                      	delay	200
+00014e e002                      	ldi	r16,2
+00014f bb05                      	out PORTC,r16
+000150 934f
+000151 938f
+000152 939f
+000153 e144
+000154 ec83
+000155 e099
+000156 9701
+000157 f7f1
+000158 954a
+000159 f7d1
+00015a 919f
+00015b 918f
+00015c 914f                      	delay	200
+00015d e000                      	ldi	r16,0
+00015e bb05                      	out PORTC,r16
+00015f 934f
+000160 938f
+000161 939f
+000162 e144
+000163 ec83
+000164 e099
+000165 9701
+000166 f7f1
+000167 954a
+000168 f7d1
+000169 919f
+00016a 918f
+00016b 914f                      	delay	200
+                                 ;...............................................................................
+                                 ;........ckecking id .......................................................
+00016c 3071
+00016d f441
+00016e 3062
+00016f f431
+000170 3053
+000171 f421
+000172 3044
+000173 f411
+000174 9418
+000175 c001
+000176 9498
+000177 0000                      	is	1,2,3,4					;check if it is the id of "ahmed" 
+000178 f129                      	breq	is_ahmed			;true, write ahmed
+000179 3075
+00017a f441
+00017b 3066
+00017c f431
+00017d 3057
+00017e f421
+00017f 3048
+000180 f411
+000181 9418
+000182 c001
+000183 9498
+000184 0000                      	is	5,6,7,8					;false, check if it is the id of "gemy" and so on ......
+000185 f119                      	breq	is_gemy	
+000186 3071
+000187 f441
+000188 3064
+000189 f431
+00018a 3057
+00018b f421
+00018c 3048
+00018d f411
+00018e 9418
+00018f c001
+000190 9498
+000191 0000                      	is	1,4,7,8
+000192 f109                      	breq	is_sara
                                  
-00018e e6ee
-00018f e0f7
-000190 9105
-000191 3000
-000192 f021
-000193 9b5d
-000194 cffe
-000195 b90c
-000196 cff9
-000197 0000                      	write	unknown				;if it is not known id  
-000198 c021                      	rjmp	try					;write is trying to open ..........
+000193 efec
+000194 e0f5
+000195 9105
+000196 3000
+000197 f021
+000198 9b5d
+000199 cffe
+00019a b90c
+00019b cff9
+00019c 0000                      	write	unknown				;if it is not known id  
+00019d c021                      	rjmp	try					;write is trying to open ..........
                                  is_ahmed:
-000199 e7ee
-00019a e0f7
-00019b 9105
-00019c 3000
-00019d f021
-00019e 9b5d
-00019f cffe
-0001a0 b90c
-0001a1 cff9
-0001a2 0000                      	write	ahmed
-0001a3 c016                      	rjmp	try
+00019e e0ec
+00019f e0f6
+0001a0 9105
+0001a1 3000
+0001a2 f021
+0001a3 9b5d
+0001a4 cffe
+0001a5 b90c
+0001a6 cff9
+0001a7 0000                      	write	ahmed
+0001a8 c016                      	rjmp	try
                                  is_gemy:
-0001a4 e8e6
-0001a5 e0f7
-0001a6 9105
-0001a7 3000
-0001a8 f021
-0001a9 9b5d
-0001aa cffe
-0001ab b90c
-0001ac cff9
-0001ad 0000                      	write	gemy
-0001ae c00b                      	rjmp	try
+0001a9 e1e4
+0001aa e0f6
+0001ab 9105
+0001ac 3000
+0001ad f021
+0001ae 9b5d
+0001af cffe
+0001b0 b90c
+0001b1 cff9
+0001b2 0000                      	write	gemy
+0001b3 c00b                      	rjmp	try
                                  is_sara:
-0001af e8ec
-0001b0 e0f7
-0001b1 9105
-0001b2 3000
-0001b3 f021
-0001b4 9b5d
-0001b5 cffe
-0001b6 b90c
-0001b7 cff9
-0001b8 0000                      	write	sara
-0001b9 c000                      	rjmp	try
+0001b4 e1ea
+0001b5 e0f6
+0001b6 9105
+0001b7 3000
+0001b8 f021
+0001b9 9b5d
+0001ba cffe
+0001bb b90c
+0001bc cff9
+0001bd 0000                      	write	sara
+0001be c000                      	rjmp	try
                                  try:
-0001ba eae0
-0001bb e0f7
-0001bc 9105
-0001bd 3000
-0001be f021
-0001bf 9b5d
-0001c0 cffe
-0001c1 b90c
-0001c2 cff9
-0001c3 0000                      	write trying
+0001bf e2ee
+0001c0 e0f6
+0001c1 9105
+0001c2 3000
+0001c3 f021
+0001c4 9b5d
+0001c5 cffe
+0001c6 b90c
+0001c7 cff9
+0001c8 0000                      	write trying
+                                 ;..................................................................................
+                                 ;........wait for response from owner .......................................................
+0001c9 e008                      	ldi	r16,8					;HIGH blue led
+0001ca bb05                      	out PORTC,r16		
                                  
-0001c4 e008                      	ldi	r16,8					;HIGH blue led
-0001c5 bb05                      	out PORTC,r16		
-                                 
-0001c6 9b5f
-0001c7 cffe
-0001c8 b10c                      	read	r16					;read bleutooth (wait untill user tell me what shoud i do)
-                                 
-0001c9 3301                      	cpi	r16,'1'					;'1' means allow
-0001ca f409                      	brne	a
-0001cb c16a                      	rjmp	allow	
+0001cb 9b5f
+0001cc cffe
+0001cd b10c                      	read	r16					;read bleutooth (wait untill user tell me what shoud i do)
+                                 ;..................................................................................
+                                 ;........take order  .......................................................
+0001ce 3301                      	cpi	r16,'1'					;'1' means allow
+0001cf f409                      	brne	a
+0001d0 c07c                      	rjmp	allow	
                                  a:				
-0001cc 3302                      	cpi	r16,'2'					;'2' means reject
-0001cd f409                      	brne	b
-0001ce c001                      	rjmp	reject
+0001d1 3302                      	cpi	r16,'2'					;'2' means reject
+0001d2 f409                      	brne	b
+0001d3 c001                      	rjmp	reject
                                  b:
-0001cf c068                      	rjmp	alarm				;otherwise	 alarm 
-                                 
-                                 	
-                                 	
+0001d4 c03c                      	rjmp	alarm				;otherwise	 alarm 
+                                 ;..................................................................................	
                                  reject:
                                  ;blink buzz & red led...............
-0001d0 934f
-0001d1 938f
-0001d2 939f
-0001d3 e342
-0001d4 ec83
-0001d5 e099
-0001d6 9701
-0001d7 f7f1
-0001d8 954a
-0001d9 f7d1
-0001da 919f
-0001db 918f
-0001dc 914f                      	delay	500
-0001dd e102                      	ldi	r16,0b00010010			;HIGH
-0001de bb05                      	out PORTC,r16
-0001df 934f
-0001e0 938f
-0001e1 939f
-0001e2 e446
-0001e3 ec83
-0001e4 e099
-0001e5 9701
-0001e6 f7f1
-0001e7 954a
-0001e8 f7d1
-0001e9 919f
-0001ea 918f
-0001eb 914f                      	delay	700
-0001ec e000                      	ldi	r16,0					;LOW
-0001ed bb05                      	out PORTC,r16
-0001ee 934f
-0001ef 938f
-0001f0 939f
-0001f1 e446
-0001f2 ec83
-0001f3 e099
-0001f4 9701
-0001f5 f7f1
-0001f6 954a
-0001f7 f7d1
-0001f8 919f
-0001f9 918f
-0001fa 914f                      	delay	700
-0001fb e102                      	ldi	r16,0b00010010		
-0001fc bb05                      	out PORTC,r16
-0001fd 934f
-0001fe 938f
-0001ff 939f
-000200 e446
-000201 ec83
-000202 e099
-000203 9701
-000204 f7f1
-000205 954a
-000206 f7d1
-000207 919f
-000208 918f
-000209 914f                      	delay	700
-00020a e000                      	ldi	r16,0		
-00020b bb05                      	out PORTC,r16
-00020c 934f
-00020d 938f
-00020e 939f
-00020f e446
-000210 ec83
-000211 e099
-000212 9701
-000213 f7f1
-000214 954a
-000215 f7d1
-000216 919f
-000217 918f
-000218 914f                      	delay	700
-000219 e102                      	ldi	r16,0b00010010		
-00021a bb05                      	out PORTC,r16
-00021b 934f
-00021c 938f
-00021d 939f
-00021e e446
-00021f ec83
-000220 e099
-000221 9701
-000222 f7f1
-000223 954a
-000224 f7d1
-000225 919f
-000226 918f
-000227 914f                      	delay	700
-000228 e000                      	ldi	r16,0		
-000229 bb05                      	out PORTC,r16
-00022a 934f
-00022b 938f
-00022c 939f
-00022d ef4a
-00022e ec83
-00022f e099
-000230 9701
-000231 f7f1
-000232 954a
-000233 f7d1
-000234 919f
-000235 918f
-000236 914f                      	delay	2500
-                                 
-000237 cdda                      	rjmp	start						;return to start
-                                 
+0001d5 934f
+0001d6 938f
+0001d7 939f
+0001d8 e342
+0001d9 ec83
+0001da e099
+0001db 9701
+0001dc f7f1
+0001dd 954a
+0001de f7d1
+0001df 919f
+0001e0 918f
+0001e1 914f                      	delay	500
+0001e2 e013                      	ldi	r17,3					;loop 3 times
+                                 	loopr:
+0001e3 e102                      	ldi	r16,0b00010010			;HIGH
+0001e4 bb05                      	out PORTC,r16
+0001e5 934f
+0001e6 938f
+0001e7 939f
+0001e8 e446
+0001e9 ec83
+0001ea e099
+0001eb 9701
+0001ec f7f1
+0001ed 954a
+0001ee f7d1
+0001ef 919f
+0001f0 918f
+0001f1 914f                      	delay	700
+0001f2 e000                      	ldi	r16,0					;LOW
+0001f3 bb05                      	out PORTC,r16
+0001f4 934f
+0001f5 938f
+0001f6 939f
+0001f7 e446
+0001f8 ec83
+0001f9 e099
+0001fa 9701
+0001fb f7f1
+0001fc 954a
+0001fd f7d1
+0001fe 919f
+0001ff 918f
+000200 914f                      	delay	700
+000201 951a                      	dec	r17
+000202 f701                      	brne	loopr
+000203 934f
+000204 938f
+000205 939f
+000206 ef4a
+000207 ec83
+000208 e099
+000209 9701
+00020a f7f1
+00020b 954a
+00020c f7d1
+00020d 919f
+00020e 918f
+00020f 914f                      	delay	2500
+000210 ce02                      	rjmp	start						;return to start
+                                 ;..................................................................................
                                  alarm:
                                  ;blink buzz & red led (quickly)...............
-000238 934f
-000239 938f
-00023a 939f
-00023b e342
-00023c ec83
-00023d e099
-00023e 9701
-00023f f7f1
-000240 954a
-000241 f7d1
-000242 919f
-000243 918f
-000244 914f                      	delay	500
-000245 e102                      	ldi	r16,0b00010010			;HIGH
-000246 bb05                      	out PORTC,r16
-000247 934f
-000248 938f
-000249 939f
-00024a e144
-00024b ec83
-00024c e099
-00024d 9701
-00024e f7f1
-00024f 954a
-000250 f7d1
-000251 919f
-000252 918f
-000253 914f                      	delay	200
-000254 e000                      	ldi	r16,0					;LOW
-000255 bb05                      	out PORTC,r16
-000256 934f
-000257 938f
-000258 939f
-000259 e144
-00025a ec83
-00025b e099
-00025c 9701
-00025d f7f1
-00025e 954a
-00025f f7d1
-000260 919f
-000261 918f
-000262 914f                      	delay	200
-000263 e102                      	ldi	r16,0b00010010		
-000264 bb05                      	out PORTC,r16
-000265 934f
-000266 938f
-000267 939f
-000268 e144
-000269 ec83
-00026a e099
-00026b 9701
-00026c f7f1
-00026d 954a
-00026e f7d1
-00026f 919f
-000270 918f
-000271 914f                      	delay	200
-000272 e000                      	ldi	r16,0		
-000273 bb05                      	out PORTC,r16
-000274 934f
-000275 938f
-000276 939f
-000277 e144
-000278 ec83
-000279 e099
-00027a 9701
-00027b f7f1
-00027c 954a
-00027d f7d1
-00027e 919f
-00027f 918f
-000280 914f                      	delay	200
-000281 e102                      	ldi	r16,0b00010010		
-000282 bb05                      	out PORTC,r16
-000283 934f
-000284 938f
-000285 939f
-000286 e144
-000287 ec83
-000288 e099
-000289 9701
-00028a f7f1
-00028b 954a
-00028c f7d1
-00028d 919f
-00028e 918f
-00028f 914f                      	delay	200
-000290 e000                      	ldi	r16,0		
-000291 bb05                      	out PORTC,r16
-000292 934f
-000293 938f
-000294 939f
-000295 e144
-000296 ec83
-000297 e099
-000298 9701
-000299 f7f1
-00029a 954a
-00029b f7d1
-00029c 919f
-00029d 918f
-00029e 914f                      	delay	200
-00029f e102                      	ldi	r16,0b00010010			;HIGH
-0002a0 bb05                      	out PORTC,r16
-0002a1 934f
-0002a2 938f
-0002a3 939f
-0002a4 e144
-0002a5 ec83
-0002a6 e099
-0002a7 9701
-0002a8 f7f1
-0002a9 954a
-0002aa f7d1
-0002ab 919f
-0002ac 918f
-0002ad 914f                      	delay	200
-0002ae e000                      	ldi	r16,0					;LOW
-0002af bb05                      	out PORTC,r16
-0002b0 934f
-0002b1 938f
-0002b2 939f
-0002b3 e144
-0002b4 ec83
-0002b5 e099
-0002b6 9701
-0002b7 f7f1
-0002b8 954a
-0002b9 f7d1
-0002ba 919f
-0002bb 918f
-0002bc 914f                      	delay	200
-0002bd e102                      	ldi	r16,0b00010010		
-0002be bb05                      	out PORTC,r16
-0002bf 934f
-0002c0 938f
-0002c1 939f
-0002c2 e144
-0002c3 ec83
-0002c4 e099
-0002c5 9701
-0002c6 f7f1
-0002c7 954a
-0002c8 f7d1
-0002c9 919f
-0002ca 918f
-0002cb 914f                      	delay	200
-0002cc e000                      	ldi	r16,0		
-0002cd bb05                      	out PORTC,r16
-0002ce 934f
-0002cf 938f
-0002d0 939f
-0002d1 e144
-0002d2 ec83
-0002d3 e099
-0002d4 9701
-0002d5 f7f1
-0002d6 954a
-0002d7 f7d1
-0002d8 919f
-0002d9 918f
-0002da 914f                      	delay	200
-0002db e102                      	ldi	r16,0b00010010		
-0002dc bb05                      	out PORTC,r16
-0002dd 934f
-0002de 938f
-0002df 939f
-0002e0 e144
-0002e1 ec83
-0002e2 e099
-0002e3 9701
-0002e4 f7f1
-0002e5 954a
-0002e6 f7d1
-0002e7 919f
-0002e8 918f
-0002e9 914f                      	delay	200
-0002ea e000                      	ldi	r16,0		
-0002eb bb05                      	out PORTC,r16
-0002ec 934f
-0002ed 938f
-0002ee 939f
-0002ef e144
-0002f0 ec83
-0002f1 e099
-0002f2 9701
-0002f3 f7f1
-0002f4 954a
-0002f5 f7d1
-0002f6 919f
-0002f7 918f
-0002f8 914f                      	delay	200
-0002f9 e102                      	ldi	r16,0b00010010		
-0002fa bb05                      	out PORTC,r16
-0002fb 934f
-0002fc 938f
-0002fd 939f
-0002fe e144
-0002ff ec83
-000300 e099
-000301 9701
-000302 f7f1
-000303 954a
-000304 f7d1
-000305 919f
-000306 918f
-000307 914f                      	delay	200
-000308 e000                      	ldi	r16,0		
-000309 bb05                      	out PORTC,r16
-00030a 934f
-00030b 938f
-00030c 939f
-00030d e144
-00030e ec83
-00030f e099
-000310 9701
-000311 f7f1
-000312 954a
-000313 f7d1
-000314 919f
-000315 918f
-000316 914f                      	delay	200
-000317 e102                      	ldi	r16,0b00010010		
-000318 bb05                      	out PORTC,r16
-000319 934f
-00031a 938f
-00031b 939f
-00031c e144
-00031d ec83
-00031e e099
-00031f 9701
-000320 f7f1
-000321 954a
-000322 f7d1
-000323 919f
-000324 918f
-000325 914f                      	delay	200
-000326 e000                      	ldi	r16,0		
-000327 bb05                      	out PORTC,r16
-000328 934f
-000329 938f
-00032a 939f
-00032b ef4a
-00032c ec83
-00032d e099
-00032e 9701
-00032f f7f1
-000330 954a
-000331 f7d1
-000332 919f
-000333 918f
-000334 914f                      	delay	2500
-                                 
-000335 ccdc                      	rjmp	start						;return to start
-                                 
+000211 934f
+000212 938f
+000213 939f
+000214 e342
+000215 ec83
+000216 e099
+000217 9701
+000218 f7f1
+000219 954a
+00021a f7d1
+00021b 919f
+00021c 918f
+00021d 914f                      	delay	500
+00021e e018                      	ldi	r17,8					;loop 8 times
+                                 	loopa:
+00021f e102                      	ldi	r16,0b00010010			;HIGH
+000220 bb05                      	out PORTC,r16
+000221 934f
+000222 938f
+000223 939f
+000224 e144
+000225 ec83
+000226 e099
+000227 9701
+000228 f7f1
+000229 954a
+00022a f7d1
+00022b 919f
+00022c 918f
+00022d 914f                      	delay	200
+00022e e000                      	ldi	r16,0					;LOW
+00022f bb05                      	out PORTC,r16
+000230 934f
+000231 938f
+000232 939f
+000233 e144
+000234 ec83
+000235 e099
+000236 9701
+000237 f7f1
+000238 954a
+000239 f7d1
+00023a 919f
+00023b 918f
+00023c 914f                      	delay	200
+00023d 951a                      	dec	r17
+00023e f701                      	brne	loopa
+00023f 934f
+000240 938f
+000241 939f
+000242 ef4a
+000243 ec83
+000244 e099
+000245 9701
+000246 f7f1
+000247 954a
+000248 f7d1
+000249 919f
+00024a 918f
+00024b 914f                      	delay	2500
+00024c cdc6                      	rjmp	start						;return to start
+                                 ;..................................................................................
                                  allow:
-000336 934f
-000337 938f
-000338 939f
-000339 e342
-00033a ec83
-00033b e099
-00033c 9701
-00033d f7f1
-00033e 954a
-00033f f7d1
-000340 919f
-000341 918f
-000342 914f                      	delay	500
-000343 e1ee
-000344 e0f8
-000345 9105
-000346 3000
-000347 f021
-000348 9b5d
-000349 cffe
-00034a b90c
-00034b cff9
-00034c 0000                      	write	pass						;request the owner password
-00034d 934f
-00034e 938f
-00034f 939f
-000350 e04a
-000351 ec83
-000352 e099
-000353 9701
-000354 f7f1
-000355 954a
-000356 f7d1
-000357 919f
-000358 918f
-000359 914f                      	delay	100
+00024d 934f
+00024e 938f
+00024f 939f
+000250 e342
+000251 ec83
+000252 e099
+000253 9701
+000254 f7f1
+000255 954a
+000256 f7d1
+000257 919f
+000258 918f
+000259 914f                      	delay	500
+00025a eaec
+00025b e0f6
+00025c 9105
+00025d 3000
+00025e f021
+00025f 9b5d
+000260 cffe
+000261 b90c
+000262 cff9
+000263 0000                      	write	pass						;request the owner password
+000264 934f
+000265 938f
+000266 939f
+000267 e04a
+000268 ec83
+000269 e099
+00026a 9701
+00026b f7f1
+00026c 954a
+00026d f7d1
+00026e 919f
+00026f 918f
+000270 914f                      	delay	100
                                  
-00035a 9b5f
-00035b cffe
-00035c b10c                      	read	r16							;read the first character of the password
-00035d 9b5f
-00035e cffe
-00035f b11c                      	read	r17							;read the second character of the password
-000360 9b5f
-000361 cffe
-000362 b12c                      	read	r18							;read the third character of the password
-000363 9b5f
-000364 cffe
-000365 b13c                      	read	r19							;read the fourth character of the password
+000271 9b5f
+000272 cffe
+000273 b10c                      	read	r16							;read the first character of the password
+000274 9b5f
+000275 cffe
+000276 b11c                      	read	r17							;read the second character of the password
+000277 9b5f
+000278 cffe
+000279 b12c                      	read	r18							;read the third character of the password
+00027a 9b5f
+00027b cffe
+00027c b13c                      	read	r19							;read the fourth character of the password
                                  ;the password is "0000"...................................................................................
-000366 3300                      	cpi	r16,'0'							;alarm if any digit of entered password	is mistake
-000367 f431                      	brne	c							
-000368 3310                      	cpi	r17,'0'
-000369 f421                      	brne	c							
-00036a 3320                      	cpi	r18,'0'
-00036b f411                      	brne	c
-00036c 3330                      	cpi	r19,'0'
-00036d f009                      	breq	correct
+00027d 3300                      	cpi	r16,'0'							;alarm if any digit of entered password	is mistake
+00027e f431                      	brne	c							
+00027f 3310                      	cpi	r17,'0'
+000280 f421                      	brne	c							
+000281 3320                      	cpi	r18,'0'
+000282 f411                      	brne	c
+000283 3330                      	cpi	r19,'0'
+000284 f009                      	breq	correct
                                  c:
-00036e cec9                      	rjmp	alarm
+000285 cf8b                      	rjmp	alarm
                                  
                                  correct:		
                                  ;correct password.............................................................
-00036f 934f
-000370 938f
-000371 939f
-000372 e144
-000373 ec83
-000374 e099
-000375 9701
-000376 f7f1
-000377 954a
-000378 f7d1
-000379 919f
-00037a 918f
-00037b 914f                      	delay	200
-00037c e006                      	ldi	r16,0b00000110					;HIGH buzz & green led
-00037d bb05                      	out PORTC,r16
-00037e 934f
-00037f 938f
-000380 939f
-000381 e540
-000382 ec83
-000383 e099
-000384 9701
-000385 f7f1
-000386 954a
-000387 f7d1
-000388 919f
-000389 918f
-00038a 914f                      	delay	800
-00038b 98a9                      	cbi	PORTC,1							;LOW buzz 
-00038c 9aa8                      	sbi	PORTC,0							;HIGH relay		(open the khazna)
-00038d 934f
-00038e 938f
-00038f 939f
-000390 e342
-000391 ec83
-000392 e099
-000393 9701
-000394 f7f1
-000395 954a
-000396 f7d1
-000397 919f
-000398 918f
-000399 914f                      	delay	500							;for 0.5 second
-00039a 98a8                      	cbi	PORTC,0							;LOW relay
+000286 934f
+000287 938f
+000288 939f
+000289 e144
+00028a ec83
+00028b e099
+00028c 9701
+00028d f7f1
+00028e 954a
+00028f f7d1
+000290 919f
+000291 918f
+000292 914f                      	delay	200
+000293 e006                      	ldi	r16,0b00000110					;HIGH buzz & green led
+000294 bb05                      	out PORTC,r16
+000295 934f
+000296 938f
+000297 939f
+000298 e540
+000299 ec83
+00029a e099
+00029b 9701
+00029c f7f1
+00029d 954a
+00029e f7d1
+00029f 919f
+0002a0 918f
+0002a1 914f                      	delay	800
+0002a2 98a9                      	cbi	PORTC,1							;LOW buzz 
                                  
-00039b 98aa                      	cbi	PORTC,2
-00039c 934f
-00039d 938f
-00039e 939f
-00039f ef4a
-0003a0 ec83
-0003a1 e099
-0003a2 9701
-0003a3 f7f1
-0003a4 954a
-0003a5 f7d1
-0003a6 919f
-0003a7 918f
-0003a8 914f                      	delay	2500
-0003a9 934f
-0003aa 938f
-0003ab 939f
-0003ac ef4a
-0003ad ec83
-0003ae e099
-0003af 9701
-0003b0 f7f1
-0003b1 954a
-0003b2 f7d1
-0003b3 919f
-0003b4 918f
-0003b5 914f                      	delay	2500
-0003b6 cc5b                      	rjmp	start
+0002a3 9aa8                      	sbi	PORTC,0							;HIGH relay		(open the khazna)
+0002a4 934f
+0002a5 938f
+0002a6 939f
+0002a7 e342
+0002a8 ec83
+0002a9 e099
+0002aa 9701
+0002ab f7f1
+0002ac 954a
+0002ad f7d1
+0002ae 919f
+0002af 918f
+0002b0 914f                      	delay	500							;for 0.5 second
+0002b1 98a8                      	cbi	PORTC,0							;LOW relay
                                  
+0002b2 98aa                      	cbi	PORTC,2
+0002b3 934f
+0002b4 938f
+0002b5 939f
+0002b6 ef4a
+0002b7 ec83
+0002b8 e099
+0002b9 9701
+0002ba f7f1
+0002bb 954a
+0002bc f7d1
+0002bd 919f
+0002be 918f
+0002bf 914f                      	delay	2500
+0002c0 934f
+0002c1 938f
+0002c2 939f
+0002c3 ef4a
+0002c4 ec83
+0002c5 e099
+0002c6 9701
+0002c7 f7f1
+0002c8 954a
+0002c9 f7d1
+0002ca 919f
+0002cb 918f
+0002cc 914f                      	delay	2500
+0002cd cd45                      	rjmp	start
+                                 ;..................................................................................
+                                 khataar:
+                                 	
+0002ce e8e2
+0002cf e0f6
+0002d0 9105
+0002d1 3000
+0002d2 f021
+0002d3 9b5d
+0002d4 cffe
+0002d5 b90c
+0002d6 cff9
+0002d7 0000                      	write	khatar
+                                 
+0002d8 e01a                      	ldi	r17,10
+                                 	loopk:
+0002d9 e10e                      	ldi	r16,0b00011110			;HIGH	all (buzz,green,red,blue)
+0002da bb05                      	out PORTC,r16
+0002db 934f
+0002dc 938f
+0002dd 939f
+0002de e144
+0002df ec83
+0002e0 e099
+0002e1 9701
+0002e2 f7f1
+0002e3 954a
+0002e4 f7d1
+0002e5 919f
+0002e6 918f
+0002e7 914f                      	delay	200
+0002e8 e000                      	ldi	r16,0					;LOW	all (buzz,green,red,blue)
+0002e9 bb05                      	out PORTC,r16
+0002ea 934f
+0002eb 938f
+0002ec 939f
+0002ed e144
+0002ee ec83
+0002ef e099
+0002f0 9701
+0002f1 f7f1
+0002f2 954a
+0002f3 f7d1
+0002f4 919f
+0002f5 918f
+0002f6 914f                      	delay	200
+0002f7 951a                      	dec	r17
+0002f8 f701                      	brne	loopk	
+                                 
+0002f9 b12c                      	in	r18,UDR
+0002fa 3421                      	cpi	r18,'A'
+0002fb f009                      	breq	d
+0002fc cfd1                      	rjmp	khataar
+                                 d:
+0002fd cd15                      	rjmp	start	
                                  ;............................................................................................................................
-                                 
                                  ;	declaring all strings ................................................................
-                                 
                                  	;(\n = 0x0d)
-0003b7 550d
-0003b8 6b6e
-0003b9 6f6e
-0003ba 6e77
-0003bb 7020
-0003bc 7265
-0003bd 6f73
-0003be 006e                      	unknown:	.db		0x0d,"Unknown person",0x00
-0003bf 610d
-0003c0 6d68
-0003c1 6465
-0003c2 0020                      	ahmed:		.db		0x0d,"ahmed ",0x00
-0003c3 670d
-0003c4 6d65
-0003c5 0079                      	gemy:		.db		0x0d,"gemy",0x00
-0003c6 730d
-0003c7 7261
-0003c8 0061                      	sara:		.db		0x0d,"sara",0x00
-0003c9 640d
-0003ca 336f
-0003cb 3261
-0003cc 0020                      	do3aa:		.db		0x0d,"do3a2 ",0x00
-0003cd 610d
-0003ce 6179
-0003cf 0020                      	aya:		.db		0x0d,"aya ",0x00
-0003d0 6920
-0003d1 2073
-0003d2 7274
-0003d3 6979
-0003d4 676e
-0003d5 7420
-0003d6 206f
-0003d7 706f
-0003d8 6e65
-0003d9 7420
-0003da 6568
-0003db 6b20
-0003dc 6168
-0003dd 6e7a
-0003de 0d61
-0003df 770d
-0003e0 6168
-0003e1 2074
-0003e2 6873
-0003e3 756f
-0003e4 646c
-0003e5 6920
-0003e6 6420
-0003e7 3f6f
-0003e8 0d21
-0003e9 000d                      	trying:		.db		" is trying to open the khazna",0x0d,0x0d,"what should i do?!",0x0d,0x0d,0x00
+0002fe 550d
+0002ff 6b6e
+000300 6f6e
+000301 6e77
+000302 7020
+000303 7265
+000304 6f73
+000305 006e                      	unknown:	.db		0x0d,"Unknown person",0x00				;writing in program memory
+000306 610d
+000307 6d68
+000308 6465
+000309 0020                      	ahmed:		.db		0x0d,"ahmed ",0x00
+00030a 670d
+00030b 6d65
+00030c 0079                      	gemy:		.db		0x0d,"gemy",0x00
+00030d 730d
+00030e 7261
+00030f 0061                      	sara:		.db		0x0d,"sara",0x00
+000310 640d
+000311 336f
+000312 3261
+000313 0020                      	do3aa:		.db		0x0d,"do3a2 ",0x00
+000314 610d
+000315 6179
+000316 0020                      	aya:		.db		0x0d,"aya ",0x00
+000317 6920
+000318 2073
+000319 7274
+00031a 6979
+00031b 676e
+00031c 7420
+00031d 206f
+00031e 706f
+00031f 6e65
+000320 7420
+000321 6568
+000322 6b20
+000323 6168
+000324 6e7a
+000325 0d61
+000326 770d
+000327 6168
+000328 2074
+000329 6873
+00032a 756f
+00032b 646c
+00032c 6920
+00032d 6420
+00032e 3f6f
+00032f 0d21
+000330 000d                      	trying:		.db		" is trying to open the khazna",0x0d,0x0d,"what should i do?!",0x0d,0x0d,0x00
                                  
-0003ea 650d
-0003eb 6b6c
-0003ec 6168
-0003ed 6e7a
-0003ee 2061
-0003ef 6167
-0003f0 7a68
-0003f1 2061
-0003f2 6c6c
-0003f3 6873
-0003f4 336f
-0003f5 6c27
-0003f6 2e2e
-0003f7 2e2e
-0003f8 212e
-0003f9 000d                      	welcome:	.db		0x0d,"elkhazna gahza llsho3'l.....!",0x0d,0x00
-0003fa 650d
-0003fb 6b6c
-0003fc 6168
-0003fd 6e7a
-0003fe 2061
-0003ff 2066
-000400 6135
-000401 7474
-000402 6161
-000403 6161
-000404 6161
-000405 6161
-000406 6161
-000407 6161
-000408 6161
-000409 2e72
-00040a 2e2e
-00040b 212e
-00040c 2121
-00040d 2121
-00040e 000d                      	khatar:		.db		0x0d,"elkhazna f 5attaaaaaaaaaaaaaar....!!!!!",0x0d,0x00
-00040f 650d
-000410 746e
-000411 7265
-000412 7420
-000413 6568
-000414 7020
-000415 7361
-000416 7773
-000417 726f
-000418 2e64
-000419 2e2e
-00041a 212e
-00041b 000d                      	pass:		.db		0x0d,"enter the password....!",0x0d,0x00
-00041c 650d
-00041d 6b6c
-00041e 6168
-00041f 6e7a
-000420 2061
-000421 7465
-000422 6166
-000423 3774
-000424 2065
-000425 000d                      	open:		.db		0x0d,"elkhazna etfat7e ",0x0d,0x00
-000426 650d
-000427 6b6c
-000428 6168
-000429 6e7a
-00042a 2061
-00042b 7465
-00042c 6632
-00042d 746c
-00042e 000d                      	close:		.db		0x0d,"elkhazna et2flt",0x0d,0x00
+000331 650d
+000332 6b6c
+000333 6168
+000334 6e7a
+000335 2061
+000336 6167
+000337 7a68
+000338 2061
+000339 6c6c
+00033a 6873
+00033b 336f
+00033c 6c27
+00033d 2e2e
+00033e 2e2e
+00033f 212e
+000340 000d                      	welcome:	.db		0x0d,"elkhazna gahza llsho3'l.....!",0x0d,0x00
+000341 650d
+000342 6b6c
+000343 6168
+000344 6e7a
+000345 2061
+000346 2066
+000347 6135
+000348 7474
+000349 6161
+00034a 6161
+00034b 6161
+00034c 6161
+00034d 6161
+00034e 6161
+00034f 6161
+000350 2e72
+000351 2e2e
+000352 212e
+000353 2121
+000354 2121
+000355 000d                      	khatar:		.db		0x0d,"elkhazna f 5attaaaaaaaaaaaaaar....!!!!!",0x0d,0x00
+000356 650d
+000357 746e
+000358 7265
+000359 7420
+00035a 6568
+00035b 7020
+00035c 7361
+00035d 7773
+00035e 726f
+00035f 2e64
+000360 2e2e
+000361 212e
+000362 000d                      	pass:		.db		0x0d,"enter the password....!",0x0d,0x00
+000363 650d
+000364 6b6c
+000365 6168
+000366 6e7a
+000367 2061
+000368 7465
+000369 6166
+00036a 3774
+00036b 2065
+00036c 000d                      	open:		.db		0x0d,"elkhazna etfat7e ",0x0d,0x00
+00036d 650d
+00036e 6b6c
+00036f 6168
+000370 6e7a
+000371 2061
+000372 7465
+000373 6632
+000374 746c
+000375 000d                      	close:		.db		0x0d,"elkhazna et2flt",0x0d,0x00
                                  ;................................................................................................................................	
-                                 
+                                 ;............................................................................................................................
 
 
 RESOURCE USE INFORMATION
@@ -2328,30 +2161,30 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega32" register use summary:
-x  :   0 y  :  34 z  :   7 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :  34 z  :   8 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16: 123 r17:   4 r18:  32 r19:  18 r20: 176 
-r21:   4 r22:   4 r23:   4 r24: 172 r25: 129 r26:   0 r27:   0 r28:   1 
-r29:   1 r30:   7 r31:   7 
+r13:   0 r14:   0 r15:   0 r16:  96 r17:  10 r18:  34 r19:  18 r20: 120 
+r21:   4 r22:   4 r23:   4 r24: 116 r25:  87 r26:   0 r27:   0 r28:   1 
+r29:   1 r30:   8 r31:   8 
 Registers used: 16 out of 35 (45.7%)
 
 "ATmega32" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :  15 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :  11 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :  13 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  : 104 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   4 cbr   :   0 
+brne  :  79 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   3 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   3 com   :   0 cp    :   0 cpc   :   0 
-cpi   :  26 cpse  :   0 dec   :  43 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   6 inc   :  14 jmp   :   0 
-ld    :   4 ldd   :   0 ldi   : 208 lds   :   0 lpm   :   7 lsl   :   0 
+cpi   :  28 cpse  :   0 dec   :  32 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   7 inc   :  14 jmp   :   0 
+ld    :   4 ldd   :   0 ldi   : 156 lds   :   0 lpm   :   8 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :  18 or    :   0 ori   :   0 out   :  54 pop   : 129 
-push  : 129 rcall :  17 ret   :   1 reti  :   0 rjmp  :  58 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   0 sbis  :  29 
-sbiw  :  43 sbr   :   0 sbrc  :   4 sbrs  :   0 sec   :   0 seh   :   0 
+neg   :   0 nop   :  19 or    :   0 ori   :   0 out   :  40 pop   :  87 
+push  :  87 rcall :  16 ret   :   1 reti  :   0 rjmp  :  65 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   0 sbis  :  32 
+sbiw  :  29 sbr   :   0 sbrc  :   4 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   3 sleep :   0 spm   :   0 st    :  15 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
@@ -2360,7 +2193,7 @@ Instructions used: 25 out of 113 (22.1%)
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00085e   1902    240   2142   32768   6.5%
+[.cseg] 0x000000 0x0006ec   1532    240   1772   32768   5.4%
 [.dseg] 0x000060 0x000074      0     20     20    2048   1.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

@@ -28,9 +28,13 @@ id:	.byte	20
 	;pin3	=	led blue
 	;pin4	=	led red
 
-	;PORTD pin7	=	bleutooth state  (INPUT)
+	ldi	r16,0			;make PORT A pin all input
+	out	DDRA,r16
+	;pin0	=	sensor_open
+	;pin1	=	sensor_alarm
+	;pin7	=	bleutooth state  (INPUT)
 
-	cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
+	;cbi	DDRD,7			;pin7 in PORTD input for bleutooth state pin 	
 ;................................................................................................
 ;............................keypad.......................................................
 	ldi r16,0x0f			;first 4pins (ROWS) input ... last 4pins (COLS) output
@@ -40,10 +44,10 @@ id:	.byte	20
 start:
 	ldi	r16,0			;all pins LOW
 	out DDRC,r16
-;	wait untill bleutooth connected...................	
+;wait untill bleutooth connected...............................................		
 	connect:
 		sbi		PORTC,4				;HIGH Red Led
-		sbis	PIND,7
+		sbis	PINA,7
 		rjmp	connect
 ;................................................................................................
 	delay	400
@@ -52,9 +56,15 @@ start:
 	sbi		PORTC,3 			;HIGH blue Led
 	sbi		PORTC,2				;HIGH green Led
 	delay	100
-
+;................................................................................................
+;............................keypad.......................................................
 	read_id						;start reading id
 ;...............................................................................
+;........check if khatar .......................................................
+	sbis	PINA,1
+	rjmp	khataar				;khatar................
+;...............................................................................
+;........no khatar .......................................................
 	nop							;no operation	(used for syncronyzation)
 	delay	500
 	ldi	r16,2					;blink buzzer   (teet teet)
@@ -70,6 +80,7 @@ start:
 	out PORTC,r16
 	delay	200
 ;...............................................................................
+;........ckecking id .......................................................
 	is	1,2,3,4					;check if it is the id of "ahmed" 
 	breq	is_ahmed			;true, write ahmed
 	is	5,6,7,8					;false, check if it is the id of "gemy" and so on ......
@@ -90,12 +101,14 @@ is_sara:
 	rjmp	try
 try:
 	write trying
-
+;..................................................................................
+;........wait for response from owner .......................................................
 	ldi	r16,8					;HIGH blue led
 	out PORTC,r16		
 
 	read	r16					;read bleutooth (wait untill user tell me what shoud i do)
-
+;..................................................................................
+;........take order  .......................................................
 	cpi	r16,'1'					;'1' means allow
 	brne	a
 	rjmp	allow	
@@ -105,87 +118,39 @@ a:
 	rjmp	reject
 b:
 	rjmp	alarm				;otherwise	 alarm 
-
-	
-	
+;..................................................................................	
 reject:
 ;blink buzz & red led...............
 	delay	500
+	ldi	r17,3					;loop 3 times
+	loopr:
 	ldi	r16,0b00010010			;HIGH
 	out PORTC,r16
 	delay	700
 	ldi	r16,0					;LOW
 	out PORTC,r16
 	delay	700
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	700
-	ldi	r16,0		
-	out PORTC,r16
-	delay	700
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	700
-	ldi	r16,0		
-	out PORTC,r16
+	dec	r17
+	brne	loopr
 	delay	2500
-
 	rjmp	start						;return to start
-
+;..................................................................................
 alarm:
 ;blink buzz & red led (quickly)...............
 	delay	500
+	ldi	r17,8					;loop 8 times
+	loopa:
 	ldi	r16,0b00010010			;HIGH
 	out PORTC,r16
 	delay	200
 	ldi	r16,0					;LOW
 	out PORTC,r16
 	delay	200
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0b00010010			;HIGH
-	out PORTC,r16
-	delay	200
-	ldi	r16,0					;LOW
-	out PORTC,r16
-	delay	200
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0b00010010		
-	out PORTC,r16
-	delay	200
-	ldi	r16,0		
-	out PORTC,r16
+	dec	r17
+	brne	loopa
 	delay	2500
-
 	rjmp	start						;return to start
-
+;..................................................................................
 allow:
 	delay	500
 	write	pass						;request the owner password
@@ -214,6 +179,7 @@ correct:
 	out PORTC,r16
 	delay	800
 	cbi	PORTC,1							;LOW buzz 
+
 	sbi	PORTC,0							;HIGH relay		(open the khazna)
 	delay	500							;for 0.5 second
 	cbi	PORTC,0							;LOW relay
@@ -222,13 +188,32 @@ correct:
 	delay	2500
 	delay	2500
 	rjmp	start
+;..................................................................................
+khataar:
+	
+	write	khatar
 
+	ldi	r17,10
+	loopk:
+	ldi	r16,0b00011110			;HIGH	all (buzz,green,red,blue)
+	out PORTC,r16
+	delay	200
+	ldi	r16,0					;LOW	all (buzz,green,red,blue)
+	out PORTC,r16
+	delay	200
+	dec	r17
+	brne	loopk	
+
+	in	r18,UDR
+	cpi	r18,'A'
+	breq	d
+	rjmp	khataar
+d:
+	rjmp	start	
 ;............................................................................................................................
-
 ;	declaring all strings ................................................................
-
 	;(\n = 0x0d)
-	unknown:	.db		0x0d,"Unknown person",0x00
+	unknown:	.db		0x0d,"Unknown person",0x00				;writing in program memory
 	ahmed:		.db		0x0d,"ahmed ",0x00
 	gemy:		.db		0x0d,"gemy",0x00
 	sara:		.db		0x0d,"sara",0x00
@@ -242,5 +227,5 @@ correct:
 	open:		.db		0x0d,"elkhazna etfat7e ",0x0d,0x00
 	close:		.db		0x0d,"elkhazna et2flt",0x0d,0x00
 ;................................................................................................................................	
-
+;............................................................................................................................
 	

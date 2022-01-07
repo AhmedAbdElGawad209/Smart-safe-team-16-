@@ -1,11 +1,11 @@
 .macro	read_id
 ;............................keypad.......................................................
-clear:
+clear:						;re-inialize Y pointer
 	ldi	YL,LOW(id)
 	ldi	YH,HIGH(id)
 	ldi	r18,0
 	st	Y,r18
-	ldi	r19,0
+	ldi	r19,0				;clearing register (incrementer)
 startk:			
 	ldi r16,0x01			;HIGH row 1
 	out PORTB,r16
@@ -107,7 +107,7 @@ next11:
 	sbis	PINB,PINB7		;check col 4
 	rjmp	next12
 	rcall	hold
-	rjmp	clear
+	rjmp	a
 next12:
 	ldi r16,0x08				;HIGH row 4
 	out PORTB,r16
@@ -134,12 +134,16 @@ next14:
 	rjmp	check
 next15:
 	sbis	PINB,PINB7		;check col 4
-	rjmp	startk
+	rjmp	khatar
 	rcall	hold
 	ldi	r18,'D'
 	adiw	Y,1
 	st	Y,r18
 	inc	r19
+khatar:
+	sbis	PINA,1
+	rjmp	exit
+
 rjmp  startk
 
 hold:
@@ -159,24 +163,24 @@ hold:
 	ret
 
 check:
-	cpi	r19,4
-	brne	a
-	rcall	set_id	
+	cpi	r19,4				;r19 --> incrementer
+	brne	a				;mdkhlsh 4 arkam .........
+	rjmp	set_id	
 a:
-delay	500
-ldi	r16,2
-out	PORTC,r16
-delay	500
-ldi	r16,0
-out	PORTC,r16
-delay	500
-ldi	r16,2
-out	PORTC,r16
-delay	500
-ldi	r16,0
-out	PORTC,r16
-delay	500
-rjmp	clear
+	delay	500
+	ldi	r16,2				;HIGH buzz
+	out	PORTC,r16
+	delay	500
+	ldi	r16,0				;LOW buzz
+	out	PORTC,r16
+	delay	500
+	ldi	r16,2				;HIGH buzz
+	out	PORTC,r16
+	delay	500
+	ldi	r16,0
+	out	PORTC,r16
+	delay	500
+	rjmp	clear
 
 set_id:
 	nop
@@ -187,5 +191,6 @@ set_id:
 	ld	r22,-Y
 	ld	r23,-Y
 	nop
+exit:
 .endmacro
 ;..............................................................................................................
