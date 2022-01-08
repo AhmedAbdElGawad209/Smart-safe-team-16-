@@ -28,11 +28,11 @@ if the ID is not correct an alarm is set to warn from a robbing trial.
 -  **Rlay** which control the electrical  lock of the safe.   
 -  **keypad** which users use to insert their IDs.   
 -  **LDR** sensor in the bottom of the safe to sens the motion of the safe.    
--  **LDR** sensor inside the safe facing the door to send if the door is closed or open.  
+-  **LDR** sensor inside the safe facing the door to sens if the door is closed or open.  
          
  # Safe response to different modes :
  ### Connetion-less mode :
- when the safe is not asigned to any owner . 
+ when the safe is not connected to any owner . 
  -       Red LED is ON
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/connection%20less%20mode.jpg)
          
