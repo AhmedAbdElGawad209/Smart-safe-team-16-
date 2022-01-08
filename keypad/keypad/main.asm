@@ -19,8 +19,8 @@ id:	.byte	10
 
 	
 
-	;ldi XL,LOW(id)
-	;ldi XH,HIGH(id)
+	ldi XL,LOW(id)
+	ldi XH,HIGH(id)
 
 	ldi r16,0b11111111    ;first 4 input .   last 4 output
 	out DDRC,r16
