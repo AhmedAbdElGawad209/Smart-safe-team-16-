@@ -30,7 +30,7 @@ if the ID is not correct an alarm is set to warn from a robbing trial.
 -  **LDR** sensor in the bottom of the safe to sens the motion of the safe.    
 -  **LDR** sensor inside the safe facing the door to sens if the door is closed or open.  
          
- # Safe response to different modes :
+ ## Safe response to different modes :
  ### Connetion-less mode :
  when the safe is not connected to any owner . 
  -       Red LED is ON
