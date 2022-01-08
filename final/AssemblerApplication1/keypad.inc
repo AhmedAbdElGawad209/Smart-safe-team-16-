@@ -141,14 +141,24 @@ next15:
 	st	Y,r18
 	inc	r19
 khatar:
-	sbis	PINA,0
+	sbis	PINC,1
 	rjmp	exit
+
+	sbis UCSRA, RXC
+	rjmp  startk
+	in	r17,UDR
+	cpi	r17,'B'
+	breq	e
 
 rjmp  startk
 
+e:	
+	ldi	r17,1
+	rjmp	exit
+
 hold:
-	ldi	r16,2
-	out	PORTC,r16
+	sbi	PORTA,1
+
 	in	r16,PINB
 	sbrc	r16,4
 	rjmp hold
@@ -158,8 +168,8 @@ hold:
 	rjmp hold
 	sbrc	r16,7
 	rjmp hold
-	ldi	r16,0
-	out	PORTC,r16
+
+	cbi	PORTA,1
 	ret
 
 check:
@@ -167,18 +177,14 @@ check:
 	brne	a				;mdkhlsh 4 arkam .........
 	rjmp	set_id	
 a:
+	delay	1500
+	sbi	PORTA,1				;HIGH buzz
 	delay	500
-	ldi	r16,2				;HIGH buzz
-	out	PORTC,r16
+	cbi	PORTA,1				;LOW buzz
 	delay	500
-	ldi	r16,0				;LOW buzz
-	out	PORTC,r16
+	sbi	PORTA,1
 	delay	500
-	ldi	r16,2				;HIGH buzz
-	out	PORTC,r16
-	delay	500
-	ldi	r16,0
-	out	PORTC,r16
+	cbi	PORTA,1
 	delay	500
 	rjmp	clear
 
