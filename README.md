@@ -22,8 +22,15 @@ if the ID is not correct an alarm is set to warn from a robbing trial.
 
 **The safe also contins anti move system :**
      It has light sensor which sens if the safe is moved from its regular place setting alarm and warning the owner by massage.
-  
-  ## Safe response to different modes :
+     
+## Hardware elements of the project 
+**the safe has :**
+            • *Rlay* which control the electrical  lock of the safe. 
+            •*keypad* which users use to insert their IDs.
+            • *LDR* sensor in the bottom of the safe to sens the motion of the safe. 
+            •*LDR* sensor inside the safe facing the door to send if the door is closed or open.
+         
+ # Safe response to different modes :
  ### Connetion-less mode :
  when the safe is not asigned to any owner . 
  -       Red LED is ON
