@@ -20,7 +20,7 @@ owner has the choice to accept and then the safe open
 OR reject and then the safe stay locked and a rejection alarm is set . 
 if the ID is not correct an alarm is set to warn from a robbing trial.  
 
-The safe also contins anti move system :
+**The safe also contins anti move system :**
      It has light sensor which sens if the safe is moved from its regular place setting alarm and warning the owner by massage.
   
   ## Safe response to different modes :
@@ -47,7 +47,7 @@ The safe also contins anti move system :
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/rightID%26%20allowance.jpg)
  ### Moving mode  :
  when someone try to move the safe from its palce  . 
- -        All LEDs (red, yellow, blue) are ON aand the buzzer is on (contious discrete noise)
+ -        All LEDs (red, yellow, blue) are ON and the buzzer is on (contious discrete noise)
  ![](https://github.com/AhmedAbdElGawad209/Smart-safe-team-7-/blob/master/moving.jpg)
  
   
@@ -81,8 +81,8 @@ users can immediately strat with our project by downloading a mobile application
 ###  © 2021 Smart safe team 
 
 - [ِAhmed Mohamed Mahmoud AbdElgawad](https://github.com/AhmedAbdElGawad209)
-- [Ahmed Gamal Elshahat](https://github.com/22)
+- [Ahmed Gamal Elshahat](https://github.com/ahmedgamala)
 - [Aya Mohamed Amin](https://github.com/Aya292Muhammed)
 - [Doaa Abo-sriaa Abd-Atty](https://github.com/doaaabusriaa)
 - [Sara Ashraf Elsayed](https://github.com/sara-ashraf2022)
-# If you steal our Idea we will make you fried potatos
+
