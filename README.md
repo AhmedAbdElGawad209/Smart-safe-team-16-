@@ -25,10 +25,10 @@ if the ID is not correct an alarm is set to warn from a robbing trial.
      
 ## Hardware elements of the project 
 **the safe has :**
-            • *Rlay* which control the electrical  lock of the safe. 
-            •*keypad* which users use to insert their IDs.
-            • *LDR* sensor in the bottom of the safe to sens the motion of the safe. 
-            •*LDR* sensor inside the safe facing the door to send if the door is closed or open.
+       -     • *Rlay* which control the electrical  lock of the safe. 
+       -    •*keypad* which users use to insert their IDs.
+       -    • *LDR* sensor in the bottom of the safe to sens the motion of the safe. 
+       -     •*LDR* sensor inside the safe facing the door to send if the door is closed or open.
          
  # Safe response to different modes :
  ### Connetion-less mode :
